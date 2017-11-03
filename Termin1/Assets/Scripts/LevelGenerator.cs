@@ -19,13 +19,13 @@ public class LevelGenerator : MonoBehaviour {
     List<GameObject> tilelist ;
 
     //Cycle
-    private bool even = false;
+    private bool even = true;
 
 
     // Use this for initialization
     void Start () {
         generateLevel();
-        drawLevel();
+       
         tilelist = new List<GameObject>();
 	}
 	
@@ -34,78 +34,78 @@ public class LevelGenerator : MonoBehaviour {
 		
 	}
     public void addNewTile (Vector3 position, Quaternion rotation) {
-        GameObject currentTile = null;
-        int random = Random.Range(1, 3);
+        position += new Vector3(0, 0, 200);
+        int random = Random.Range(0, 2);
         if( even ) {
             switch( random ) {
+                case 0:
+                Instantiate(tile1_1, position, rotation);
+                break;
                 case 1:
-                currentTile = tile1_1;
+                Instantiate(tile1_2, position, rotation);
                 break;
                 case 2:
-                currentTile = tile1_2;
-                break;
-                case 3:
-                currentTile = tile1_3;
+                Instantiate(tile1_3, position, rotation);
                 break;
             }
-            Instantiate(currentTile, position, rotation);
             even = false;
         }
         else {
             switch( random ) {
+                case 0:
+                Instantiate(tile2_1, position, rotation);
+                break;
                 case 1:
-                currentTile = tile2_1;
+                Instantiate(tile2_2, position, rotation);
                 break;
                 case 2:
-                currentTile = tile2_2;
-                break;
-                case 3:
-                currentTile = tile2_3;
+                Instantiate(tile2_3, position, rotation);
                 break;
             }
-            Instantiate(currentTile, position, rotation);
-            even = false;
+            even = true;
         }
     }
-    private void generateLevel() { 
-        GameObject currentTile = null;
-        for (int i=1; i<5; i++){
-            int random = Random.Range(1, 3);
-            if(i%2==0) {
-                even = false;
+    private void generateLevel() {
+        //startposition of first Tile
+        Vector3 position = new Vector3(0, 0, 0);
+        Quaternion sameQuart = tile1_1.transform.rotation;
+        //Random Number for choosing Tiles
+        int random=0; 
+        for (int i=0; i<4; i++){
+            //getting random Number
+            random = Random.Range(0, 2);
+            if( i % 2 == 0 ) {
                 switch( random ) {
-                    case 1: currentTile = tile1_1;
+                    case 0:
+                    Instantiate(tile1_1, position, sameQuart);
+                    position += new Vector3(0, 0, 50);
                     break;
-                    case 2: currentTile = tile1_2;
-                    break;
-                    case 3: currentTile = tile1_3;
-                    break;
-                }
-                tilelist.Add(currentTile);
-            }
-            else {
-                even = true;
-                switch( random ) {
                     case 1:
-                    currentTile = tile2_1;
+                    Instantiate(tile1_2, position, sameQuart);
+                    position += new Vector3(0, 0, 50);
                     break;
                     case 2:
-                    currentTile = tile2_2;
+                    Instantiate(tile1_3, position, sameQuart);
+                    position += new Vector3(0, 0, 50);
                     break;
-                    case 3:
-                    currentTile = tile2_3;
+                } 
+             }
+            else{
+                switch( random ) {
+                    case 0:
+                    Instantiate(tile2_1, position, sameQuart);
+                    position += new Vector3(0, 0, 50);
+                    break;
+                    case 1:
+                    Instantiate(tile2_2, position, sameQuart);
+                    position += new Vector3(0, 0, 50);
+                    break;
+                    case 2:
+                    Instantiate(tile2_3, position, sameQuart);
+                    position += new Vector3(0, 0, 50);
                     break;
                 }
-                tilelist.Add(currentTile);
             }
-           
-        }
-    }
-    private void drawLevel() {
-        Vector3 position= new Vector3(0,0,25);
-        Quaternion sameQuart = tile1_1.transform.rotation;
-        for (int i= 0; i<4 ; i++) {
-            Instantiate(tilelist [i], position + new Vector3(0,0,25), sameQuart );
         }
     }
    
