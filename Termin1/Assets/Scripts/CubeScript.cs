@@ -7,6 +7,7 @@ public class CubeScript : MonoBehaviour {
     //Variables 
     public int number=42;
     Rigidbody rb;
+    public int rollforce=10;
 
     
     // respawn
@@ -27,16 +28,16 @@ public class CubeScript : MonoBehaviour {
 
     private void moveCube () {
         if( Input.GetKey(KeyCode.D) ) {
-            rb.AddForce(Vector3.right*10);
+            rb.AddForce(Vector3.right*rollforce);
         }
         if( Input.GetKey(KeyCode.A) ) {
-            rb.AddForce(Vector3.right * -10);
+            rb.AddForce(Vector3.right * -rollforce);
         }
         if( Input.GetKey(KeyCode.W) ) {
-            rb.AddForce(Vector3.forward * 10);
+            rb.AddForce(Vector3.forward * rollforce);
         }
         if( Input.GetKey(KeyCode.S) ) {
-            rb.AddForce(Vector3.forward * -10);
+            rb.AddForce(Vector3.forward * -rollforce);
         }
     }
     private void respawn() {
