@@ -5,9 +5,17 @@ using UnityEngine;
 public class CubeScript : MonoBehaviour {
 
     //Variables 
-    public int number=42;
-    Rigidbody rb;
-    public int rollforce=10;
+    [Header("Movement")]
+    public float moveSpeed = 10;
+    public float maxSpeed = 20;
+    [Tooltip("Dampening of the cube movement. 0 = no input possible, 1 = normal move input")]
+    public float moveDampening = 1;
+
+    [Space]
+    [Header("Other")]
+    public AnimationCurve fadeIn = AnimationCurve.EaseInOut(0, 0, 1, 1);
+
+    private Rigidbody rb;
 
     
     // respawn
@@ -27,22 +35,32 @@ public class CubeScript : MonoBehaviour {
 	}
 
     private void moveCube () {
-        if( Input.GetKey(KeyCode.D) ) {
-            rb.AddForce(Vector3.right*rollforce);
+        if( Input.GetAxis("Horizontal") != 0 ) {
+            rb.AddForce(Vector3.right * Input.GetAxis("Horizontal") * moveSpeed * moveDampening);
         }
-        if( Input.GetKey(KeyCode.A) ) {
-            rb.AddForce(Vector3.right * -rollforce);
+        if( Input.GetAxis("Vertical") != 0 ) {
+            rb.AddForce(Vector3.forward * Input.GetAxis("Vertical") * moveSpeed * moveDampening);
         }
-        if( Input.GetKey(KeyCode.W) ) {
-            rb.AddForce(Vector3.forward * rollforce);
-        }
-        if( Input.GetKey(KeyCode.S) ) {
-            rb.AddForce(Vector3.forward * -rollforce);
-        }
+
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
     }
+
     private void respawn() {
         rb.position = startPosition;
         rb.rotation = startRot;
         rb.velocity = Vector3.zero;
+    }
+
+    public void blockMovement(float seconds) {
+        moveDampening = 0;
+        StartCoroutine(dampenMovementCoroutine(seconds));
+    }
+
+    IEnumerator dampenMovementCoroutine(float fadeSpeed) {
+        for (float i = 0; i < 1; i += 0.0125f * fadeSpeed) {
+            moveDampening = fadeIn.Evaluate(i);
+            yield return null;
+        }
+        moveDampening = 1;
     }
 }
