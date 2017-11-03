@@ -36,10 +36,10 @@ public class CubeScript : MonoBehaviour {
 
     private void moveCube () {
         if( Input.GetAxis("Horizontal") != 0 ) {
-            rb.AddForce(Vector3.right * Input.GetAxis("Horizontal") * moveSpeed * moveDampening);
+            rb.AddForce(Vector3.right * Input.GetAxis("Horizontal") * moveSpeed * moveDampening * 60 * Time.deltaTime);
         }
         if( Input.GetAxis("Vertical") != 0 ) {
-            rb.AddForce(Vector3.forward * Input.GetAxis("Vertical") * moveSpeed * moveDampening);
+            rb.AddForce(Vector3.forward * Input.GetAxis("Vertical") * moveSpeed * moveDampening * 60 * Time.deltaTime);
         }
 
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
@@ -57,7 +57,7 @@ public class CubeScript : MonoBehaviour {
     }
 
     IEnumerator dampenMovementCoroutine(float fadeSpeed) {
-        for (float i = 0; i < 1; i += 0.0125f * fadeSpeed) {
+        for (float i = 0; i < 1; i += 0.0125f * fadeSpeed * 60 * Time.deltaTime) {
             moveDampening = fadeIn.Evaluate(i);
             yield return null;
         }
