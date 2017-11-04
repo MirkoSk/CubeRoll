@@ -49,6 +49,7 @@ public class ScoreCounter : MonoBehaviour {
         score += tileCompletion;
         infoText.text = "Tile Completed !";
         infoText2.text = tileCompletion.ToString();
+        StartCoroutine(hideText());
     }
 
     public void mineDetection() {
