@@ -19,6 +19,7 @@ public class ScoreCounter : MonoBehaviour {
     [Header("Object References")]
     public Text scoreText;
     public Text infoText;
+    public Text infoText2;
     public Text highscoreText;
     public CubeScript cubeScript;
 
@@ -46,11 +47,14 @@ public class ScoreCounter : MonoBehaviour {
 
     public void tileCompleted() {
         score += tileCompletion;
+        infoText.text = "Tile Completed !";
+        infoText2.text = tileCompletion.ToString();
     }
 
     public void mineDetection() {
         score += mineDetectionDog;
         infoText.text = "Mine Detection Dog !";
+        infoText2.text = mineDetectionDog.ToString();
         StartCoroutine(hideText());
     }
 
@@ -71,6 +75,7 @@ public class ScoreCounter : MonoBehaviour {
     IEnumerator hideText() {
         yield return new WaitForSecondsRealtime(2.5f);
         infoText.text = "";
+        infoText2.text = "";
     }
 
     IEnumerator speedyCoroutine(Rigidbody rb) {
@@ -79,6 +84,7 @@ public class ScoreCounter : MonoBehaviour {
             score += speedyGonzalez;
             multiplier++;
             infoText.text = "Speedy Gonzalez x" + multiplier + " !";
+            infoText2.text = (multiplier * speedyGonzalez).ToString();
             yield return new WaitForSecondsRealtime(0.1f);
         }
         StartCoroutine(hideText());
