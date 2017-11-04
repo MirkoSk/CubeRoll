@@ -1100,9 +1100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80c6b2b866da0fe45a1c1835c79e4fdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileCompletion: 100
-  mineDetectionDog: 200
-  speedyGonzalez: 10
+  tileCompletion: 50
+  mineDetectionDog: 100
+  speedyGonzalez: 5
   speedLimit: 10
   speedDuration: 2
   scoreText: {fileID: 981310616}
