@@ -15,24 +15,46 @@ public class CubeScript : MonoBehaviour {
     [Header("Other")]
     public AnimationCurve fadeIn = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
-    private Rigidbody rb;
 
+
+    private Rigidbody rb;
     
+    // variables for speedy achievement
+    private float speedLimit;
+    [HideInInspector]
+    public float speedDuration;
+    [HideInInspector]
+    public bool speedyStarted = false;
+
     // respawn
     private Vector3 startPosition;
     private Quaternion startRot;
-   
+
 
 	void Start () {
         rb = GetComponent<Rigidbody>();
         startPosition = rb.transform.position;
         startRot = rb.transform.rotation;
+
+        speedLimit = ScoreCounter.Instance.speedLimit;
 	}
-	
+
 	void Update () {
         moveCube();
+
+        // Check the player speed and trigger Speedy Gonzalez event, if player is fast enough
+        if (!speedyStarted && rb.velocity.x + rb.velocity.z >= speedLimit) {
+            speedDuration += Time.deltaTime;
+            if (speedDuration >= ScoreCounter.Instance.speedDuration) {
+                ScoreCounter.Instance.speedy(rb);
+                speedyStarted = true;
+            }
+        }
+
         if( rb.position.y <= -10 ) respawn();
 	}
+
+
 
     private void moveCube () {
         if( Input.GetAxis("Horizontal") != 0 ) {
@@ -49,12 +71,16 @@ public class CubeScript : MonoBehaviour {
         rb.position = startPosition;
         rb.rotation = startRot;
         rb.velocity = Vector3.zero;
+
+        ScoreCounter.Instance.respawnTriggered();
     }
 
     public void blockMovement(float seconds) {
         moveDampening = 0;
         StartCoroutine(dampenMovementCoroutine(seconds));
     }
+
+
 
     IEnumerator dampenMovementCoroutine(float fadeSpeed) {
         for (float i = 0; i < 1; i += 0.0125f * fadeSpeed * 60 * Time.deltaTime) {

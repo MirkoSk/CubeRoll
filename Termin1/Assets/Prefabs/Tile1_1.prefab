@@ -139,9 +139,10 @@ GameObject:
   - component: {fileID: 65346592912850504}
   - component: {fileID: 23899815146487330}
   - component: {fileID: 114653664925618286}
+  - component: {fileID: 114592433018650820}
   m_Layer: 0
   m_Name: Trigger
-  m_TagString: Untagged
+  m_TagString: TileStart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1323,9 +1324,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671b0eaeda811394db2761a1ec807f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 1000
+  explosionForce: 3000
   explosionRadius: 5
-  movementBlockTimeOnHit: 3
+  movementBlockTimeOnHit: 10
 --- !u!114 &114006897028903914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1337,9 +1338,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671b0eaeda811394db2761a1ec807f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 1000
+  explosionForce: 3000
   explosionRadius: 5
-  movementBlockTimeOnHit: 3
+  movementBlockTimeOnHit: 10
 --- !u!114 &114168300178133780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1351,9 +1352,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671b0eaeda811394db2761a1ec807f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 1000
+  explosionForce: 3000
   explosionRadius: 5
-  movementBlockTimeOnHit: 3
+  movementBlockTimeOnHit: 10
 --- !u!114 &114289325887555196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1365,9 +1366,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671b0eaeda811394db2761a1ec807f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 1000
+  explosionForce: 3000
   explosionRadius: 5
-  movementBlockTimeOnHit: 3
+  movementBlockTimeOnHit: 10
 --- !u!114 &114335570185627122
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1379,9 +1380,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671b0eaeda811394db2761a1ec807f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 1000
+  explosionForce: 3000
   explosionRadius: 5
-  movementBlockTimeOnHit: 3
+  movementBlockTimeOnHit: 10
 --- !u!114 &114378205557640636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1393,9 +1394,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671b0eaeda811394db2761a1ec807f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 1000
+  explosionForce: 3000
   explosionRadius: 5
-  movementBlockTimeOnHit: 3
+  movementBlockTimeOnHit: 10
 --- !u!114 &114499794017308870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1407,9 +1408,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671b0eaeda811394db2761a1ec807f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 1000
+  explosionForce: 3000
   explosionRadius: 5
-  movementBlockTimeOnHit: 3
+  movementBlockTimeOnHit: 10
 --- !u!114 &114530283287472992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1421,9 +1422,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671b0eaeda811394db2761a1ec807f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 1000
+  explosionForce: 3000
   explosionRadius: 5
-  movementBlockTimeOnHit: 3
+  movementBlockTimeOnHit: 10
+--- !u!114 &114592433018650820
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1352816132241918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb9627ced1652ae4292af64327f492b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114653664925618286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1446,9 +1458,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671b0eaeda811394db2761a1ec807f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 1000
+  explosionForce: 3000
   explosionRadius: 5
-  movementBlockTimeOnHit: 3
+  movementBlockTimeOnHit: 10
 --- !u!114 &114816941607175554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1460,9 +1472,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671b0eaeda811394db2761a1ec807f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 1000
+  explosionForce: 3000
   explosionRadius: 5
-  movementBlockTimeOnHit: 3
+  movementBlockTimeOnHit: 10
 --- !u!135 &135062659662756450
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -1643,7 +1655,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 2046481015
+  randomSeed: 1089776507
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4981,7 +4993,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 83610367
+  randomSeed: 143493547
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -8319,7 +8331,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 392657184
+  randomSeed: 1170693280
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -11657,7 +11669,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 419935656
+  randomSeed: 387086870
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -14995,7 +15007,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2003219226
+  randomSeed: -1601334087
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -18333,7 +18345,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 502120091
+  randomSeed: 706500136
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -21671,7 +21683,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2128758789
+  randomSeed: -994923591
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -25009,7 +25021,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1528566911
+  randomSeed: 1589997230
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -28347,7 +28359,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 2126609533
+  randomSeed: -1609129387
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -31685,7 +31697,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1670372484
+  randomSeed: -2003762857
   InitialModule:
     serializedVersion: 3
     enabled: 1

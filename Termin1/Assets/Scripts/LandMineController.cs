@@ -16,9 +16,11 @@ public class LandMineController : MonoBehaviour {
 
     void OnCollisionEnter(Collision hit) {
         if (hit.transform.tag.Contains("Player")) {
-            hit.gameObject.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, this.transform.position + Vector3.up * 0.25f, explosionRadius);
+            hit.gameObject.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, this.transform.position + Vector3.up * 1f, explosionRadius);
             hit.gameObject.GetComponent<CubeScript>().blockMovement(movementBlockTimeOnHit);
             ps.Play();
+
+            ScoreCounter.Instance.mineDetection();
         }
     }
 }

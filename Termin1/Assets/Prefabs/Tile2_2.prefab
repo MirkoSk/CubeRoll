@@ -60,9 +60,10 @@ GameObject:
   - component: {fileID: 65469131191692544}
   - component: {fileID: 23455986557488080}
   - component: {fileID: 114171656041517662}
+  - component: {fileID: 114508324815449240}
   m_Layer: 0
   m_Name: Trigger
-  m_TagString: Untagged
+  m_TagString: TileStart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -430,6 +431,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f4ad9a3eab30734198d7dce5a8861c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114508324815449240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1245133757806522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb9627ced1652ae4292af64327f492b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114580445885128216

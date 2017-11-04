@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionForce: 3000
   explosionRadius: 10
-  movementBlockTimeOnHit: 4
+  movementBlockTimeOnHit: 6
 --- !u!135 &135684484136106220
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -172,7 +172,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -916861948
+  randomSeed: -1392576091
   InitialModule:
     serializedVersion: 3
     enabled: 1
