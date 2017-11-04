@@ -22,6 +22,7 @@ public class ScoreCounter : MonoBehaviour {
     public Text infoText2;
     public Text highscoreText;
     public CubeScript cubeScript;
+    public DistanceCounter distanceCounter;
 
     [HideInInspector]
     public int score;
@@ -38,7 +39,7 @@ public class ScoreCounter : MonoBehaviour {
     }
 
     void Update() {
-        scoreText.text = score.ToString();
+        scoreText.text = (distanceCounter.distance + score).ToString();
     }
 
 
@@ -65,6 +66,7 @@ public class ScoreCounter : MonoBehaviour {
     }
 
     public void respawnTriggered() {
+        score += distanceCounter.distance;
         if (score > highscore)
             highscore = score;
             highscoreText.text = highscore.ToString();
