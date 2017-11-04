@@ -36,10 +36,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4459257894801722}
   - component: {fileID: 33645713187210390}
-  - component: {fileID: 65094125265505272}
   - component: {fileID: 23298209087087920}
   - component: {fileID: 114304163463037708}
   - component: {fileID: 54448436174938352}
+  - component: {fileID: 64968977300260282}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Player
@@ -114,7 +114,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1595060318603050}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 5e2a675a22a2cb04fb2ff2a41681b205, type: 3}
 --- !u!54 &54448436174938352
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -130,8 +130,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65094125265505272
-BoxCollider:
+--- !u!64 &64968977300260282
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -140,8 +140,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: e9fceb53553e34a4f81c12e3e870f641, type: 3}
 --- !u!108 &108663452083655732
 Light:
   m_ObjectHideFlags: 1
@@ -196,7 +198,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0
+      time: 0.8
       value: 0
       inSlope: 0
       outSlope: 0
@@ -209,4 +211,6 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
+  speedDuration: 0
+  speedyStarted: 0
