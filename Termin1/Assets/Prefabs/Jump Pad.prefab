@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4976877341802678}
   - component: {fileID: 33847206884668278}
   - component: {fileID: 23479225397508752}
-  - component: {fileID: 65034895156918958}
   - component: {fileID: 114242075667804518}
   - component: {fileID: 65575171049888492}
+  - component: {fileID: 65616182803650456}
   m_Layer: 0
   m_Name: Jump Pad
   m_TagString: Untagged
@@ -38,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1328067667230024}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.17500585, y: 0.2960152, z: 2.23}
-  m_LocalScale: {x: 0.83648074, y: 0.02585659, z: 0.65350634}
+  m_LocalPosition: {x: 45, y: 0, z: 0}
+  m_LocalScale: {x: 5, y: 0.02585659, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -85,18 +85,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1328067667230024}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65034895156918958
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1328067667230024}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.3, y: 11, z: 0.4}
-  m_Center: {x: 0, y: 5, z: 0}
 --- !u!65 &65575171049888492
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -109,6 +97,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.99999994, z: 1}
   m_Center: {x: 0, y: -0.0000009536743, z: 0}
+--- !u!65 &65616182803650456
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1328067667230024}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 70.15897, z: 0.8}
+  m_Center: {x: 0, y: 34.579487, z: 0}
 --- !u!114 &114242075667804518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -120,4 +120,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79293d02c1e159441b607e695ad44741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 10
+  force: 20

@@ -14,7 +14,15 @@ public class JumpPadController : MonoBehaviour {
 
     void OnTriggerEnter(Collider hit) {
         if (hit.tag.Contains("Player")) {
-            hit.GetComponent<Rigidbody>().AddForce(Vector3.up * force, ForceMode.Impulse);
+            StartCoroutine(addJumpForce(hit.GetComponent<Rigidbody>()));
+            //hit.GetComponent<Rigidbody>().AddForce(Vector3.up * force, ForceMode.Impulse);
+        }
+    }
+
+    IEnumerator addJumpForce(Rigidbody rb) {
+        for (int i = 0; i < 60; i++) {
+            rb.AddForce(Vector3.up * force);
+            yield return null;
         }
     }
 }
