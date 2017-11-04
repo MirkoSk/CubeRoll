@@ -72,6 +72,8 @@ public class CubeScript : MonoBehaviour {
         rb.rotation = startRot;
         rb.velocity = Vector3.zero;
 
+        speedDuration = 0;
+
         ScoreCounter.Instance.respawnTriggered();
     }
 
