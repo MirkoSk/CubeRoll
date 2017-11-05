@@ -454,55 +454,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1595060318603050, guid: 57cc55cd586389c48a83d3c58b126601, type: 2}
-      propertyPath: m_Name
-      value: Cube
-      objectReference: {fileID: 0}
-    - target: {fileID: 114304163463037708, guid: 57cc55cd586389c48a83d3c58b126601,
-        type: 2}
-      propertyPath: fadeIn.m_Curve.Array.data[0].time
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114304163463037708, guid: 57cc55cd586389c48a83d3c58b126601,
-        type: 2}
-      propertyPath: fadeIn.m_Curve.Array.data[0].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114304163463037708, guid: 57cc55cd586389c48a83d3c58b126601,
-        type: 2}
-      propertyPath: fadeIn.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114304163463037708, guid: 57cc55cd586389c48a83d3c58b126601,
-        type: 2}
-      propertyPath: fadeIn.m_Curve.Array.data[0].inSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114304163463037708, guid: 57cc55cd586389c48a83d3c58b126601,
-        type: 2}
-      propertyPath: fadeIn.m_Curve.Array.data[0].outSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114304163463037708, guid: 57cc55cd586389c48a83d3c58b126601,
-        type: 2}
-      propertyPath: fadeIn.m_Curve.Array.data[0].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114304163463037708, guid: 57cc55cd586389c48a83d3c58b126601,
-        type: 2}
-      propertyPath: fadeIn.m_Curve.Array.data[1].inSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114304163463037708, guid: 57cc55cd586389c48a83d3c58b126601,
-        type: 2}
-      propertyPath: fadeIn.m_Curve.Array.data[1].outSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114304163463037708, guid: 57cc55cd586389c48a83d3c58b126601,
-        type: 2}
-      propertyPath: fadeIn.m_Curve.Array.data[1].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57cc55cd586389c48a83d3c58b126601, type: 2}
   m_IsPrefabParent: 0
