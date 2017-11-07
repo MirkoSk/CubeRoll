@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: e2638d0ef50bda74483b47d82f070307
+timeCreated: 1510079942
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Lismonia Brush Font Demo
+  fontNames:
+  - Lismonia Brush Font Demo
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

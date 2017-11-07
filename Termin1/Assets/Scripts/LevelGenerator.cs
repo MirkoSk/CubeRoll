@@ -41,6 +41,7 @@ public class LevelGenerator : MonoBehaviour {
         temp.SetActive(true);
         tilelist.Add(temp);
     }
+
     private void generateLevel() {
         GameObject temp = null;
         Vector3 position = new Vector3(0, 0, 0);
