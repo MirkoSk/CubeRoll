@@ -7,107 +7,73 @@ public class LevelGenerator : MonoBehaviour {
 
     //Tiles
     [Header("Tileset 1")]
-    public GameObject tile1_1;
-    public GameObject tile1_2;
-    public GameObject tile1_3;
+    public GameObject[] tileSet1;//T1
+    
     [Header("Tileset 2")]
-    public GameObject tile2_1;
-    public GameObject tile2_2;
-    public GameObject tile2_3;
+    public GameObject[] tileSet2;//T2
+   
 
-    //Liste mit Tiles
+    //Listof all Tiles in Scene
     List<GameObject> tilelist ;
 
-    //Cycle
-    private bool even = true;
+    //Cycle: T1,T2,T1,...
+    private bool addT1 = true;
 
 
-    // Use this for initialization
     void Start () {
-        generateLevel();
-       
         tilelist = new List<GameObject>();
+        generateLevel();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
     public void addNewTile (Vector3 position, Quaternion rotation) {
         position += new Vector3(0, 0, 200);
-        int random = Random.Range(0, 2);
-        if( even ) {
-            switch( random ) {
-                case 0:
-                Instantiate(tile1_1, position, rotation);
-                break;
-                case 1:
-                Instantiate(tile1_2, position, rotation);
-                break;
-                case 2:
-                Instantiate(tile1_3, position, rotation);
-                break;
-            }
-            even = false;
+        int random = Random.Range(0, 3);
+        GameObject temp=null;
+
+        if( !addT1 ) {
+            temp = Instantiate(tileSet1[random],position, rotation);
+            addT1 = true;
         }
         else {
-            switch( random ) {
-                case 0:
-                Instantiate(tile2_1, position, rotation);
-                break;
-                case 1:
-                Instantiate(tile2_2, position, rotation);
-                break;
-                case 2:
-                Instantiate(tile2_3, position, rotation);
-                break;
-            }
-            even = true;
+            temp = Instantiate(tileSet2[random], position, rotation);
+            addT1 = false;
         }
+        temp.SetActive(true);
+        tilelist.Add(temp);
     }
     private void generateLevel() {
-        //startposition of first Tile
+        GameObject temp = null;
         Vector3 position = new Vector3(0, 0, 0);
-        Quaternion sameQuart = tile1_1.transform.rotation;
-        //Random Number for choosing Tiles
+        Quaternion rotation = new Quaternion(0,0,0,0);
         int random=0; 
+        //adding 4 tiles at the start of the game
         for (int i=0; i<4; i++){
-            //getting random Number
-            random = Random.Range(0, 2);
-            if( i % 2 == 0 ) {
-                switch( random ) {
-                    case 0:
-                    Instantiate(tile1_1, position, sameQuart);
-                    position += new Vector3(0, 0, 50);
-                    break;
-                    case 1:
-                    Instantiate(tile1_2, position, sameQuart);
-                    position += new Vector3(0, 0, 50);
-                    break;
-                    case 2:
-                    Instantiate(tile1_3, position, sameQuart);
-                    position += new Vector3(0, 0, 50);
-                    break;
-                } 
-             }
-            else{
-                switch( random ) {
-                    case 0:
-                    Instantiate(tile2_1, position, sameQuart);
-                    position += new Vector3(0, 0, 50);
-                    break;
-                    case 1:
-                    Instantiate(tile2_2, position, sameQuart);
-                    position += new Vector3(0, 0, 50);
-                    break;
-                    case 2:
-                    Instantiate(tile2_3, position, sameQuart);
-                    position += new Vector3(0, 0, 50);
-                    break;
+            random = Random.Range(0, 3);
+            print("i: "+i+" random number: "+random+" Array length: "+tileSet1.Length);//need it to find bug: for is started a 5th time with i=0...?! sometimes... have to figue it out... 
+               
+                if( i % 2 == 0 ) {//T1 
+                    temp = Instantiate(tileSet1[random], position, rotation);
+                    addT1 = true;
                 }
-            }
+                 else{//T2
+                    temp = Instantiate(tileSet2[random], position, rotation);
+                    addT1 = false;
+                }
+            
+            temp.SetActive(true);
+            tilelist.Add(temp);
+            position += new Vector3(0, 0, 50);
         }
     }
-   
+
+    public void destroyTiles() {
+        //destroys every gameObject in List
+        foreach( GameObject tile in tilelist ) {
+            GameObject.Destroy(tile);
+        }
+        tilelist.Clear();
+        generateLevel();
+    }
+
  }
 

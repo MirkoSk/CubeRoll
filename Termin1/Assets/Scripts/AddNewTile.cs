@@ -14,8 +14,10 @@ public class AddNewTile : MonoBehaviour {
 		
     }
     private void OnTriggerEnter (Collider other) {
-        LevelGenerator gen = GameObject.Find("StartArea").GetComponent<LevelGenerator>();
-        gen.addNewTile(transform.parent.position,transform.parent.rotation);
-        this.enabled = false;
+        if( other.tag == "Player" ) { 
+            LevelGenerator gen = GameObject.Find("_SCRIPTS").GetComponent<LevelGenerator>();
+            gen.addNewTile(transform.parent.position, transform.parent.rotation);
+            this.enabled = false;
+        }
     }
 }
