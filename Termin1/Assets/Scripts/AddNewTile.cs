@@ -4,19 +4,12 @@ using UnityEngine;
 
 public class AddNewTile : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-    }
-    private void OnTriggerEnter (Collider other) {
+	private void OnTriggerEnter (Collider other) {
         if( other.tag == "Player" ) { 
+            //calls Method to add a new Tile
             LevelGenerator gen = GameObject.Find("_SCRIPTS").GetComponent<LevelGenerator>();
-            gen.addNewTile(transform.parent.position, transform.parent.rotation);
+            gen.newTile(transform.parent.position);
+            //Disable the Trigger
             this.enabled = false;
         }
     }

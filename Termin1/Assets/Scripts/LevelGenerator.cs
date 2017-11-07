@@ -12,63 +12,41 @@ public class LevelGenerator : MonoBehaviour {
     [Header("Tileset 2")]
     public GameObject[] tileSet2;//T2
    
-
     //Listof all Tiles in Scene
-    List<GameObject> tilelist ;
+    private List<GameObject> tilelist ;
 
     //Cycle: T1,T2,T1,...
     private bool addT1 = true;
+    //Length of tilesets
+    private int t1 = 0;
+    private int t2 = 0;
 
-
+    //Constants
+    int TILEDISTANCE = 50;
+    int DISTANCETOEND = 200;
+    Quaternion ROTATION = new Quaternion(0, 0, 0, 0);
+   
     void Start () {
         tilelist = new List<GameObject>();
         generateLevel();
+        t1 = tileSet1.Length;
+        t2 = tileSet2.Length;
 	}
-	
-    public void addNewTile (Vector3 position, Quaternion rotation) {
-        position += new Vector3(0, 0, 200);
-        int random = Random.Range(0, 3);
-        GameObject temp=null;
 
-        if( !addT1 ) {
-            temp = Instantiate(tileSet1[random],position, rotation);
-            addT1 = true;
-        }
-        else {
-            temp = Instantiate(tileSet2[random], position, rotation);
-            addT1 = false;
-        }
-        temp.SetActive(true);
-        tilelist.Add(temp);
+#region PublicFunctions
+
+    /*
+     * Instantiates a new Tile at the End of the Path
+     */
+    public void newTile (Vector3 position) {
+        position += new Vector3(0, 0, DISTANCETOEND);
+        addTile(position);
     }
 
-    private void generateLevel() {
-        GameObject temp = null;
-        Vector3 position = new Vector3(0, 0, 0);
-        Quaternion rotation = new Quaternion(0,0,0,0);
-        int random=0; 
-        //adding 4 tiles at the start of the game
-        for (int i=0; i<4; i++){
-            random = Random.Range(0, 3);
-            print("i: "+i+" random number: "+random+" Array length: "+tileSet1.Length);//need it to find bug: for is started a 5th time with i=0...?! sometimes... have to figue it out... 
-               
-                if( i % 2 == 0 ) {//T1 
-                    temp = Instantiate(tileSet1[random], position, rotation);
-                    addT1 = true;
-                }
-                 else{//T2
-                    temp = Instantiate(tileSet2[random], position, rotation);
-                    addT1 = false;
-                }
-            
-            temp.SetActive(true);
-            tilelist.Add(temp);
-            position += new Vector3(0, 0, 50);
-        }
-    }
-
-    public void destroyTiles() {
-        //destroys every gameObject in List
+    /*
+     * Destroys all Tiles in tilelist and creates new Level (used in Respawn)
+     */
+    public void destroyTiles () {
         foreach( GameObject tile in tilelist ) {
             GameObject.Destroy(tile);
         }
@@ -76,5 +54,47 @@ public class LevelGenerator : MonoBehaviour {
         generateLevel();
     }
 
- }
+#endregion
+
+#region PrivateFunctions
+
+    /*
+     * Generates 4 Tiles in Row (used at Start and Respawn)
+     */
+    private void generateLevel() {
+        Vector3 position = new Vector3(0, 0, 0); 
+        
+        for (int i=0; i<4; i++){
+            if( i % 2 == 0 )   addT1 = true;
+            else               addT1 = false;
+
+            addTile(position);
+            position += new Vector3(0, 0, TILEDISTANCE);
+        }
+    }
+
+    /*
+     * Instantiates Tile and adds it to tilelist
+     */
+    private void addTile(Vector3 position) {
+        int random = 0;
+        GameObject temp = null;
+
+        if( addT1 ) {
+            random = Random.Range(0, t1);
+            temp = Instantiate(tileSet1[random], position, ROTATION);
+            addT1 = false;
+        }
+        else {
+            random = Random.Range(0, t2);
+            temp = Instantiate(tileSet2[random], position, ROTATION);
+            addT1 = true;
+        }
+
+        temp.SetActive(true);
+        tilelist.Add(temp);
+    }
+ #endregion
+
+}
 
