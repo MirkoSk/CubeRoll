@@ -22,11 +22,13 @@ public class LevelGenerator : MonoBehaviour {
     private int t2 = 0;
 
     //Constants
-    int TILEDISTANCE = 50;
-    int DISTANCETOEND = 200;
+    int TILES_STARTCOUNT = 4;
+    int TILE_DISTANCE = 50;
     Quaternion ROTATION = new Quaternion(0, 0, 0, 0);
-   
+    int DISTANCE_TO_NEXT_FREE_POSITION;
+
     void Start () {
+        DISTANCE_TO_NEXT_FREE_POSITION = TILES_STARTCOUNT * TILE_DISTANCE;
         tilelist = new List<GameObject>();
         generateLevel();
         t1 = tileSet1.Length;
@@ -39,7 +41,7 @@ public class LevelGenerator : MonoBehaviour {
      * Instantiates a new Tile at the End of the Path
      */
     public void newTile (Vector3 position) {
-        position += new Vector3(0, 0, DISTANCETOEND);
+        position += new Vector3(0, 0, DISTANCE_TO_NEXT_FREE_POSITION);
         addTile(position);
     }
 
@@ -64,12 +66,12 @@ public class LevelGenerator : MonoBehaviour {
     private void generateLevel() {
         Vector3 position = new Vector3(0, 0, 0); 
         
-        for (int i=0; i<4; i++){
+        for (int i=0; i < TILES_STARTCOUNT; i++){
             if( i % 2 == 0 )   addT1 = true;
             else               addT1 = false;
 
             addTile(position);
-            position += new Vector3(0, 0, TILEDISTANCE);
+            position += new Vector3(0, 0, TILE_DISTANCE);
         }
     }
 
