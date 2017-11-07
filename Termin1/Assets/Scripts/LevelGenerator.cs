@@ -48,11 +48,8 @@ public class LevelGenerator : MonoBehaviour {
     /*
      * Destroys all Tiles in tilelist and creates new Level (used in Respawn)
      */
-    public void destroyTiles () {
-        foreach( GameObject tile in tilelist ) {
-            GameObject.Destroy(tile);
-        }
-        tilelist.Clear();
+    public void newLevel () {
+        removeAllTiles();
         generateLevel();
     }
 
@@ -95,6 +92,16 @@ public class LevelGenerator : MonoBehaviour {
 
         temp.SetActive(true);
         tilelist.Add(temp);
+    }
+
+    /*
+     * Destroys all Instances of Tiles(GameObjects) in tilelist and clears List
+     */
+     private void removeAllTiles() {
+        foreach( GameObject tile in tilelist ) {
+            GameObject.Destroy(tile);
+        }
+        tilelist.Clear();
     }
  #endregion
 

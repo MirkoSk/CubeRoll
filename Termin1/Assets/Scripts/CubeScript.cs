@@ -71,8 +71,7 @@ public class CubeScript : MonoBehaviour {
         rb.position = startPosition;
         rb.rotation = startRot;
         rb.velocity = Vector3.zero;
-        GameObject.Find("_SCRIPTS").GetComponent<LevelGenerator>().destroyTiles();
-
+        GameObject.Find("_SCRIPTS").GetComponent<LevelGenerator>().newLevel();
         speedDuration = 0;
 
         ScoreCounter.Instance.respawnTriggered();
