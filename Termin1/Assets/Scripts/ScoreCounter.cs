@@ -50,7 +50,7 @@ public class ScoreCounter : MonoBehaviour {
         score += tileCompletion;
         infoText.text = "Tile Completed !";
         infoText2.text = tileCompletion.ToString();
-        StartCoroutine(hideText());
+        StartCoroutine(hideTextFast());
     }
 
     public void mineDetection() {
@@ -77,6 +77,13 @@ public class ScoreCounter : MonoBehaviour {
 
     IEnumerator hideText() {
         yield return new WaitForSecondsRealtime(2.5f);
+        infoText.text = "";
+        infoText2.text = "";
+    }
+
+    IEnumerator hideTextFast()
+    {
+        yield return new WaitForSecondsRealtime(1f);
         infoText.text = "";
         infoText2.text = "";
     }
