@@ -112,7 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4686293773524394}
   m_Layer: 0
-  m_Name: Tile2_2
+  m_Name: Tile2 Jump Pad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

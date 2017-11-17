@@ -53,7 +53,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4015618426761548}
   m_Layer: 0
-  m_Name: Tile1_2
+  m_Name: Tile1 Speed Jump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

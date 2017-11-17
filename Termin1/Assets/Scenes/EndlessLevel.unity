@@ -1073,13 +1073,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileSet1:
-  - {fileID: 1954886220825772, guid: 19f2322e28f3d4f4586d821c83c4d252, type: 2}
-  - {fileID: 1464626401135754, guid: c458650f34970bf4c905416404880d86, type: 2}
   - {fileID: 1358193179111952, guid: e33fd268267cab34e99abec0e566b579, type: 2}
+  - {fileID: 1464626401135754, guid: c458650f34970bf4c905416404880d86, type: 2}
   tileSet2:
-  - {fileID: 1789273538036380, guid: 8ca253a5481d391418fba982b0971cc5, type: 2}
-  - {fileID: 1806416698069152, guid: 0927796bc15279646823f2681c24729a, type: 2}
   - {fileID: 1119942830351324, guid: f0affe771eb683b49a4bdc3cba50a945, type: 2}
+  - {fileID: 1806416698069152, guid: 0927796bc15279646823f2681c24729a, type: 2}
+  tileSet1Hard:
+  - {fileID: 1954886220825772, guid: 19f2322e28f3d4f4586d821c83c4d252, type: 2}
+  tileSet2Hard:
+  - {fileID: 1789273538036380, guid: 8ca253a5481d391418fba982b0971cc5, type: 2}
+  difficultyPointLimit: 100
 --- !u!4 &1396721021
 Transform:
   m_ObjectHideFlags: 0
