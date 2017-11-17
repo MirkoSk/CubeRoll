@@ -27,6 +27,15 @@ public class LevelGenerator : MonoBehaviour {
     Quaternion ROTATION = new Quaternion(0, 0, 0, 0);
     const int DISTANCE_TO_NEXT_FREE_POSITION = TILES_STARTCOUNT * TILE_DISTANCE;
 
+    // Static singleton property
+    public static LevelGenerator Instance { get; private set; }
+
+    void Awake()
+    {
+        // Save a reference to the AudioHandler component as our singleton instance
+        Instance = this;
+    }
+
     void Start ()
     {
         tilelist = new List<GameObject>();
