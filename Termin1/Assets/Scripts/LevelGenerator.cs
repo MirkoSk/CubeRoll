@@ -18,22 +18,22 @@ public class LevelGenerator : MonoBehaviour {
     //Cycle: T1,T2,T1,...
     private bool addT1 = true;
     //Length of tilesets
-    private int t1 = 0;
-    private int t2 = 0;
+    private int t1 ;
+    private int t2;
 
     //Constants
-    int TILES_STARTCOUNT = 4;
-    int TILE_DISTANCE = 50;
+    const int TILES_STARTCOUNT = 4;
+    const int TILE_DISTANCE = 50;
     Quaternion ROTATION = new Quaternion(0, 0, 0, 0);
-    int DISTANCE_TO_NEXT_FREE_POSITION;
+    const int DISTANCE_TO_NEXT_FREE_POSITION = TILES_STARTCOUNT * TILE_DISTANCE;
 
-    void Start () {
-        DISTANCE_TO_NEXT_FREE_POSITION = TILES_STARTCOUNT * TILE_DISTANCE;
+    void Start ()
+    {
         tilelist = new List<GameObject>();
         generateLevel();
         t1 = tileSet1.Length;
         t2 = tileSet2.Length;
-	}
+    }
 
 #region PublicFunctions
 

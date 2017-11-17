@@ -111,7 +111,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4686293773524394}
-  - component: {fileID: 114932239785785440}
   m_Layer: 0
   m_Name: Tile2_2
   m_TagString: Untagged
@@ -457,19 +456,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 15
---- !u!114 &114932239785785440
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1806416698069152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90958f86674cc3244ac16f77289b1581, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tileSet1: []
-  tileSet2: []
 --- !u!198 &198156622490044086
 ParticleSystem:
   m_ObjectHideFlags: 1
