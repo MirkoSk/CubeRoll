@@ -87,6 +87,7 @@ public class LevelGenerator : MonoBehaviour {
      */
     public void newLevel () {
         removeAllTiles();
+        removeStartArea();
         setCompletedTiles(0);
         generateLevel();
     }
@@ -155,6 +156,14 @@ public class LevelGenerator : MonoBehaviour {
             GameObject.Destroy(tile);
         }
         tilelist.Clear();
+    }
+
+    /*
+     * Removes Start Area
+     */
+    private void removeStartArea() {
+        if( GameObject.FindGameObjectWithTag("StartArea") )
+            Destroy(GameObject.FindGameObjectWithTag("StartArea"));
     }
  #endregion
 
