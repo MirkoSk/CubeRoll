@@ -885,7 +885,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1052555749}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -974,7 +974,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1260090900}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -1072,6 +1072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90958f86674cc3244ac16f77289b1581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  difficultyPointLimit: 100
   tileSet1:
   - {fileID: 1358193179111952, guid: e33fd268267cab34e99abec0e566b579, type: 2}
   - {fileID: 1464626401135754, guid: c458650f34970bf4c905416404880d86, type: 2}
@@ -1082,7 +1083,6 @@ MonoBehaviour:
   - {fileID: 1954886220825772, guid: 19f2322e28f3d4f4586d821c83c4d252, type: 2}
   tileSet2Hard:
   - {fileID: 1789273538036380, guid: 8ca253a5481d391418fba982b0971cc5, type: 2}
-  difficultyPointLimit: 100
 --- !u!4 &1396721021
 Transform:
   m_ObjectHideFlags: 0
