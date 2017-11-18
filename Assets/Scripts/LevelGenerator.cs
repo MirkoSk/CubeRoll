@@ -8,6 +8,9 @@ public class LevelGenerator : MonoBehaviour {
     [Header("Variables")]
     public int difficultyPointLimit = 1000;
 
+    [Header("StartArea")]
+    public GameObject startArea;
+
     //Tiles
     [Header("Tilesets")]
     public GameObject[] tileSet1;//T1
@@ -22,7 +25,7 @@ public class LevelGenerator : MonoBehaviour {
     private bool addT1 = true;
 
     //Constants
-    const int TILES_STARTCOUNT = 4;
+    public const int TILES_STARTCOUNT = 2;
     const int TILE_DISTANCE = 50;
     Quaternion ROTATION = new Quaternion(0, 0, 0, 0);
     const int DISTANCE_TO_NEXT_FREE_POSITION = TILES_STARTCOUNT * TILE_DISTANCE;
@@ -31,8 +34,19 @@ public class LevelGenerator : MonoBehaviour {
     public static LevelGenerator Instance { get; private set; }
 
     private int score;
+    private int completedTiles=0;
 
-    void Awake()
+    #region GetterSetter
+    public int getCompletedTiles() {
+        return this.completedTiles;
+    }
+    public void setCompletedTiles(int value) {
+        completedTiles = value;
+    }
+    #endregion
+
+
+    void Awake ()
     {
         // Save a reference to the AudioHandler component as our singleton instance
         Instance = this;
@@ -42,6 +56,7 @@ public class LevelGenerator : MonoBehaviour {
     {
         tilelist = new List<GameObject>();
         generateLevel();
+        completedTiles = 0;
     }
 
     private void Update()
@@ -49,7 +64,7 @@ public class LevelGenerator : MonoBehaviour {
         score = ScoreCounter.Instance.score;
     }
 
-    #region PublicFunctions
+#region PublicFunctions
 
     /*
      * Instantiates a new Tile at the End of the Path
@@ -60,10 +75,19 @@ public class LevelGenerator : MonoBehaviour {
     }
 
     /*
+    * Removes first Tile from tilelist and destroys GameObject
+    */
+    public void deleteOldTile () {
+        GameObject.Destroy(tilelist [0]);
+        tilelist.RemoveAt(0);
+    }
+
+    /*
      * Destroys all Tiles in tilelist and creates new Level (used in Respawn)
      */
     public void newLevel () {
         removeAllTiles();
+        setCompletedTiles(0);
         generateLevel();
     }
 
@@ -77,7 +101,7 @@ public class LevelGenerator : MonoBehaviour {
     private void generateLevel() {
         Vector3 position = new Vector3(0, 0, 0);
         score = 0;
-        
+        Instantiate(startArea);
         for (int i=0; i < TILES_STARTCOUNT; i++){
             if( i % 2 == 0 )   addT1 = true;
             else               addT1 = false;
@@ -126,7 +150,7 @@ public class LevelGenerator : MonoBehaviour {
     /*
      * Destroys all Instances of Tiles(GameObjects) in tilelist and clears List
      */
-     private void removeAllTiles() {
+    private void removeAllTiles () {
         foreach( GameObject tile in tilelist ) {
             GameObject.Destroy(tile);
         }
