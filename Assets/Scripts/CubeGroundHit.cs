@@ -10,6 +10,8 @@ public class CubeGroundHit : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision) {
-        GameObject cubeGroundHitPS = Instantiate(cubeGroundHitPSPrefab, collision.contacts[0].point + Vector3.up * 0.3f, Quaternion.identity);
+        for (int i = 0; i < collision.contacts.Length; i++) {
+            GameObject cubeGroundHitPS = Instantiate(cubeGroundHitPSPrefab, collision.contacts[i].point + Vector3.up * 0.3f, Quaternion.identity);
+        }
     }
 }
