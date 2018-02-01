@@ -12,6 +12,7 @@ public class CubeGroundHit : MonoBehaviour {
     private void OnCollisionEnter(Collision collision) {
         for (int i = 0; i < collision.contacts.Length; i++) {
             Instantiate(cubeGroundHitPSPrefab, collision.contacts[i].point + Vector3.up * 0.3f, Quaternion.identity);
+            AudioManager.Instance.PlaySound("CubeHit");
         }
     }
 }

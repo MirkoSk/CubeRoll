@@ -59,6 +59,12 @@ public class AudioManager : MonoBehaviour {
         src.Play();
     }
 
+    public void PlaySoundOneShot(string name) {
+        AudioSource src;
+        audioSources.TryGetValue(name, out src);
+        src.PlayOneShot(src.clip);
+    }
+
     public void PlaySoundScheduled(string name, double time) {
         AudioSource src;
         audioSources.TryGetValue(name, out src);
