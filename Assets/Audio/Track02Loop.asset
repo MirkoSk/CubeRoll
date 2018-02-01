@@ -17,8 +17,8 @@ MonoBehaviour:
   bypassEffects: 0
   bypassListenerEffects: 0
   playOnAwake: 0
-  loop: 0
+  loop: 1
   priority: 128
-  volume: 1
+  volume: 0.5
   pitch: 1
   stereoPan: 0
