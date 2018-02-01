@@ -71,6 +71,7 @@ public class CubeScript : MonoBehaviour {
         rb.position = startPosition;
         rb.rotation = startRot;
         rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         LevelGenerator.Instance.newLevel();
         speedDuration = 0;
 

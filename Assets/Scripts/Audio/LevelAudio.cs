@@ -9,7 +9,7 @@ public class LevelAudio : MonoBehaviour {
 
     #region Variable Declarations
     [Range(1,2)]
-    [SerializeField] int backgroundTrack;
+    [SerializeField] int backgroundTrack = 1;
 	#endregion
 	
 	
