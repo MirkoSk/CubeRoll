@@ -653,7 +653,8 @@ Prefab:
       propertyPath: m_NormalizedViewPortRect.x
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 81167734652028452, guid: d1d8ba2c5d3a51f4ea8b81594850a341, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d1d8ba2c5d3a51f4ea8b81594850a341, type: 2}
   m_IsPrefabParent: 0
 --- !u!20 &446444954 stripped
