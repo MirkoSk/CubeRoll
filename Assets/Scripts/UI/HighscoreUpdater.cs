@@ -4,7 +4,9 @@ using UnityEngine;
 using TMPro;
 
 /// <summary>
+/// Handles updating the highscore UI.
 /// 
+/// Author: Mirko Skroch
 /// </summary>
 public class HighscoreUpdater : MonoBehaviour 
 {
