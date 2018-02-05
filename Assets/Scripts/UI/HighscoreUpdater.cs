@@ -44,10 +44,10 @@ public class HighscoreUpdater : MonoBehaviour
 	public void UpdateText()
     {
         highscoreText.text = ScoreCounter.Instance.Highscore.ToString();
-        LeanTween.scale(gameObject, transform.localScale * (1 + scaleAmount), scaleDuration * (1f / 4.5f)).setEase(LeanTweenType.easeOutBack).setOnComplete(() => {
-            LeanTween.scale(gameObject, transform.localScale * (1 - scaleAmount), scaleDuration * (1.5f / 4.5f)).setEase(animationCurve).setLoopCount(2).setOnComplete(() =>
+        LeanTween.scale(gameObject, transform.localScale * (1 + scaleAmount), scaleDuration * (1f / 3.5f)).setEase(LeanTweenType.easeOutBack).setOnComplete(() => {
+            LeanTween.scale(gameObject, transform.localScale * (1 - scaleAmount), scaleDuration * (1.5f / 3.5f)).setEase(animationCurve).setLoopCount(2).setOnComplete(() =>
             {
-                LeanTween.scale(gameObject, originalCounterScale, scaleDuration * (2f / 4.5f)).setEase(LeanTweenType.easeInOutCubic);
+                LeanTween.scale(gameObject, originalCounterScale, scaleDuration * (1f / 3.5f)).setEase(LeanTweenType.easeInOutSine);
             });
         });
     }

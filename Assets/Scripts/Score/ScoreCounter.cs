@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 /// <summary>
 /// Handles all scoring and informs the UI components accordingly.
@@ -15,8 +14,7 @@ public class ScoreCounter : MonoBehaviour {
     public class ObjectReferences
     {
         public ScoreUpdater scoreUpdater;
-        public TextMeshProUGUI infoText;
-        public TextMeshProUGUI infoText2;
+        public InfoTextUpdater infoTextUpdater;
         public HighscoreUpdater highscoreUpdater;
         public DistanceUpdater distanceUpdater;
         public CubeScript cubeScript;
@@ -50,6 +48,7 @@ public class ScoreCounter : MonoBehaviour {
     public int Highscore { get { return highscore; } }
     public float SpeedDuration { get { return speedDuration; } }
     public float SpeedLimit { get { return speedLimit; } }
+    public int SpeedyGonzalez { get { return speedyGonzalez; } }
 
     // Private Variables
     int score;
@@ -100,20 +99,16 @@ public class ScoreCounter : MonoBehaviour {
     // Functions for everything that gives points
     public void TileCompleted() {
         AddPoints(tileCompletion);
-        objectReferences.infoText.text = "Tile Completed !";
-        objectReferences.infoText2.text = tileCompletion.ToString();
-        StartCoroutine(HideTextFast());
+        objectReferences.infoTextUpdater.UpdateText("Tile Completed !", tileCompletion.ToString(), 1f);
     }
 
     public void MineDetection() {
         AddPoints(mineDetectionDog);
-        objectReferences.infoText.text = "Mine Detection Dog !";
-        objectReferences.infoText2.text = mineDetectionDog.ToString();
-        StartCoroutine(HideText());
+        objectReferences.infoTextUpdater.UpdateText("Mine Detection Dog !", mineDetectionDog.ToString(), 2.5f);
     }
 
     public void Speedy(Rigidbody rb) {
-        objectReferences.infoText.text = "Speedy Gonzalez !";
+        objectReferences.infoTextUpdater.UpdateText("Speedy Gonzalez !", "", 2.5f);
         StartCoroutine(SpeedyCoroutine(rb));
     }
 
@@ -126,17 +121,17 @@ public class ScoreCounter : MonoBehaviour {
             ResetScore();
         }
     }
+
+    public void AddPoints(int points)
+    {
+        this.score += points;
+        objectReferences.scoreUpdater.UpdateText();
+    }
     #endregion
 
 
 
     #region Private Functions
-    void AddPoints(int points)
-    {
-        this.score += points;
-        objectReferences.scoreUpdater.UpdateText();
-    }
-
     void ResetScore()
     {
         score = 0;
@@ -159,29 +154,16 @@ public class ScoreCounter : MonoBehaviour {
 
 
     #region Coroutines
-    IEnumerator HideText() {
-        yield return new WaitForSecondsRealtime(2.5f);
-        objectReferences.infoText.text = "";
-        objectReferences.infoText2.text = "";
-    }
-
-    IEnumerator HideTextFast()
+    IEnumerator SpeedyCoroutine(Rigidbody rb)
     {
-        yield return new WaitForSecondsRealtime(1f);
-        objectReferences.infoText.text = "";
-        objectReferences.infoText2.text = "";
-    }
-
-    IEnumerator SpeedyCoroutine(Rigidbody rb) {
         int multiplier = 0;
-        while (rb.velocity.x + rb.velocity.z >= speedLimit) {
+        while (rb.velocity.x + rb.velocity.z >= speedLimit)
+        {
             AddPoints(speedyGonzalez);
             multiplier++;
-            objectReferences.infoText.text = "Speedy Gonzalez x" + multiplier + " !";
-            objectReferences.infoText2.text = (multiplier * speedyGonzalez).ToString();
+            objectReferences.infoTextUpdater.UpdateText("Speedy Gonzalez x" + multiplier + " !", (multiplier * speedyGonzalez).ToString(), 2.5f);
             yield return new WaitForSecondsRealtime(0.1f);
         }
-        StartCoroutine(HideText());
         objectReferences.cubeScript.speedDuration = 0;
         objectReferences.cubeScript.speedyStarted = false;
     }
