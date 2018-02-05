@@ -10,12 +10,7 @@ public class CubeScript : MonoBehaviour {
     public float maxSpeed = 20;
     [Tooltip("Dampening of the cube movement. 0 = no input possible, 1 = normal move input")]
     public float moveDampening = 1;
-
-    [Space]
-    [Header("Other")]
-    public AnimationCurve fadeIn = AnimationCurve.EaseInOut(0, 0, 1, 1);
-
-
+    public AnimationCurve moveDampeningFadeIn = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
     private Rigidbody rb;
     
@@ -40,7 +35,7 @@ public class CubeScript : MonoBehaviour {
 	}
 
 	void Update () {
-        moveCube();
+        MoveCube();
 
         // Check the player speed and trigger Speedy Gonzalez event, if player is fast enough
         if (!speedyStarted && rb.velocity.x + rb.velocity.z >= speedLimit) {
@@ -51,23 +46,23 @@ public class CubeScript : MonoBehaviour {
             }
         }
 
-        if( rb.position.y <= -10 ) respawn();
+        if( rb.position.y <= -10 ) Respawn();
 	}
 
 
 
-    private void moveCube () {
-        if( Input.GetAxis("Horizontal") != 0 ) {
+    private void MoveCube () {
+        if (Input.GetAxis("Horizontal") != 0 ) {
             rb.AddForce(Vector3.right * Input.GetAxis("Horizontal") * moveSpeed * moveDampening * 60 * Time.deltaTime);
         }
-        if( Input.GetAxis("Vertical") != 0 ) {
+        if (Input.GetAxis("Vertical") != 0 ) {
             rb.AddForce(Vector3.forward * Input.GetAxis("Vertical") * moveSpeed * moveDampening * 60 * Time.deltaTime);
         }
 
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
     }
 
-    private void respawn() {
+    private void Respawn() {
         rb.position = startPosition;
         rb.rotation = startRot;
         rb.velocity = Vector3.zero;
@@ -78,16 +73,16 @@ public class CubeScript : MonoBehaviour {
         ScoreCounter.Instance.respawnTriggered();
     }
 
-    public void blockMovement(float seconds) {
+    public void BlockMovement(float seconds) {
         moveDampening = 0;
-        StartCoroutine(dampenMovementCoroutine(seconds));
+        StartCoroutine(ResetMoveDampeningCoroutine(seconds));
     }
 
 
 
-    IEnumerator dampenMovementCoroutine(float fadeSpeed) {
+    IEnumerator ResetMoveDampeningCoroutine(float fadeSpeed) {
         for (float i = 0; i < 1; i += 0.0125f * fadeSpeed * 60 * Time.deltaTime) {
-            moveDampening = fadeIn.Evaluate(i);
+            moveDampening = moveDampeningFadeIn.Evaluate(i);
             yield return null;
         }
         moveDampening = 1;
