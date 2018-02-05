@@ -61,9 +61,9 @@ public class CubeScript : MonoBehaviour {
         if (!respawning) MoveCube();
 
         // Check the player speed and trigger Speedy Gonzalez event, if player is fast enough
-        if (!speedyStarted && rb.velocity.x + rb.velocity.z >= ScoreCounter.Instance.speedLimit) {
+        if (!speedyStarted && rb.velocity.x + rb.velocity.z >= ScoreCounter.Instance.SpeedLimit) {
             speedDuration += Time.deltaTime;
-            if (speedDuration >= ScoreCounter.Instance.speedDuration) {
+            if (speedDuration >= ScoreCounter.Instance.SpeedDuration) {
                 ScoreCounter.Instance.Speedy(rb);
                 speedyStarted = true;
             }

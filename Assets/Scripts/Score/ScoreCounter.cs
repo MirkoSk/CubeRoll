@@ -4,42 +4,59 @@ using UnityEngine;
 using TMPro;
 
 /// <summary>
-/// Handles all scoring and updates the UI accordingly.
+/// Handles all scoring and informs the UI components accordingly.
 /// 
 /// Author: Melanie Ramsch, Mirko Skroch
 /// </summary>
 public class ScoreCounter : MonoBehaviour {
 
-    #region Variable Declarations
-    [Header("Achievement Points")]
-    public int tileCompletion = 100;
-    public int mineDetectionDog = 200;
-    [Tooltip("Points per frame")]
-    public int speedyGonzalez = 1;
-
-    [Header("Speedy Gonzalez")]
-    public float speedLimit = 12f;
-    [Tooltip("Time the speed limit needs to be surpassed, to get the achievement.")]
-    public float speedDuration = 3f;
-    
+    #region Class Definitions
     [System.Serializable]
     public class ObjectReferences
     {
-        public TextMeshProUGUI scoreText;
+        public ScoreUpdater scoreUpdater;
         public TextMeshProUGUI infoText;
         public TextMeshProUGUI infoText2;
-        public TextMeshProUGUI highscoreText;
+        public HighscoreUpdater highscoreUpdater;
+        public DistanceUpdater distanceUpdater;
         public CubeScript cubeScript;
-        public DistanceCounter distanceCounter;
     }
-    public ObjectReferences objectReferences;
+    #endregion
 
-    [HideInInspector]
-    public int score;
-    private int highscore;
 
+
+    #region Variable Declarations
     // Static singleton property
     public static ScoreCounter Instance { get; private set; }
+
+    // Public Variables
+    [Header("Achievement Points")]
+    [SerializeField] int tileCompletion = 100;
+    [SerializeField] int mineDetectionDog = 200;
+    [Tooltip("Points per frame")]
+    [SerializeField] int speedyGonzalez = 1;
+
+    [Header("Speedy Gonzalez")]
+    [SerializeField] float speedLimit = 12f;
+    [Tooltip("Time the speed limit needs to be surpassed, to get the achievement.")]
+    [SerializeField] float speedDuration = 3f;
+    
+    [Space]
+    [SerializeField] ObjectReferences objectReferences;
+
+    // Public Properties
+    public int Score { get { return score; } }
+    public int Distance { get { return distance; } }
+    public int Highscore { get { return highscore; } }
+    public float SpeedDuration { get { return speedDuration; } }
+    public float SpeedLimit { get { return speedLimit; } }
+
+    // Private Variables
+    int score;
+    int distance;
+    int highscore;
+
+    GameObject cube;
     #endregion
 
 
@@ -62,8 +79,18 @@ public class ScoreCounter : MonoBehaviour {
         }
     }
 
+    private void Start()
+    {
+        cube = GameObject.FindGameObjectWithTag(Constants.TAG_PLAYER);
+    }
+
     void Update() {
-        objectReferences.scoreText.text = (objectReferences.distanceCounter.distance + score).ToString();
+
+        UpdateDistance();
+
+        // Update the score and distance UI
+        objectReferences.distanceUpdater.UpdateText();
+        objectReferences.scoreUpdater.UpdateText();
     }
     #endregion
 
@@ -72,14 +99,14 @@ public class ScoreCounter : MonoBehaviour {
     #region Public Functions
     // Functions for everything that gives points
     public void TileCompleted() {
-        score += tileCompletion;
+        AddPoints(tileCompletion);
         objectReferences.infoText.text = "Tile Completed !";
         objectReferences.infoText2.text = tileCompletion.ToString();
         StartCoroutine(HideTextFast());
     }
 
     public void MineDetection() {
-        score += mineDetectionDog;
+        AddPoints(mineDetectionDog);
         objectReferences.infoText.text = "Mine Detection Dog !";
         objectReferences.infoText2.text = mineDetectionDog.ToString();
         StartCoroutine(HideText());
@@ -91,12 +118,40 @@ public class ScoreCounter : MonoBehaviour {
     }
 
     public void RespawnTriggered() {
-        score += objectReferences.distanceCounter.distance;
+        AddPoints(distance);
         if (score > highscore)
         {
             highscore = score;
-            objectReferences.highscoreText.text = highscore.ToString();
-            score = 0;
+            objectReferences.highscoreUpdater.UpdateText();
+            ResetScore();
+        }
+    }
+    #endregion
+
+
+
+    #region Private Functions
+    void AddPoints(int points)
+    {
+        this.score += points;
+        objectReferences.scoreUpdater.UpdateText();
+    }
+
+    void ResetScore()
+    {
+        score = 0;
+        objectReferences.scoreUpdater.UpdateText();
+    }
+
+    void UpdateDistance()
+    {
+        if (cube.transform.position.z > 0)
+        {
+            distance = (int)cube.transform.position.z;
+        }
+        else
+        {
+            distance = 0;
         }
     }
     #endregion
@@ -120,7 +175,7 @@ public class ScoreCounter : MonoBehaviour {
     IEnumerator SpeedyCoroutine(Rigidbody rb) {
         int multiplier = 0;
         while (rb.velocity.x + rb.velocity.z >= speedLimit) {
-            score += speedyGonzalez;
+            AddPoints(speedyGonzalez);
             multiplier++;
             objectReferences.infoText.text = "Speedy Gonzalez x" + multiplier + " !";
             objectReferences.infoText2.text = (multiplier * speedyGonzalez).ToString();
