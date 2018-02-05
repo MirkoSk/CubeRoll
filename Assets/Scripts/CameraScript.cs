@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 
+/// 
+/// Author: Melanie Ramsch
+/// </summary>
 public class CameraScript : MonoBehaviour {
 
     //Varriables
@@ -9,7 +14,7 @@ public class CameraScript : MonoBehaviour {
     private GameObject player;
 	// Use this for initialization
 	void Start () {
-        player = GameObject.Find("Cube");
+        player = GameObject.FindGameObjectWithTag(Constants.TAG_PLAYER);
         offset = transform.position-player.transform.position;
 	}
 	

@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// 
+/// 
+/// Author: Melanie Ramsch
+/// </summary>
 public class UI_Controller : MonoBehaviour {
 
 	private void Awake() {
@@ -16,20 +21,20 @@ public class UI_Controller : MonoBehaviour {
 	#endif
 	}
 
-	public void gotoMenu(){
+	public void GotoMenu(){
 		SceneManager.LoadScene(Data.menuScene,LoadSceneMode.Single);
 	}
 
-	public void gotoCredits() {
+	public void GotoCredits() {
 		SceneManager.LoadScene(Data.creditScene,LoadSceneMode.Single);
 	}
 
-	public void gotoSingelPlayerScene(){
+	public void GotoSingelPlayerScene(){
 		SceneManager.LoadScene(Data.singlePlayerScene, LoadSceneMode.Single);
 	}
 
 
-	public void gotoMultiPlayerScene() {
+	public void GotoMultiPlayerScene() {
 		//SceneManager.LoadScene(Data.XX, LoadSceneMode.Single);
 		print("Load Multi Player Scene");
 	}

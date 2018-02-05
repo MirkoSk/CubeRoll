@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 
+/// 
+/// Author: Melanie Ramsch, Mirko Skroch
+/// </summary>
 public class CubeScript : MonoBehaviour {
 
     //Variables 
@@ -41,7 +46,7 @@ public class CubeScript : MonoBehaviour {
         if (!speedyStarted && rb.velocity.x + rb.velocity.z >= speedLimit) {
             speedDuration += Time.deltaTime;
             if (speedDuration >= ScoreCounter.Instance.speedDuration) {
-                ScoreCounter.Instance.speedy(rb);
+                ScoreCounter.Instance.Speedy(rb);
                 speedyStarted = true;
             }
         }
@@ -52,11 +57,11 @@ public class CubeScript : MonoBehaviour {
 
 
     private void MoveCube () {
-        if (Input.GetAxis("Horizontal") != 0 ) {
-            rb.AddForce(Vector3.right * Input.GetAxis("Horizontal") * moveSpeed * moveDampening * 60 * Time.deltaTime);
+        if (Input.GetAxis(Constants.INPUT_HORIZONTAL) != 0 ) {
+            rb.AddForce(Vector3.right * Input.GetAxis(Constants.INPUT_HORIZONTAL) * moveSpeed * moveDampening * 60 * Time.deltaTime);
         }
-        if (Input.GetAxis("Vertical") != 0 ) {
-            rb.AddForce(Vector3.forward * Input.GetAxis("Vertical") * moveSpeed * moveDampening * 60 * Time.deltaTime);
+        if (Input.GetAxis(Constants.INPUT_VERTICAL) != 0 ) {
+            rb.AddForce(Vector3.forward * Input.GetAxis(Constants.INPUT_VERTICAL) * moveSpeed * moveDampening * 60 * Time.deltaTime);
         }
 
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
@@ -67,10 +72,10 @@ public class CubeScript : MonoBehaviour {
         rb.rotation = startRot;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        LevelGenerator.Instance.newLevel();
+        LevelGenerator.Instance.NewLevel();
         speedDuration = 0;
 
-        ScoreCounter.Instance.respawnTriggered();
+        ScoreCounter.Instance.RespawnTriggered();
     }
 
     public void BlockMovement(float seconds) {

@@ -5,6 +5,8 @@ using UnityEngine.Audio;
 
 /// <summary>
 /// Offers functions for playing 2D audio. This class is a singleton and won't be destroyed on load
+/// 
+/// Author: Mirko Skroch
 /// </summary>
 public class AudioManager : MonoBehaviour {
 
@@ -22,16 +24,17 @@ public class AudioManager : MonoBehaviour {
 
 
     #region Unity Event Functions
-    void Awake() {
+    private void Awake() {
         //Check if instance already exists
         if (Instance == null)
-
+        {
             //if not, set instance to this
             Instance = this;
+        }
 
         //If instance already exists and it's not this:
-        else if (Instance != this) {
-
+        else if (Instance != this)
+        {
             //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of an AudioManager.
             Destroy(this);
         }
@@ -42,12 +45,6 @@ public class AudioManager : MonoBehaviour {
         SpawnAudioSources();
         FillDictionary();
     }
-    #endregion
-
-
-
-    #region Custom Event Functions
-
     #endregion
 
 
@@ -73,18 +70,18 @@ public class AudioManager : MonoBehaviour {
 
     public void PlayMenuConfirm() {
         AudioSource src;
-        audioSources.TryGetValue("MenuConfirm", out src);
+        audioSources.TryGetValue(Constants.SOUND_MENU_CONFIRM, out src);
         src.Play();
     }
 
     public void SetMusicVolume(float volume)
     {
-        masterMixer.SetFloat("MusicVolume", volume);
+        masterMixer.SetFloat(Constants.MIXER_MUSIC_VOLUME, volume);
     }
 
     public void SetSFXVolume(float volume)
     {
-        masterMixer.SetFloat("SFXVolume", volume);
+        masterMixer.SetFloat(Constants.MIXER_SFX_VOLUME, volume);
     }
 
     public AudioSource GetAudioSource(string name) {
@@ -118,11 +115,5 @@ public class AudioManager : MonoBehaviour {
             audioSources.Add(source.clip.name, source);
         }
     }
-    #endregion
-
-
-
-    #region Coroutines
-
     #endregion
 }

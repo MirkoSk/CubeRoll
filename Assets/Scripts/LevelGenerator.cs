@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// 
+/// 
+/// Author: Melanie Ramsch
+/// </summary>
 public class LevelGenerator : MonoBehaviour {
 
     [Header("Variables")]
@@ -21,6 +25,9 @@ public class LevelGenerator : MonoBehaviour {
     //Listof all Tiles in Scene
     private List<GameObject> tilelist ;
 
+    //Tiles parent
+    private Transform environmentParent;
+
     //Cycle: T1,T2,T1,...
     private bool addT1 = true;
 
@@ -37,10 +44,10 @@ public class LevelGenerator : MonoBehaviour {
     private int completedTiles=0;
 
     #region GetterSetter
-    public int getCompletedTiles() {
+    public int GetCompletedTiles() {
         return this.completedTiles;
     }
-    public void setCompletedTiles(int value) {
+    public void SetCompletedTiles(int value) {
         completedTiles = value;
     }
     #endregion
@@ -55,7 +62,8 @@ public class LevelGenerator : MonoBehaviour {
     void Start ()
     {
         tilelist = new List<GameObject>();
-        generateLevel();
+        environmentParent = GameObject.FindGameObjectWithTag(Constants.TAG_ENVIRONMENT_PARENT).transform;
+        GenerateLevel();
         completedTiles = 0;
     }
 
@@ -69,15 +77,15 @@ public class LevelGenerator : MonoBehaviour {
     /*
      * Instantiates a new Tile at the End of the Path
      */
-    public void newTile (Vector3 position) {
+    public void NewTile (Vector3 position) {
         position += new Vector3(0, 0, DISTANCE_TO_NEXT_FREE_POSITION);
-        addTile(position);
+        AddTile(position);
     }
 
     /*
     * Removes first Tile from tilelist and destroys GameObject
     */
-    public void deleteOldTile () {
+    public void DeleteOldTile () {
         GameObject.Destroy(tilelist [0]);
         tilelist.RemoveAt(0);
     }
@@ -85,11 +93,11 @@ public class LevelGenerator : MonoBehaviour {
     /*
      * Destroys all Tiles in tilelist and creates new Level (used in Respawn)
      */
-    public void newLevel () {
-        removeAllTiles();
-        removeStartArea();
-        setCompletedTiles(0);
-        generateLevel();
+    public void NewLevel () {
+        RemoveAllTiles();
+        RemoveStartArea();
+        SetCompletedTiles(0);
+        GenerateLevel();
     }
 
 #endregion
@@ -99,15 +107,15 @@ public class LevelGenerator : MonoBehaviour {
     /*
      * Generates 4 Tiles in Row (used at Start and Respawn)
      */
-    private void generateLevel() {
+    private void GenerateLevel() {
         Vector3 position = new Vector3(0, 0, 0);
         score = 0;
-        Instantiate(startArea);
+        Instantiate(startArea, environmentParent);
         for (int i=0; i < TILES_STARTCOUNT; i++){
             if( i % 2 == 0 )   addT1 = true;
             else               addT1 = false;
 
-            addTile(position);
+            AddTile(position);
             position += new Vector3(0, 0, TILE_DISTANCE);
         }
     }
@@ -115,7 +123,7 @@ public class LevelGenerator : MonoBehaviour {
     /*
      * Instantiates Tile and adds it to tilelist
      */
-    private void addTile(Vector3 position) {
+    private void AddTile(Vector3 position) {
         int random = 0;
         GameObject temp = null;
 
@@ -123,11 +131,11 @@ public class LevelGenerator : MonoBehaviour {
             if (score < difficultyPointLimit)
             {
                 random = Random.Range(0, tileSet1.Length);
-                temp = Instantiate(tileSet1[random], position, ROTATION);
+                temp = Instantiate(tileSet1[random], position, ROTATION, environmentParent);
             }
             else {
                 random = Random.Range(0, tileSet1Hard.Length);
-                temp = Instantiate(tileSet1Hard[random], position, ROTATION);
+                temp = Instantiate(tileSet1Hard[random], position, ROTATION, environmentParent);
             }
             addT1 = false;
         }
@@ -135,11 +143,11 @@ public class LevelGenerator : MonoBehaviour {
             if (score < difficultyPointLimit)
             {
                 random = Random.Range(0, tileSet2.Length);
-                temp = Instantiate(tileSet2[random], position, ROTATION);
+                temp = Instantiate(tileSet2[random], position, ROTATION, environmentParent);
             }
             else {
                 random = Random.Range(0, tileSet2Hard.Length);
-                temp = Instantiate(tileSet2Hard[random], position, ROTATION);
+                temp = Instantiate(tileSet2Hard[random], position, ROTATION, environmentParent);
             }
             addT1 = true;
         }
@@ -151,7 +159,7 @@ public class LevelGenerator : MonoBehaviour {
     /*
      * Destroys all Instances of Tiles(GameObjects) in tilelist and clears List
      */
-    private void removeAllTiles () {
+    private void RemoveAllTiles () {
         foreach( GameObject tile in tilelist ) {
             GameObject.Destroy(tile);
         }
@@ -161,9 +169,9 @@ public class LevelGenerator : MonoBehaviour {
     /*
      * Removes Start Area
      */
-    private void removeStartArea() {
-        if( GameObject.FindGameObjectWithTag("StartArea") )
-            Destroy(GameObject.FindGameObjectWithTag("StartArea"));
+    private void RemoveStartArea() {
+        if( GameObject.FindGameObjectWithTag(Constants.TAG_START_AREA) )
+            Destroy(GameObject.FindGameObjectWithTag(Constants.TAG_START_AREA));
     }
  #endregion
 

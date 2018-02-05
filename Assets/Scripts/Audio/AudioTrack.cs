@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 /// <summary>
-/// Data Structure defining the elements of an audio track.
+/// Data Structure defining the elements of an audio track. This allows us to spawn one AudioSource for every AudioClip in the library (AudioManager) at runtime
+/// with a custom setup for every track.
+/// Author: Mirko Skroch
 /// </summary>
 [CreateAssetMenu]
 public class AudioTrack : ScriptableObject

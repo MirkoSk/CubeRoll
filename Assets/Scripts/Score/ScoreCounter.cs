@@ -1,10 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
+/// <summary>
+/// Handles all scoring and updates the UI accordingly.
+/// 
+/// Author: Mirko Skroch
+/// </summary>
 public class ScoreCounter : MonoBehaviour {
 
+    #region Variable Declarations
     [Header("Achievement Points")]
     public int tileCompletion = 100;
     public int mineDetectionDog = 200;
@@ -15,14 +21,18 @@ public class ScoreCounter : MonoBehaviour {
     public float speedLimit = 12f;
     [Tooltip("Time the speed limit needs to be surpassed, to get the achievement.")]
     public float speedDuration = 3f;
-
-    [Header("Object References")]
-    public Text scoreText;
-    public Text infoText;
-    public Text infoText2;
-    public Text highscoreText;
-    public CubeScript cubeScript;
-    public DistanceCounter distanceCounter;
+    
+    [System.Serializable]
+    public class ObjectReferences
+    {
+        public TextMeshProUGUI scoreText;
+        public TextMeshProUGUI infoText;
+        public TextMeshProUGUI infoText2;
+        public TextMeshProUGUI highscoreText;
+        public CubeScript cubeScript;
+        public DistanceCounter distanceCounter;
+    }
+    public ObjectReferences objectReferences;
 
     [HideInInspector]
     public int score;
@@ -30,75 +40,83 @@ public class ScoreCounter : MonoBehaviour {
 
     // Static singleton property
     public static ScoreCounter Instance { get; private set; }
+    #endregion
 
 
 
+    #region Unity Event Functions
     void Awake() {
         // Save a reference to the AudioHandler component as our singleton instance
         Instance = this;
     }
 
     void Update() {
-        scoreText.text = (distanceCounter.distance + score).ToString();
+        objectReferences.scoreText.text = (objectReferences.distanceCounter.distance + score).ToString();
     }
+    #endregion
 
 
-    
+
+    #region Public Functions
     // Functions for everything that gives points
-
-    public void tileCompleted() {
+    public void TileCompleted() {
         score += tileCompletion;
-        infoText.text = "Tile Completed !";
-        infoText2.text = tileCompletion.ToString();
-        StartCoroutine(hideTextFast());
+        objectReferences.infoText.text = "Tile Completed !";
+        objectReferences.infoText2.text = tileCompletion.ToString();
+        StartCoroutine(HideTextFast());
     }
 
-    public void mineDetection() {
+    public void MineDetection() {
         score += mineDetectionDog;
-        infoText.text = "Mine Detection Dog !";
-        infoText2.text = mineDetectionDog.ToString();
-        StartCoroutine(hideText());
+        objectReferences.infoText.text = "Mine Detection Dog !";
+        objectReferences.infoText2.text = mineDetectionDog.ToString();
+        StartCoroutine(HideText());
     }
 
-    public void speedy(Rigidbody rb) {
-        infoText.text = "Speedy Gonzalez !";
-        StartCoroutine(speedyCoroutine(rb));
+    public void Speedy(Rigidbody rb) {
+        objectReferences.infoText.text = "Speedy Gonzalez !";
+        StartCoroutine(SpeedyCoroutine(rb));
     }
 
-    public void respawnTriggered() {
-        score += distanceCounter.distance;
+    public void RespawnTriggered() {
+        score += objectReferences.distanceCounter.distance;
         if (score > highscore)
+        {
             highscore = score;
-            highscoreText.text = highscore.ToString();
-        score = 0;
+            objectReferences.highscoreText.text = highscore.ToString();
+            score = 0;
+        }
     }
+    #endregion
 
 
 
-    IEnumerator hideText() {
+    #region Coroutines
+    IEnumerator HideText() {
         yield return new WaitForSecondsRealtime(2.5f);
-        infoText.text = "";
-        infoText2.text = "";
+        objectReferences.infoText.text = "";
+        objectReferences.infoText2.text = "";
     }
 
-    IEnumerator hideTextFast()
+    IEnumerator HideTextFast()
     {
         yield return new WaitForSecondsRealtime(1f);
-        infoText.text = "";
-        infoText2.text = "";
+        objectReferences.infoText.text = "";
+        objectReferences.infoText2.text = "";
     }
 
-    IEnumerator speedyCoroutine(Rigidbody rb) {
+    IEnumerator SpeedyCoroutine(Rigidbody rb) {
         int multiplier = 0;
         while (rb.velocity.x + rb.velocity.z >= speedLimit) {
             score += speedyGonzalez;
             multiplier++;
-            infoText.text = "Speedy Gonzalez x" + multiplier + " !";
-            infoText2.text = (multiplier * speedyGonzalez).ToString();
+            objectReferences.infoText.text = "Speedy Gonzalez x" + multiplier + " !";
+            objectReferences.infoText2.text = (multiplier * speedyGonzalez).ToString();
             yield return new WaitForSecondsRealtime(0.1f);
         }
-        StartCoroutine(hideText());
-        cubeScript.speedDuration = 0;
-        cubeScript.speedyStarted = false;
+        StartCoroutine(HideText());
+        objectReferences.cubeScript.speedDuration = 0;
+        objectReferences.cubeScript.speedyStarted = false;
     }
+    #endregion
 }

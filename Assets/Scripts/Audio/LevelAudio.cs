@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
+/// Class for selecting the background track for a level.
 /// 
+/// Author: Mirko Skroch
 /// </summary>
 public class LevelAudio : MonoBehaviour {
 
@@ -19,11 +21,11 @@ public class LevelAudio : MonoBehaviour {
         {
         if (backgroundTrack == 1) 
         {
-            AudioManager.Instance.PlaySound("Track01Intro");
-            AudioManager.Instance.PlaySoundScheduled("Track01Loop", AudioSettings.dspTime + AudioManager.Instance.GetAudioSource("Track01Intro").clip.length - 0.1);
+            AudioManager.Instance.PlaySound(Constants.SOUND_TRACK01INTRO);
+            AudioManager.Instance.PlaySoundScheduled(Constants.SOUND_TRACK01LOOP, AudioSettings.dspTime + AudioManager.Instance.GetAudioSource(Constants.SOUND_TRACK01LOOP).clip.length - 0.1);
         }
         else if (backgroundTrack == 2) {
-            AudioManager.Instance.PlaySound("Track02Loop");
+            AudioManager.Instance.PlaySound(Constants.SOUND_TRACK02LOOP);
         }
 	}
 	
@@ -31,11 +33,5 @@ public class LevelAudio : MonoBehaviour {
     {
 		
 	}
-    #endregion
-
-
-
-    #region Private Functions
-
     #endregion
 }

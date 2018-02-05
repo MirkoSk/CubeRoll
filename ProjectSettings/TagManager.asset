@@ -6,6 +6,8 @@ TagManager:
   tags:
   - TileStart
   - StartArea
+  - DynamicObjectsParent
+  - EnvironmentParent
   layers:
   - Default
   - TransparentFX
