@@ -7,6 +7,7 @@ using UnityEngine;
 /// 
 /// Author: Mirko Skroch
 /// </summary>
+[RequireComponent(typeof(Collider))]
 public class JumpPadController : MonoBehaviour {
 
     #region Variable Declarations

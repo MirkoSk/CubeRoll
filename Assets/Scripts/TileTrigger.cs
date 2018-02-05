@@ -7,6 +7,7 @@ using UnityEngine;
 /// 
 /// Author: Melanie Ramsch
 /// </summary>
+[RequireComponent(typeof(Collider))]
 public class TileTrigger : MonoBehaviour {
 
 	private void OnTriggerEnter (Collider other) {

@@ -6,7 +6,7 @@ using TMPro;
 /// <summary>
 /// Handles all scoring and updates the UI accordingly.
 /// 
-/// Author: Mirko Skroch
+/// Author: Melanie Ramsch, Mirko Skroch
 /// </summary>
 public class ScoreCounter : MonoBehaviour {
 
@@ -45,9 +45,21 @@ public class ScoreCounter : MonoBehaviour {
 
 
     #region Unity Event Functions
-    void Awake() {
-        // Save a reference to the AudioHandler component as our singleton instance
-        Instance = this;
+    private void Awake()
+    {
+        //Check if instance already exists
+        if (Instance == null)
+        {
+            //if not, set instance to this
+            Instance = this;
+        }
+
+        //If instance already exists and it's not this:
+        else if (Instance != this)
+        {
+            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of an AudioManager.
+            Destroy(this);
+        }
     }
 
     void Update() {

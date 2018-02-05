@@ -7,9 +7,10 @@ using UnityEngine;
 /// 
 /// Author: Melanie Ramsch, Mirko Skroch
 /// </summary>
+[RequireComponent(typeof(Rigidbody))]
 public class CubeScript : MonoBehaviour {
 
-    //Variables 
+    #region Variable Declarations
     [Header("Movement")]
     public float moveSpeed = 10;
     public float maxSpeed = 20;
@@ -17,10 +18,13 @@ public class CubeScript : MonoBehaviour {
     public float moveDampening = 1;
     public AnimationCurve moveDampeningFadeIn = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
+    [Header("Other")]
+    [Tooltip("The AnimationCurve used for resetting the cube's position on respawn")]
+    public AnimationCurve respawnCurve;
+
     private Rigidbody rb;
     
     // variables for speedy achievement
-    private float speedLimit;
     [HideInInspector]
     public float speedDuration;
     [HideInInspector]
@@ -28,22 +32,36 @@ public class CubeScript : MonoBehaviour {
 
     // respawn
     private Vector3 startPosition;
-    private Quaternion startRot;
+    private Quaternion startRotation;
+    private bool respawning;
+    public bool Respawning { get { return respawning; } }
+    private ParticleSystem deathParticleSystem;
+    private ParticleSystem respawnParticleSystem;
+    private Renderer cubeRenderer;
+    #endregion
 
 
-	void Start () {
+
+    #region Unity Event Functions
+    private void Start () {
+        // Get References
         rb = GetComponent<Rigidbody>();
-        startPosition = rb.transform.position;
-        startRot = rb.transform.rotation;
+        cubeRenderer = GetComponent<Renderer>();
+        deathParticleSystem = transform.Find("DeathParticleSystem").GetComponent<ParticleSystem>();
+        respawnParticleSystem = transform.Find("RespawnParticleSystem").GetComponent<ParticleSystem>();
 
-        speedLimit = ScoreCounter.Instance.speedLimit;
+        // Save the startPosition and Rotation for later use
+        startPosition = rb.transform.position;
+        startRotation = rb.transform.rotation;
+
+        Spawn();
 	}
 
-	void Update () {
-        MoveCube();
+	private void Update () {
+        if (!respawning) MoveCube();
 
         // Check the player speed and trigger Speedy Gonzalez event, if player is fast enough
-        if (!speedyStarted && rb.velocity.x + rb.velocity.z >= speedLimit) {
+        if (!speedyStarted && rb.velocity.x + rb.velocity.z >= ScoreCounter.Instance.speedLimit) {
             speedDuration += Time.deltaTime;
             if (speedDuration >= ScoreCounter.Instance.speedDuration) {
                 ScoreCounter.Instance.Speedy(rb);
@@ -51,11 +69,23 @@ public class CubeScript : MonoBehaviour {
             }
         }
 
-        if( rb.position.y <= -10 ) Respawn();
+        if( rb.position.y <= -7f ) Respawn();
 	}
+    #endregion
 
 
 
+    #region Public Functions
+    public void BlockMovement(float seconds)
+    {
+        moveDampening = 0;
+        StartCoroutine(ResetMoveDampeningCoroutine(seconds));
+    }
+    #endregion
+
+
+
+    #region Private Functions
     private void MoveCube () {
         if (Input.GetAxis(Constants.INPUT_HORIZONTAL) != 0 ) {
             rb.AddForce(Vector3.right * Input.GetAxis(Constants.INPUT_HORIZONTAL) * moveSpeed * moveDampening * 60 * Time.deltaTime);
@@ -68,23 +98,71 @@ public class CubeScript : MonoBehaviour {
     }
 
     private void Respawn() {
-        rb.position = startPosition;
-        rb.rotation = startRot;
+        // Make sure we respawn just once
+        if (respawning == true) return;
+        respawning = true;
+
+        // Stop all motion of the cube
+        rb.useGravity = false;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        LevelGenerator.Instance.NewLevel();
-        speedDuration = 0;
 
-        ScoreCounter.Instance.RespawnTriggered();
+        // Hide the cube and play the death ParticleSystem
+        cubeRenderer.enabled = false;
+        deathParticleSystem.Play();
+
+        StartCoroutine(Delay(deathParticleSystem.main.duration * 1.5f, () =>
+        {
+            // Inform the ScoreCounter to reset the score and spawn a new level
+            ScoreCounter.Instance.RespawnTriggered();
+            LevelGenerator.Instance.NewLevel();
+            
+            // Cube magically reappears abvoe it's startPosition
+            transform.position = startPosition + Vector3.up * 5f;
+            transform.rotation = startRotation;
+            cubeRenderer.enabled = true;
+
+            // Softly tween it into it's startPosition
+            LeanTween.move(gameObject, startPosition, 2f).setEase(respawnCurve).setOnComplete(() =>
+            {
+                respawnParticleSystem.Play();
+
+                // Reset our speedDuration for Speedy Gonzalez bonus
+                speedDuration = 0;
+
+                rb.useGravity = true;
+                respawning = false;
+            });
+        }));
     }
 
-    public void BlockMovement(float seconds) {
-        moveDampening = 0;
-        StartCoroutine(ResetMoveDampeningCoroutine(seconds));
+    private void Spawn() {
+        // Make sure we respawn just once
+        if (respawning == true) return;
+        respawning = true;
+
+        // Cube magically appears abvoe it's startPosition
+        rb.useGravity = false;
+        transform.position = startPosition + Vector3.up * 5f;
+        cubeRenderer.enabled = true;
+
+        // Softly tween it into it's startPosition
+        LeanTween.move(gameObject, startPosition, 2f).setEase(respawnCurve).setOnComplete(() =>
+        {
+            respawnParticleSystem.Play();
+
+            // Reset our speedDuration for Speedy Gonzalez bonus
+            speedDuration = 0;
+
+            rb.useGravity = true;
+            respawning = false;
+        });
     }
+    #endregion
 
 
 
+    #region Coroutines
     IEnumerator ResetMoveDampeningCoroutine(float fadeSpeed) {
         for (float i = 0; i < 1; i += 0.0125f * fadeSpeed * 60 * Time.deltaTime) {
             moveDampening = moveDampeningFadeIn.Evaluate(i);
@@ -92,4 +170,14 @@ public class CubeScript : MonoBehaviour {
         }
         moveDampening = 1;
     }
+
+    IEnumerator Delay(float time, System.Action onComplete)
+    {
+        for (float i = 0; i < time; i += Time.deltaTime)
+        {
+            yield return null;
+        }
+        onComplete.Invoke();
+    }
+    #endregion
 }

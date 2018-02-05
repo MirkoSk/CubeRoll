@@ -7,22 +7,31 @@ using UnityEngine;
 /// 
 /// Author: Mirko Skroch
 /// </summary>
+[RequireComponent(typeof(CubeScript))]
 public class CubeGroundHit : MonoBehaviour {
 
+    #region Variable Declarations
     public GameObject cubeGroundHitPSPrefab;
 
-    private Transform parent;
+    private Transform dynamicObjectsParent;
+    private CubeScript cubeScript;
+    #endregion
 
 
 
+    #region Unity Event Functions
     private void Start() {
-        parent = GameObject.FindGameObjectWithTag(Constants.TAG_DYNAMIC_OBJECTS_PARENT).transform;
+        cubeScript = GetComponent<CubeScript>();
+        dynamicObjectsParent = GameObject.FindGameObjectWithTag(Constants.TAG_DYNAMIC_OBJECTS_PARENT).transform;
     }
 
     private void OnCollisionEnter(Collision collision) {
+        if (cubeScript.Respawning) return;
+
         for (int i = 0; i < collision.contacts.Length; i++) {
-            Instantiate(cubeGroundHitPSPrefab, collision.contacts[i].point + Vector3.up * 0.3f, Quaternion.identity, parent);
+            Instantiate(cubeGroundHitPSPrefab, collision.contacts[i].point + Vector3.up * 0.3f, Quaternion.identity, dynamicObjectsParent);
             AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_HIT);
         }
     }
+    #endregion
 }

@@ -8,6 +8,7 @@ using EZCameraShake;
 /// 
 /// Author: Mirko Skroch
 /// </summary>
+[RequireComponent(typeof(Collider))]
 public class LandMineController : MonoBehaviour {
 
     #region Variable Declarations
