@@ -22,7 +22,7 @@ public class LevelAudio : MonoBehaviour {
         if (backgroundTrack == 1) 
         {
             AudioManager.Instance.PlaySound(Constants.SOUND_TRACK01INTRO);
-            AudioManager.Instance.PlaySoundScheduled(Constants.SOUND_TRACK01LOOP, AudioSettings.dspTime + AudioManager.Instance.GetAudioSource(Constants.SOUND_TRACK01LOOP).clip.length - 0.1);
+            AudioManager.Instance.PlaySoundScheduled(Constants.SOUND_TRACK01LOOP, AudioSettings.dspTime + AudioManager.Instance.GetAudioSource(Constants.SOUND_TRACK01INTRO).clip.length - 0.1);
         }
         else if (backgroundTrack == 2) {
             AudioManager.Instance.PlaySound(Constants.SOUND_TRACK02LOOP);

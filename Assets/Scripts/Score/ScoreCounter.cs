@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Handles all scoring and informs the UI components accordingly.
 /// 
-/// Author: Melanie Ramsch, Mirko Skroch
+/// Author: Mirko Skroch
 /// </summary>
 public class ScoreCounter : MonoBehaviour {
 
