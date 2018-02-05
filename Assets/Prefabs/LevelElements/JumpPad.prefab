@@ -180,8 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79293d02c1e159441b607e695ad44741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceAmount: 15
-  duration: 1
+  forceAmount: 10
+  forceDuration: 1
 --- !u!198 &198873946932906858
 ParticleSystem:
   m_ObjectHideFlags: 1
