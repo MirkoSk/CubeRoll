@@ -14,7 +14,7 @@ public class JumpPadController : MonoBehaviour {
     [Space]
     public float forceAmount = 15f;
     [Tooltip("The duration the force is applied to the player in seconds.")]
-    public float duration = 1f;
+    public float forceDuration = 1f;
     #endregion
 
 
@@ -31,7 +31,7 @@ public class JumpPadController : MonoBehaviour {
 
     #region Coroutines
     IEnumerator AddJumpForce(Rigidbody rb) {
-        for (float i = 0; i < duration; i += Time.deltaTime) {
+        for (float i = 0; i < forceDuration; i += Time.deltaTime) {
             rb.AddForce(Vector3.up * forceAmount);
             yield return null;
         }

@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4909188210520174}
-  - component: {fileID: 114319859989988268}
+  - component: {fileID: 114412526243675392}
   m_Layer: 0
   m_Name: JumpPad
   m_TagString: Untagged
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f4ad9a3eab30734198d7dce5a8861c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114319859989988268
+--- !u!114 &114412526243675392
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -341,10 +341,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1127310799135536}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfa55994aeb8bff49ad8a0588a67fa60, type: 3}
+  m_Script: {fileID: 11500000, guid: ea8e4e55d4de04543b47374e6751c6c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1350717821375174, guid: 0129826e79748dd47bd724ae8f51df69, type: 2}
+  forceAmount: 15
+  forceDuration: 1
 --- !u!114 &114508324815449240
 MonoBehaviour:
   m_ObjectHideFlags: 1

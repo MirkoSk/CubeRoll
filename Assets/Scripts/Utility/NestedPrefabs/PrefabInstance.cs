@@ -16,6 +16,8 @@ public class PrefabInstance : MonoBehaviour
 {
     public GameObject prefab;
 
+    protected GameObject go;
+
 #if UNITY_EDITOR
     // Struct of all components. Used for edit-time visualization and gizmo drawing
     public struct Thingy
@@ -27,19 +29,19 @@ public class PrefabInstance : MonoBehaviour
 
     [System.NonSerializedAttribute] public List<Thingy> things = new List<Thingy>();
 
-    void OnValidate()
+    protected void OnValidate()
     {
         things.Clear();
         if (enabled)
             Rebuild(prefab, Matrix4x4.identity);
     }
 
-    void OnEnable()
+    protected void OnEnable()
     {
         // If script gets instantiated in the scene during runtime: Spawn the referenced objects
         if (EditorApplication.isPlaying)
         {
-            BakeInstance(this);
+            BakeInstance();
             return;
         }
 
@@ -48,7 +50,7 @@ public class PrefabInstance : MonoBehaviour
             Rebuild(prefab, Matrix4x4.identity);
     }
 
-    void Rebuild(GameObject source, Matrix4x4 inMatrix)
+    protected void Rebuild(GameObject source, Matrix4x4 inMatrix)
     {
         if (!source)
             return;
@@ -73,7 +75,7 @@ public class PrefabInstance : MonoBehaviour
     }
 
     // Editor-time-only update: Draw the meshes so we can see the objects in the scene view
-    void Update()
+    protected void Update()
     {
         if (EditorApplication.isPlaying)
             return;
@@ -84,9 +86,9 @@ public class PrefabInstance : MonoBehaviour
     }
 
     // Picking logic: Since we don't have gizmos.drawmesh, draw a bounding cube around each thingy
-    void OnDrawGizmos() { DrawGizmos(new Color(0, 0, 0, 0)); }
-    void OnDrawGizmosSelected() { DrawGizmos(new Color(0, 0, 1, .2f)); }
-    void DrawGizmos(Color col)
+    protected void OnDrawGizmos() { DrawGizmos(new Color(0, 0, 0, 0)); }
+    protected void OnDrawGizmosSelected() { DrawGizmos(new Color(0, 0, 1, .2f)); }
+    protected void DrawGizmos(Color col)
     {
         if (EditorApplication.isPlaying)
             return;
@@ -104,25 +106,25 @@ public class PrefabInstance : MonoBehaviour
     public static void OnPostprocessScene()
     {
         foreach (PrefabInstance pi in UnityEngine.Object.FindObjectsOfType(typeof(PrefabInstance)))
-            BakeInstance(pi);
+            pi.BakeInstance();
     }
 
     // Spawns the referenced objects into the scene
-    public static void BakeInstance(PrefabInstance pi)
+    virtual public void BakeInstance()
     {
-        if (!pi.prefab || !pi.enabled)
+        if (!this.prefab || !this.enabled)
             return;
-        pi.enabled = false;
-        GameObject go = PrefabUtility.InstantiatePrefab(pi.prefab) as GameObject;
+        this.enabled = false;
+        go = PrefabUtility.InstantiatePrefab(this.prefab) as GameObject;
         Quaternion rot = go.transform.localRotation;
         Vector3 scale = go.transform.localScale;
-        go.transform.parent = pi.transform;
+        go.transform.parent = this.transform;
         go.transform.localPosition = Vector3.zero;
         go.transform.localScale = scale;
         go.transform.localRotation = rot;
-        pi.prefab = null;
+        this.prefab = null;
         foreach (PrefabInstance childPi in go.GetComponentsInChildren<PrefabInstance>())
-            BakeInstance(childPi);
+            childPi.BakeInstance();
     }
 
 #endif

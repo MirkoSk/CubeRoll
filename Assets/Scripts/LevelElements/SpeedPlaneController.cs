@@ -10,7 +10,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class SpeedPlaneController : MonoBehaviour {
 
-    public float force = 1;
+    public float force = 50f;
 
 
 

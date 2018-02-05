@@ -13,14 +13,14 @@ public class LandMineController : MonoBehaviour {
 
     #region Variable Declarations
     [Header("Explosion Stats")]
-    public float explosionForce = 1000;
+    public float explosionForce = 3000;
     public float explosionRadius = 5;
-    public float movementBlockTimeOnHit = 3;
+    public float movementBlockTimeOnHit = 10;
 
     [Header("Camera Shake On Hit")]
     public float magnitude = 2f;
     public float roughness = 10f;
-    public float fadeOutTime = 5f;
+    public float fadeOutTime = 3f;
 
     private ParticleSystem ps;
     #endregion
