@@ -107,9 +107,10 @@ public class CubeScript : MonoBehaviour {
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
-        // Hide the cube and play the death ParticleSystem
+        // Hide the cube and add juicyness
         cubeRenderer.enabled = false;
         deathParticleSystem.Play();
+        AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_DEATH);
 
         StartCoroutine(Delay(deathParticleSystem.main.duration * 1.5f, () =>
         {
