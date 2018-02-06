@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4472511302377294}
   - component: {fileID: 198744844805548920}
   - component: {fileID: 199051902818100866}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Star_Burst_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1237,7 +1237,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1988726457
+  randomSeed: 402893635
   InitialModule:
     serializedVersion: 3
     enabled: 1

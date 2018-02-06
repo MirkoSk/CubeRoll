@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 199553314783716342}
   - component: {fileID: 114158730668469570}
   - component: {fileID: 198507457860731098}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: CubeGroundHitPS
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1350717821375174, guid: 0129826e79748dd47bd724ae8f51df69, type: 2}
-  forceAmount: 10
+  forceAmount: 12
   forceDuration: 1
 --- !u!114 &114508324815449240
 MonoBehaviour:
