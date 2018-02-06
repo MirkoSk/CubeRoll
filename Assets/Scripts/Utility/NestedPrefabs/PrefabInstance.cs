@@ -59,12 +59,15 @@ public class PrefabInstance : MonoBehaviour
 
         foreach (MeshRenderer mr in source.GetComponentsInChildren(typeof(MeshRenderer), true))
         {
-            things.Add(new Thingy()
+            if (mr.enabled)
             {
-                mesh = mr.GetComponent<MeshFilter>().sharedMesh,
-                matrix = baseMat * mr.transform.localToWorldMatrix,
-                materials = new List<Material>(mr.sharedMaterials)
-            });
+                things.Add(new Thingy()
+                {
+                    mesh = mr.GetComponent<MeshFilter>().sharedMesh,
+                    matrix = baseMat * mr.transform.localToWorldMatrix,
+                    materials = new List<Material>(mr.sharedMaterials)
+                });
+            }
         }
 
         foreach (PrefabInstance pi in source.GetComponentsInChildren(typeof(PrefabInstance), true))
