@@ -10,15 +10,26 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour {
 
     //Varriables
-    private Vector3 offset;
-    private GameObject player;
-	// Use this for initialization
+    [Range(1, 2)]
+    public int playerToFollow = 1;
+
+    Vector3 offset;
+    GameObject player;
+
+
+
 	void Start () {
-        player = GameObject.FindGameObjectWithTag(Constants.TAG_PLAYER);
-        offset = transform.position-player.transform.position;
+        GameObject[] players = GameObject.FindGameObjectsWithTag(Constants.TAG_PLAYER);
+        foreach (GameObject go in players)
+        {
+            if (go.GetComponent<CubeController>().playerNumber == playerToFollow)
+            {
+                player = go;
+            }
+        }
+        offset = transform.position - player.transform.position;
 	}
 	
-	// Update is called once per frame
 	void Update () {
         transform.position = player.transform.position + offset;
     }

@@ -11,6 +11,7 @@ using UnityEngine;
 public class CubeController : MonoBehaviour {
 
     #region Variable Declarations
+    // Public Variables
     [Header("Movement")]
     public float moveSpeed = 10;
     public float maxSpeed = 20;
@@ -19,25 +20,28 @@ public class CubeController : MonoBehaviour {
     public AnimationCurve moveDampeningFadeIn = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
     [Header("Other")]
+    [Range(1, 2)]
+    public int playerNumber = 1;
     [Tooltip("The AnimationCurve used for resetting the cube's position on respawn")]
     public AnimationCurve respawnCurve;
 
-    private Rigidbody rb;
     
+
+    // Private Variables
     // variables for speedy achievement
-    [HideInInspector]
-    public float speedDuration;
-    [HideInInspector]
-    public bool speedyStarted = false;
+    [HideInInspector] public float speedDuration;
+    [HideInInspector] public bool speedyStarted = false;
 
     // respawn
-    private Vector3 startPosition;
-    private Quaternion startRotation;
-    private bool respawning;
+    Vector3 startPosition;
+    Quaternion startRotation;
+    bool respawning;
     public bool Respawning { get { return respawning; } }
-    private ParticleSystem deathParticleSystem;
-    private ParticleSystem respawnParticleSystem;
-    private Renderer cubeRenderer;
+    ParticleSystem deathParticleSystem;
+    ParticleSystem respawnParticleSystem;
+    Renderer cubeRenderer;
+
+    Rigidbody rb;
     #endregion
 
 
@@ -87,11 +91,11 @@ public class CubeController : MonoBehaviour {
 
     #region Private Functions
     private void MoveCube () {
-        if (Input.GetAxis(Constants.INPUT_HORIZONTAL) != 0 ) {
-            rb.AddForce(Vector3.right * Input.GetAxis(Constants.INPUT_HORIZONTAL) * moveSpeed * moveDampening * 60 * Time.deltaTime);
+        if (Input.GetAxis(Constants.INPUT_HORIZONTAL + playerNumber) != 0 ) {
+            rb.AddForce(Vector3.right * Input.GetAxis(Constants.INPUT_HORIZONTAL + playerNumber) * moveSpeed * moveDampening * 60 * Time.deltaTime);
         }
-        if (Input.GetAxis(Constants.INPUT_VERTICAL) != 0 ) {
-            rb.AddForce(Vector3.forward * Input.GetAxis(Constants.INPUT_VERTICAL) * moveSpeed * moveDampening * 60 * Time.deltaTime);
+        if (Input.GetAxis(Constants.INPUT_VERTICAL + playerNumber) != 0 ) {
+            rb.AddForce(Vector3.forward * Input.GetAxis(Constants.INPUT_VERTICAL + playerNumber) * moveSpeed * moveDampening * 60 * Time.deltaTime);
         }
 
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
