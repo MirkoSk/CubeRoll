@@ -552,6 +552,11 @@ Prefab:
       propertyPath: m_NormalizedViewPortRect.width
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114315705528269050, guid: d1d8ba2c5d3a51f4ea8b81594850a341,
+        type: 2}
+      propertyPath: playerToFollow
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1d8ba2c5d3a51f4ea8b81594850a341, type: 2}
   m_IsPrefabParent: 0
@@ -609,6 +614,11 @@ Prefab:
     - target: {fileID: 4459257894801722, guid: 57cc55cd586389c48a83d3c58b126601, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114304163463037708, guid: 57cc55cd586389c48a83d3c58b126601,
+        type: 2}
+      propertyPath: playerNumber
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57cc55cd586389c48a83d3c58b126601, type: 2}

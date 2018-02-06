@@ -40,6 +40,8 @@ public class Constants
     public static readonly string SOUND_CUBE_DEATH = "CubeDeath";
     public static readonly string SOUND_CUBE_SPAWN = "CubeSpawn";
     public static readonly string SOUND_CUBE_LEVITATE = "CubeLevitate";
+    public static readonly string SOUND_SCORE_UP = "ScoreUp";
+    public static readonly string SOUND_NEW_HIGHSCORE = "NewHighscore";
     public static readonly string SOUND_MENU_CONFIRM = "MenuConfirm";
     #endregion
 }

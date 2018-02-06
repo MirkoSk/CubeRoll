@@ -100,15 +100,18 @@ public class ScoreCounter : MonoBehaviour {
     public void TileCompleted() {
         AddPoints(tileCompletion);
         objectReferences.infoTextUpdater.UpdateText("Tile Completed !", tileCompletion.ToString(), 1f);
+        AudioManager.Instance.PlaySoundOneShot(Constants.SOUND_SCORE_UP);
     }
 
     public void MineDetection() {
         AddPoints(mineDetectionDog);
         objectReferences.infoTextUpdater.UpdateText("Mine Detection Dog !", mineDetectionDog.ToString(), 2.5f);
+        AudioManager.Instance.PlaySoundOneShot(Constants.SOUND_SCORE_UP);
     }
 
     public void Speedy(Rigidbody rb) {
         objectReferences.infoTextUpdater.UpdateText("Speedy Gonzalez !", "", 2.5f);
+        AudioManager.Instance.PlaySoundOneShot(Constants.SOUND_SCORE_UP);
         StartCoroutine(SpeedyCoroutine(rb));
     }
 
@@ -118,6 +121,7 @@ public class ScoreCounter : MonoBehaviour {
         {
             highscore = score;
             objectReferences.highscoreUpdater.UpdateText();
+            AudioManager.Instance.PlaySound(Constants.SOUND_NEW_HIGHSCORE);
             ResetScore();
         }
     }

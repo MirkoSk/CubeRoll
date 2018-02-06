@@ -209,6 +209,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  playerNumber: 0
   respawnCurve:
     serializedVersion: 2
     m_Curve:

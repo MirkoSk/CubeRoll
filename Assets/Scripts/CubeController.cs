@@ -20,7 +20,7 @@ public class CubeController : MonoBehaviour {
     public AnimationCurve moveDampeningFadeIn = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
     [Header("Other")]
-    [Range(1, 2)]
+    [Range(0, 2)]
     public int playerNumber = 1;
     [Tooltip("The AnimationCurve used for resetting the cube's position on respawn")]
     public AnimationCurve respawnCurve;
@@ -91,11 +91,28 @@ public class CubeController : MonoBehaviour {
 
     #region Private Functions
     private void MoveCube () {
-        if (Input.GetAxis(Constants.INPUT_HORIZONTAL + playerNumber) != 0 ) {
-            rb.AddForce(Vector3.right * Input.GetAxis(Constants.INPUT_HORIZONTAL + playerNumber) * moveSpeed * moveDampening * 60 * Time.deltaTime);
+
+        if (playerNumber == 0)
+        {
+            if (Input.GetAxis(Constants.INPUT_HORIZONTAL) != 0)
+            {
+                rb.AddForce(Vector3.right * Input.GetAxis(Constants.INPUT_HORIZONTAL) * moveSpeed * moveDampening * 60 * Time.deltaTime);
+            }
+            if (Input.GetAxis(Constants.INPUT_VERTICAL) != 0)
+            {
+                rb.AddForce(Vector3.forward * Input.GetAxis(Constants.INPUT_VERTICAL) * moveSpeed * moveDampening * 60 * Time.deltaTime);
+            }
         }
-        if (Input.GetAxis(Constants.INPUT_VERTICAL + playerNumber) != 0 ) {
-            rb.AddForce(Vector3.forward * Input.GetAxis(Constants.INPUT_VERTICAL + playerNumber) * moveSpeed * moveDampening * 60 * Time.deltaTime);
+        else
+        {
+            if (Input.GetAxis(Constants.INPUT_HORIZONTAL + playerNumber) != 0)
+            {
+                rb.AddForce(Vector3.right * Input.GetAxis(Constants.INPUT_HORIZONTAL + playerNumber) * moveSpeed * moveDampening * 60 * Time.deltaTime);
+            }
+            if (Input.GetAxis(Constants.INPUT_VERTICAL + playerNumber) != 0)
+            {
+                rb.AddForce(Vector3.forward * Input.GetAxis(Constants.INPUT_VERTICAL + playerNumber) * moveSpeed * moveDampening * 60 * Time.deltaTime);
+            }
         }
 
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);

@@ -10,8 +10,8 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour {
 
     //Varriables
-    [Range(1, 2)]
-    public int playerToFollow = 1;
+    [Range(0, 2)]
+    public int playerToFollow = 0;
 
     Vector3 offset;
     GameObject player;
