@@ -8,7 +8,7 @@ using UnityEngine;
 /// Author: Melanie Ramsch, Mirko Skroch
 /// </summary>
 [RequireComponent(typeof(Rigidbody))]
-public class CubeScript : MonoBehaviour {
+public class CubeController : MonoBehaviour {
 
     #region Variable Declarations
     [Header("Movement")]
@@ -123,10 +123,13 @@ public class CubeScript : MonoBehaviour {
             transform.rotation = startRotation;
             cubeRenderer.enabled = true;
 
+            AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_LEVITATE);
             // Softly tween it into it's startPosition
             LeanTween.move(gameObject, startPosition, 2f).setEase(respawnCurve).setOnComplete(() =>
             {
+                // Add juicyness
                 respawnParticleSystem.Play();
+                AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_SPAWN);
 
                 // Reset our speedDuration for Speedy Gonzalez bonus
                 speedDuration = 0;
@@ -147,10 +150,13 @@ public class CubeScript : MonoBehaviour {
         transform.position = startPosition + Vector3.up * 5f;
         cubeRenderer.enabled = true;
 
+        AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_LEVITATE);
         // Softly tween it into it's startPosition
         LeanTween.move(gameObject, startPosition, 2f).setEase(respawnCurve).setOnComplete(() =>
         {
+            // Add juicyness
             respawnParticleSystem.Play();
+            AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_SPAWN);
 
             // Reset our speedDuration for Speedy Gonzalez bonus
             speedDuration = 0;

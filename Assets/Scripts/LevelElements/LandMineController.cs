@@ -36,7 +36,7 @@ public class LandMineController : MonoBehaviour {
         if (hit.transform.tag.Contains(Constants.TAG_PLAYER)) {
             // Aplly force to player and block his movement
             hit.gameObject.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, this.transform.position + Vector3.up * 1f, explosionRadius);
-            hit.gameObject.GetComponent<CubeScript>().BlockMovement(movementBlockTimeOnHit);
+            hit.gameObject.GetComponent<CubeController>().BlockMovement(movementBlockTimeOnHit);
 
             // Trigger effects and sounds
             CameraShaker.Instance.ShakeOnce(magnitude, roughness, 0, fadeOutTime);

@@ -17,7 +17,7 @@ public class ScoreCounter : MonoBehaviour {
         public InfoTextUpdater infoTextUpdater;
         public HighscoreUpdater highscoreUpdater;
         public DistanceUpdater distanceUpdater;
-        public CubeScript cubeScript;
+        public CubeController cubeScript;
     }
     #endregion
 

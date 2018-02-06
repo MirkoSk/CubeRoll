@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da34c79c6ccc19343b6a0cc4c9847d6f, type: 3}
-  m_Name: CubeDeath
+  m_Name: CubeLevitate
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 839c7db7849edf342b0d5c60f5d0abc2, type: 3}
+  clip: {fileID: 8300000, guid: 730a8b1f421927144845d8926561338c, type: 3}
   output: {fileID: 243105786287923380, guid: 16c441affbc00d2449cf32fc2d46930f, type: 2}
   mute: 0
   bypassEffects: 0
@@ -19,6 +19,6 @@ MonoBehaviour:
   playOnAwake: 0
   loop: 0
   priority: 128
-  volume: 0.6
+  volume: 0.09
   pitch: 1
   stereoPan: 0

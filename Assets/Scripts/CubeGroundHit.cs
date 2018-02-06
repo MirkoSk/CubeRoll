@@ -7,21 +7,21 @@ using UnityEngine;
 /// 
 /// Author: Mirko Skroch
 /// </summary>
-[RequireComponent(typeof(CubeScript))]
+[RequireComponent(typeof(CubeController))]
 public class CubeGroundHit : MonoBehaviour {
 
     #region Variable Declarations
     public GameObject cubeGroundHitPSPrefab;
 
     private Transform dynamicObjectsParent;
-    private CubeScript cubeScript;
+    private CubeController cubeScript;
     #endregion
 
 
 
     #region Unity Event Functions
     private void Start() {
-        cubeScript = GetComponent<CubeScript>();
+        cubeScript = GetComponent<CubeController>();
         dynamicObjectsParent = GameObject.FindGameObjectWithTag(Constants.TAG_DYNAMIC_OBJECTS_PARENT).transform;
     }
 

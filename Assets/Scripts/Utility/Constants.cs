@@ -38,6 +38,8 @@ public class Constants
     public static readonly string SOUND_MINE_PLOP = "MinePlop";
     public static readonly string SOUND_CUBE_HIT = "CubeHit";
     public static readonly string SOUND_CUBE_DEATH = "CubeDeath";
+    public static readonly string SOUND_CUBE_SPAWN = "CubeSpawn";
+    public static readonly string SOUND_CUBE_LEVITATE = "CubeLevitate";
     public static readonly string SOUND_MENU_CONFIRM = "MenuConfirm";
     #endregion
 }

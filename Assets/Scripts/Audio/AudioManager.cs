@@ -101,9 +101,15 @@ public class AudioManager : MonoBehaviour {
             AudioSource source = gameObject.AddComponent<AudioSource>();
             source.clip = track.clip;
             source.outputAudioMixerGroup = track.output;
+            source.mute = track.mute;
+            source.bypassEffects = track.bypassEffects;
+            source.bypassListenerEffects = track.bypassListenerEffects;
             source.playOnAwake = track.playOnAwake;
             source.loop = track.loop;
+            source.priority = track.priority;
             source.volume = track.volume;
+            source.pitch = track.pitch;
+            source.panStereo = track.stereoPan;
         }
     }
 
