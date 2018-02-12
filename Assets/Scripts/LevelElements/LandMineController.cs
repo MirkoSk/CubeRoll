@@ -35,8 +35,8 @@ public class LandMineController : MonoBehaviour {
     void OnCollisionEnter(Collision hit) {
         if (hit.transform.tag.Contains(Constants.TAG_PLAYER)) {
             // Aplly force to player and block his movement
-            hit.gameObject.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, this.transform.position + Vector3.up * 1f, explosionRadius);
-            hit.gameObject.GetComponent<CubeController>().BlockMovement(movementBlockTimeOnHit);
+            hit.transform.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, this.transform.position + Vector3.up * 1f, explosionRadius);
+            hit.transform.GetComponent<CubeController>().BlockMovement(movementBlockTimeOnHit);
 
             // Trigger effects and sounds
             CameraShaker.Instance.ShakeOnce(magnitude, roughness, 0, fadeOutTime);
@@ -44,7 +44,7 @@ public class LandMineController : MonoBehaviour {
             AudioManager.Instance.PlaySound(Constants.SOUND_MINE_PLOP);
 
             // Update score
-            ScoreCounter.Instance.MineDetection(hit.gameObject.GetComponent<CubeController>().PlayerNumber);
+            ScoreCounter.Instance.MineDetection(hit.transform.parent.parent.GetComponent<CubeController>().PlayerNumber);
         }
     }
     #endregion

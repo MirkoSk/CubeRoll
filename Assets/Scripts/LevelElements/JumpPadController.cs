@@ -20,9 +20,13 @@ public class JumpPadController : MonoBehaviour {
 
 
     #region Unity Event Functions
-    void OnTriggerEnter(Collider hit) {
-        if (hit.tag.Contains(Constants.TAG_PLAYER)) {
-            StartCoroutine(AddJumpForce(hit.GetComponent<Rigidbody>()));
+    void OnTriggerEnter(Collider hit)
+    {
+        // Since Triggers don't understand compound colliders: Go up the hierarchy until you hit the gameObject with the rigidbody
+        Rigidbody parent = hit.FindComponentInParents<Rigidbody>();
+
+        if (parent.tag.Contains(Constants.TAG_PLAYER)) {
+            StartCoroutine(AddJumpForce(parent));
         }
     }
     #endregion

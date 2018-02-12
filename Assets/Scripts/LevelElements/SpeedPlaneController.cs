@@ -8,15 +8,20 @@ using UnityEngine;
 /// Author: Mirko Skroch
 /// </summary>
 [RequireComponent(typeof(Collider))]
-public class SpeedPlaneController : MonoBehaviour {
+public class SpeedPlaneController : MonoBehaviour
+{
 
     public float force = 50f;
 
 
 
-    void OnTriggerStay(Collider hit) {
-        if (hit.tag.Contains(Constants.TAG_PLAYER)) {
-            hit.GetComponent<Rigidbody>().AddForce(this.transform.forward * force);
+    void OnTriggerStay(Collider hit)
+    {
+        // Since Triggers don't understand compound colliders: Go up the hierarchy until you hit the gameObject with the rigidbody
+        Rigidbody parent = hit.FindComponentInParents<Rigidbody>();
+
+        if (parent.tag.Contains(Constants.TAG_PLAYER)) {
+            parent.AddForce(this.transform.forward * force);
         }
     }
 }

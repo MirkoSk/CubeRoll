@@ -8,10 +8,15 @@ using UnityEngine;
 /// Author: Melanie Ramsch
 /// </summary>
 [RequireComponent(typeof(Collider))]
-public class TileTrigger : MonoBehaviour {
+public class TileTrigger : MonoBehaviour
+{
 
-	private void OnTriggerEnter (Collider other) {
-        if( other.tag == Constants.TAG_PLAYER ) { 
+	private void OnTriggerEnter (Collider hit)
+    {
+        // Since Triggers don't understand compound colliders: Go up the hierarchy until you hit the gameObject with the rigidbody
+        Rigidbody parent = hit.FindComponentInParents<Rigidbody>();
+
+        if (parent.tag == Constants.TAG_PLAYER) { 
             //calls Method to add a new Tile
             LevelGenerator.Instance.NewTile(transform.parent.position);
             TileDelete();
@@ -20,7 +25,8 @@ public class TileTrigger : MonoBehaviour {
         }
     }
 
-    private void TileDelete() {
+    private void TileDelete()
+    {
         //Counts completed Tiles 
         LevelGenerator.Instance.SetCompletedTiles(LevelGenerator.Instance.GetCompletedTiles() + 1);
         //removes Tiles, which are too old

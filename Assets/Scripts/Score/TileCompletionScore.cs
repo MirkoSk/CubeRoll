@@ -8,16 +8,29 @@ using UnityEngine;
 /// Author: Mirko Skroch
 /// </summary>
 [RequireComponent(typeof(Collider))]
-public class TileCompletionScore : MonoBehaviour {
+public class TileCompletionScore : MonoBehaviour
+{
+    bool tilesetCompletedPlayer1 = false;
+    bool tilesetCompletedPlayer2 = false;
 
-    private bool tilesetCompleted = false;
 
 
+    void OnTriggerEnter(Collider hit)
+    {
+        // Since Triggers don't understand compound colliders: Go up the hierarchy until you hit the gameObject with the CubeController
+        CubeController parent = hit.FindComponentInParents<CubeController>();
 
-    void OnTriggerEnter(Collider hit) {
-        if (!tilesetCompleted && hit.tag.Contains(Constants.TAG_PLAYER)) {
-            ScoreCounter.Instance.TileCompleted(hit.GetComponent<CubeController>().PlayerNumber);
-            tilesetCompleted = true;
+        if (parent.tag.Contains(Constants.TAG_PLAYER)) {
+            if (parent.PlayerNumber == 1 && !tilesetCompletedPlayer1)
+            {
+                ScoreCounter.Instance.TileCompleted(parent.PlayerNumber);
+                tilesetCompletedPlayer1 = true;
+            }
+            else if (parent.PlayerNumber == 2 && !tilesetCompletedPlayer2)
+            {
+                ScoreCounter.Instance.TileCompleted(parent.PlayerNumber);
+                tilesetCompletedPlayer2 = true;
+            }
         }
     }
 }

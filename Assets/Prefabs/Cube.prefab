@@ -22,13 +22,14 @@ GameObject:
   - component: {fileID: 33567543786367166}
   - component: {fileID: 23818169392784242}
   - component: {fileID: 64248512231394346}
+  - component: {fileID: 114059069410962802}
   m_Layer: 0
   m_Name: Stage2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1278538383083670
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,8 +73,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4459257894801722}
   - component: {fileID: 114304163463037708}
-  - component: {fileID: 54448436174938352}
   - component: {fileID: 114446370346865672}
+  - component: {fileID: 114573253850908336}
+  - component: {fileID: 54448436174938352}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Player
@@ -92,6 +94,7 @@ GameObject:
   - component: {fileID: 33334742180938246}
   - component: {fileID: 23671883503481650}
   - component: {fileID: 64997840083656910}
+  - component: {fileID: 114107229176200436}
   m_Layer: 0
   m_Name: Stage1
   m_TagString: Untagged
@@ -107,6 +110,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4717916999831776}
+  - component: {fileID: 114644493344619256}
+  - component: {fileID: 114615717028888832}
   m_Layer: 0
   m_Name: Meshes
   m_TagString: Untagged
@@ -125,13 +130,14 @@ GameObject:
   - component: {fileID: 33210766166324188}
   - component: {fileID: 23808704878996494}
   - component: {fileID: 64683881551457664}
+  - component: {fileID: 114437130162547146}
   m_Layer: 0
   m_Name: Stage3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4077639171483920
 Transform:
   m_ObjectHideFlags: 1
@@ -166,7 +172,7 @@ Transform:
   m_GameObject: {fileID: 1081267873486584}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 4717916999831776}
   m_RootOrder: 1
@@ -179,7 +185,7 @@ Transform:
   m_GameObject: {fileID: 1765132368173342}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 4717916999831776}
   m_RootOrder: 2
@@ -409,6 +415,28 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: e9fceb53553e34a4f81c12e3e870f641, type: 3}
+--- !u!114 &114059069410962802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1081267873486584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaefd3d5a2a864ca5b5d9ec5f2a7040f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114107229176200436
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1698644550194782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaefd3d5a2a864ca5b5d9ec5f2a7040f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114304163463037708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -441,7 +469,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  playerNumber: 2
+  playerNumber: 1
   respawnCurve:
     serializedVersion: 2
     m_Curve:
@@ -490,6 +518,17 @@ MonoBehaviour:
     respawnParticleSystem: {fileID: 198308358455328118}
   speedDuration: 0
   speedyStarted: 0
+--- !u!114 &114437130162547146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1765132368173342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaefd3d5a2a864ca5b5d9ec5f2a7040f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114446370346865672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -503,6 +542,83 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cubeGroundHitPSPrefab: {fileID: 1537603954172566, guid: 26d312900de16ac4c92b11b0405bf9c0,
     type: 2}
+--- !u!114 &114573253850908336
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1595060318603050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59a90840a7a44384db7d312026f76d15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionCooldown: 3
+  collisionSpeedThreshold: 2
+  stateMachine: {fileID: 114615717028888832}
+--- !u!114 &114615717028888832
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1716032831043122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e0b24e2f2ad54cc09940c320ed3cf4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states:
+  - None
+  - Stage1
+  - Stage2
+  - Stage3
+  defaultStateIndex: 1
+  defaultStateName: Stage1
+  currentState: {fileID: 0}
+  verbose: 1
+  allowReentry: 0
+  returnToDefaultOnDisable: 1
+  OnStateExited:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Pixelplacement.GameObjectEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnStateEntered:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Pixelplacement.GameObjectEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnFirstStateEntered:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnFirstStateExited:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnLastStateEntered:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnLastStateExited:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &114644493344619256
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1716032831043122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55938fb1577dd4ad3af7e994048c86f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198040044220120336
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -563,7 +679,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: -656443834
+  randomSeed: -1584667125
   InitialModule:
     serializedVersion: 3
     enabled: 1

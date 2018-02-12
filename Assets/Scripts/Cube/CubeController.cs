@@ -100,35 +100,22 @@ public class CubeController : MonoBehaviour
 
 
     #region Private Functions
-    private void MoveCube () {
-
-        if (playerNumber == 0)
+    private void MoveCube ()
+    {
+        if (Input.GetAxis(Constants.INPUT_HORIZONTAL + playerNumber) != 0)
         {
-            if (Input.GetAxis(Constants.INPUT_HORIZONTAL) != 0)
-            {
-                rb.AddForce(Vector3.right * Input.GetAxis(Constants.INPUT_HORIZONTAL) * moveSpeed * moveDampening * 60 * Time.deltaTime);
-            }
-            if (Input.GetAxis(Constants.INPUT_VERTICAL) != 0)
-            {
-                rb.AddForce(Vector3.forward * Input.GetAxis(Constants.INPUT_VERTICAL) * moveSpeed * moveDampening * 60 * Time.deltaTime);
-            }
+            rb.AddForce(Vector3.right * Input.GetAxis(Constants.INPUT_HORIZONTAL + playerNumber) * moveSpeed * moveDampening * 60 * Time.deltaTime);
         }
-        else
+        if (Input.GetAxis(Constants.INPUT_VERTICAL + playerNumber) != 0)
         {
-            if (Input.GetAxis(Constants.INPUT_HORIZONTAL + playerNumber) != 0)
-            {
-                rb.AddForce(Vector3.right * Input.GetAxis(Constants.INPUT_HORIZONTAL + playerNumber) * moveSpeed * moveDampening * 60 * Time.deltaTime);
-            }
-            if (Input.GetAxis(Constants.INPUT_VERTICAL + playerNumber) != 0)
-            {
-                rb.AddForce(Vector3.forward * Input.GetAxis(Constants.INPUT_VERTICAL + playerNumber) * moveSpeed * moveDampening * 60 * Time.deltaTime);
-            }
+            rb.AddForce(Vector3.forward * Input.GetAxis(Constants.INPUT_VERTICAL + playerNumber) * moveSpeed * moveDampening * 60 * Time.deltaTime);
         }
 
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
     }
 
-    private void Respawn() {
+    private void Respawn()
+    {
         // Make sure we respawn just once
         if (respawning == true) return;
         respawning = true;
@@ -171,7 +158,8 @@ public class CubeController : MonoBehaviour
         }));
     }
 
-    private void Spawn() {
+    private void Spawn()
+    {
         // Make sure we respawn just once
         if (respawning == true) return;
         respawning = true;
@@ -201,7 +189,8 @@ public class CubeController : MonoBehaviour
 
 
     #region Coroutines
-    IEnumerator ResetMoveDampeningCoroutine(float fadeSpeed) {
+    IEnumerator ResetMoveDampeningCoroutine(float fadeSpeed)
+    {
         for (float i = 0; i < 1; i += 0.0125f * fadeSpeed * 60 * Time.deltaTime) {
             moveDampening = moveDampeningFadeIn.Evaluate(i);
             yield return null;
