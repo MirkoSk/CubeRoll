@@ -43,16 +43,21 @@ public class CubeController : MonoBehaviour
     // Public Properties
     public bool Respawning { get { return respawning; } }
     public int PlayerNumber { get { return playerNumber; } }
+    public float SpeedDuration { get; set; }
+    public bool SpeedyStarted { get; set; }
+    public bool CubeOnTrack { get { return cubeOnTrack; } }
 
     // Private Variables
     // variables for speedy achievement
-    [HideInInspector] public float speedDuration;
-    [HideInInspector] public bool speedyStarted = false;
+    float speedDuration;
+    bool speedyStarted = false;
 
     // respawn
     Vector3 startPosition;
     Quaternion startRotation;
     bool respawning;
+    Transform otherCube;
+    bool cubeOnTrack;
 
     Rigidbody rb;
     #endregion
@@ -67,6 +72,13 @@ public class CubeController : MonoBehaviour
         // Save the startPosition and Rotation for later use
         startPosition = rb.transform.position;
         startRotation = rb.transform.rotation;
+
+        // Save a reference to the other cube, if this is a multiplayer game
+        GameObject[] players = GameObject.FindGameObjectsWithTag(Constants.TAG_PLAYER);
+        foreach (GameObject go in players)
+        {
+            if (go != gameObject) otherCube = go.transform;
+        }
 
         Spawn();
 	}
@@ -83,7 +95,9 @@ public class CubeController : MonoBehaviour
             }
         }
 
-        if( rb.position.y <= -7f ) Respawn();
+        cubeOnTrack = Physics.Raycast(transform.position, Vector3.down, 10f);
+
+        if ( rb.position.y <= -7f ) Respawn();
 	}
     #endregion
 
@@ -136,14 +150,25 @@ public class CubeController : MonoBehaviour
             ScoreCounter.Instance.RespawnTriggered(playerNumber);
             LevelGenerator.Instance.NewLevel();
             
-            // Cube magically reappears abvoe it's startPosition
-            transform.position = startPosition + Vector3.up * 5f;
-            transform.rotation = startRotation;
-            references.meshes.SetActive(true);
+            if (!ScoreCounter.Instance.SinglePlayerGame && otherCube.GetComponent<CubeController>().CubeOnTrack)
+            {
+                // Cube magically reappears abvoe the other player
+                transform.position = new Vector3(otherCube.position.x, 6f, otherCube.position.z);
+                transform.rotation = startRotation;
+                references.meshes.SetActive(true);
+            }
+            else
+            {
+                // Cube magically reappears abvoe it's startPosition
+                transform.position = startPosition + Vector3.up * 5f;
+                transform.rotation = startRotation;
+                references.meshes.SetActive(true);
+            }
 
             AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_LEVITATE);
-            // Softly tween it into it's startPosition
-            LeanTween.move(gameObject, startPosition, 2f).setEase(respawnCurve).setOnComplete(() =>
+            
+            // Softly tween the cube onto the ground
+            LeanTween.move(gameObject, new Vector3(transform.position.x, 1f, transform.position.z), 2f).setEase(respawnCurve).setOnComplete(() =>
             {
                 // Add juicyness
                 references.respawnParticleSystem.Play();

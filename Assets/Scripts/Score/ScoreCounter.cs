@@ -62,6 +62,7 @@ public class ScoreCounter : MonoBehaviour
     public float SpeedDuration { get { return speedDuration; } }
     public float SpeedLimit { get { return speedLimit; } }
     public int SpeedyGonzalez { get { return speedyGonzalez; } }
+    public bool SinglePlayerGame { get { return singlePlayerGame; } }
 
     // Private Variables
     bool singlePlayerGame;
@@ -241,13 +242,13 @@ public class ScoreCounter : MonoBehaviour
         }
         if (playerNumber == 1)
         {
-            player1.references.cube.speedDuration = 0;
-            player1.references.cube.speedyStarted = false;
+            player1.references.cube.SpeedDuration = 0;
+            player1.references.cube.SpeedyStarted = false;
         }
         else if (playerNumber == 2)
         {
-            player2.references.cube.speedDuration = 0;
-            player2.references.cube.speedyStarted = false;
+            player2.references.cube.SpeedDuration = 0;
+            player2.references.cube.SpeedyStarted = false;
         }
     }
     #endregion
