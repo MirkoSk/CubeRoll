@@ -12,6 +12,11 @@ public class ScoreUpdater : MonoBehaviour
 {
 
     #region Variable Declarations
+    // Visible in Inspector
+    [Space]
+    [Range(1, 2)]
+    [SerializeField] int playerNumber = 1;
+
     [Space]
     [Tooltip("Scale amount on change of the score counter in percent.")]
     [Range(0f, 0.3f)]
@@ -22,10 +27,15 @@ public class ScoreUpdater : MonoBehaviour
     [SerializeField]
     float scaleDuration = 0.3f;
 
-    TextMeshProUGUI scoreText;
-    int previousScore;
+    // Private Variables
+    // Configuration
     Vector3 originalCounterScale;
     Vector3 targetScale;
+    TextMeshProUGUI scoreText;
+
+    // State
+    int score;
+    int previousScore;
     int scalingUp;
     int scalingDown;
     #endregion
@@ -45,7 +55,8 @@ public class ScoreUpdater : MonoBehaviour
 
     void LateUpdate()
     {
-        previousScore = ScoreCounter.Instance.Distance + ScoreCounter.Instance.Score;
+        if (playerNumber == 1) previousScore = ScoreCounter.Instance.Distance1 + ScoreCounter.Instance.Score1;
+        else if (playerNumber == 2) previousScore = ScoreCounter.Instance.Distance2 + ScoreCounter.Instance.Score2;
     }
     #endregion
 
@@ -54,7 +65,10 @@ public class ScoreUpdater : MonoBehaviour
     #region Public Functions
     public void UpdateText()
     {
-        if (ScoreCounter.Instance.Distance + ScoreCounter.Instance.Score != previousScore)
+        if (playerNumber == 1) score = ScoreCounter.Instance.Distance1 + ScoreCounter.Instance.Score1;
+        else if (playerNumber == 2) score = ScoreCounter.Instance.Distance2 + ScoreCounter.Instance.Score2;
+
+        if (score != previousScore)
         {
             if (transform.localScale != targetScale && !LeanTween.isTweening(scalingUp))
             {
@@ -63,7 +77,7 @@ public class ScoreUpdater : MonoBehaviour
                 scalingUp = LeanTween.scale(gameObject, targetScale, scaleDuration).setEase(LeanTweenType.easeInOutCubic).id;
             }
             // Update the text element with the new distance
-            scoreText.text = (ScoreCounter.Instance.Distance + ScoreCounter.Instance.Score).ToString();
+            scoreText.text = score.ToString();
         }
         else if (!LeanTween.isTweening(gameObject) && transform.localScale != originalCounterScale)
         {

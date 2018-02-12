@@ -359,7 +359,7 @@ Prefab:
     - target: {fileID: 224210105875434890, guid: 74c62ed03d00627488e352ca3885e463,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.8408203
+      value: 1.8408508
       objectReference: {fileID: 0}
     - target: {fileID: 114176712580002240, guid: 74c62ed03d00627488e352ca3885e463,
         type: 2}
@@ -537,6 +537,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114304163463037708, guid: 57cc55cd586389c48a83d3c58b126601,
+        type: 2}
+      propertyPath: playerNumber
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57cc55cd586389c48a83d3c58b126601, type: 2}
   m_IsPrefabParent: 0
@@ -573,13 +578,27 @@ MonoBehaviour:
   mineDetectionDog: 100
   speedyGonzalez: 5
   speedLimit: 10
-  speedDuration: 2
-  objectReferences:
-    scoreUpdater: {fileID: 805126269}
-    infoTextUpdater: {fileID: 555955774}
-    highscoreUpdater: {fileID: 1656983015}
-    distanceUpdater: {fileID: 1526283706}
-    cubeScript: {fileID: 1702855239}
+  speedDuration: 1.5
+  player1:
+    score: 0
+    distance: 0
+    highscore: 0
+    objectReferences:
+      scoreUpdater: {fileID: 805126269}
+      infoTextUpdater: {fileID: 555955774}
+      highscoreUpdater: {fileID: 1656983015}
+      distanceUpdater: {fileID: 1526283706}
+      cube: {fileID: 1702855239}
+  player2:
+    score: 0
+    distance: 0
+    highscore: 0
+    objectReferences:
+      scoreUpdater: {fileID: 0}
+      infoTextUpdater: {fileID: 0}
+      highscoreUpdater: {fileID: 0}
+      distanceUpdater: {fileID: 0}
+      cube: {fileID: 0}
 --- !u!114 &1396721020
 MonoBehaviour:
   m_ObjectHideFlags: 0

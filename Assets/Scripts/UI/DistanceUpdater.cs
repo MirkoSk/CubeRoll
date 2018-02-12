@@ -12,6 +12,12 @@ public class DistanceUpdater : MonoBehaviour
 {
 
     #region Variable Declarations
+    // Visible in Inspector
+    [Space]
+    [Range(1, 2)]
+    [SerializeField]
+    int playerNumber = 1;
+
     [Space]
     [Tooltip("Scale amount on change of the distance counter in percent.")]
     [Range(0f, 0.3f)]
@@ -22,10 +28,15 @@ public class DistanceUpdater : MonoBehaviour
     [SerializeField]
     float scaleDuration = 0.3f;
 
+    // Private Variables
+    // Configuration
     TextMeshProUGUI distanceText;
-    int previousDistance;
     Vector3 originalCounterScale;
     Vector3 targetScale;
+
+    // State
+    int distance;
+    int previousDistance;
     int scalingUp;
     int scalingDown;
     #endregion
@@ -45,7 +56,8 @@ public class DistanceUpdater : MonoBehaviour
 
     void LateUpdate()
     {
-        previousDistance = ScoreCounter.Instance.Distance;
+        if (playerNumber == 1) previousDistance = ScoreCounter.Instance.Distance1;
+        else if (playerNumber == 2) previousDistance = ScoreCounter.Instance.Distance2;
     }
     #endregion
 
@@ -54,7 +66,10 @@ public class DistanceUpdater : MonoBehaviour
     #region Public Functions
     public void UpdateText()
     {
-        if (ScoreCounter.Instance.Distance != previousDistance)
+        if (playerNumber == 1) distance = ScoreCounter.Instance.Distance1;
+        else if (playerNumber == 2) distance = ScoreCounter.Instance.Distance2;
+
+        if (distance != previousDistance)
         {
             if (transform.localScale != targetScale && !LeanTween.isTweening(scalingUp))
             {
@@ -63,7 +78,7 @@ public class DistanceUpdater : MonoBehaviour
                 scalingUp = LeanTween.scale(gameObject, targetScale, scaleDuration).setEase(LeanTweenType.easeInOutCubic).id;
             }
             // Update the text element with the new distance
-            distanceText.text = ScoreCounter.Instance.Distance.ToString();
+            distanceText.text = distance.ToString();
         }
         else if (!LeanTween.isTweening(gameObject) && transform.localScale != originalCounterScale)
         {

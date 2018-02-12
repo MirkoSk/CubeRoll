@@ -44,7 +44,7 @@ public class LandMineController : MonoBehaviour {
             AudioManager.Instance.PlaySound(Constants.SOUND_MINE_PLOP);
 
             // Update score
-            ScoreCounter.Instance.MineDetection();
+            ScoreCounter.Instance.MineDetection(hit.gameObject.GetComponent<CubeController>().PlayerNumber);
         }
     }
     #endregion

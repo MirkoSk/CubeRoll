@@ -69,7 +69,7 @@ public class LevelGenerator : MonoBehaviour {
 
     private void Update()
     {
-        score = ScoreCounter.Instance.Score;
+        score = ScoreCounter.Instance.Score1;
     }
 
 #region PublicFunctions

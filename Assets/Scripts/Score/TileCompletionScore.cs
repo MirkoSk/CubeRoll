@@ -16,7 +16,7 @@ public class TileCompletionScore : MonoBehaviour {
 
     void OnTriggerEnter(Collider hit) {
         if (!tilesetCompleted && hit.tag.Contains(Constants.TAG_PLAYER)) {
-            ScoreCounter.Instance.TileCompleted();
+            ScoreCounter.Instance.TileCompleted(hit.GetComponent<CubeController>().PlayerNumber);
             tilesetCompleted = true;
         }
     }

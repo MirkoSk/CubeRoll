@@ -8,24 +8,41 @@ using UnityEngine;
 /// Author: Melanie Ramsch, Mirko Skroch
 /// </summary>
 [RequireComponent(typeof(Rigidbody))]
-public class CubeController : MonoBehaviour {
+public class CubeController : MonoBehaviour
+{
+    #region Class Definitions
+    [System.Serializable]
+    public class ObjectReferences
+    {
+        public GameObject meshes;
+        public ParticleSystem deathParticleSystem;
+        public ParticleSystem respawnParticleSystem;
+    }
+    #endregion
+
+
 
     #region Variable Declarations
-    // Public Variables
+    // Visible in Inspector
     [Header("Movement")]
-    public float moveSpeed = 10;
-    public float maxSpeed = 20;
+    [SerializeField] float moveSpeed = 10;
+    [SerializeField] float maxSpeed = 20;
     [Tooltip("Dampening of the cube movement. 0 = no input possible, 1 = normal move input")]
-    public float moveDampening = 1;
-    public AnimationCurve moveDampeningFadeIn = AnimationCurve.EaseInOut(0, 0, 1, 1);
+    [SerializeField] float moveDampening = 1;
+    [SerializeField] AnimationCurve moveDampeningFadeIn = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
     [Header("Other")]
-    [Range(0, 2)]
-    public int playerNumber = 1;
+    [Range(1, 2)]
+    [SerializeField] int playerNumber = 1;
     [Tooltip("The AnimationCurve used for resetting the cube's position on respawn")]
-    public AnimationCurve respawnCurve;
+    [SerializeField] AnimationCurve respawnCurve;
 
-    
+    [Space]
+    [SerializeField] ObjectReferences references;
+
+    // Public Properties
+    public bool Respawning { get { return respawning; } }
+    public int PlayerNumber { get { return playerNumber; } }
 
     // Private Variables
     // variables for speedy achievement
@@ -36,10 +53,6 @@ public class CubeController : MonoBehaviour {
     Vector3 startPosition;
     Quaternion startRotation;
     bool respawning;
-    public bool Respawning { get { return respawning; } }
-    ParticleSystem deathParticleSystem;
-    ParticleSystem respawnParticleSystem;
-    Renderer cubeRenderer;
 
     Rigidbody rb;
     #endregion
@@ -50,9 +63,6 @@ public class CubeController : MonoBehaviour {
     private void Start () {
         // Get References
         rb = GetComponent<Rigidbody>();
-        cubeRenderer = GetComponent<Renderer>();
-        deathParticleSystem = transform.Find("DeathParticleSystem").GetComponent<ParticleSystem>();
-        respawnParticleSystem = transform.Find("RespawnParticleSystem").GetComponent<ParticleSystem>();
 
         // Save the startPosition and Rotation for later use
         startPosition = rb.transform.position;
@@ -68,7 +78,7 @@ public class CubeController : MonoBehaviour {
         if (!speedyStarted && rb.velocity.x + rb.velocity.z >= ScoreCounter.Instance.SpeedLimit) {
             speedDuration += Time.deltaTime;
             if (speedDuration >= ScoreCounter.Instance.SpeedDuration) {
-                ScoreCounter.Instance.Speedy(rb);
+                ScoreCounter.Instance.Speedy(rb, playerNumber);
                 speedyStarted = true;
             }
         }
@@ -129,27 +139,27 @@ public class CubeController : MonoBehaviour {
         rb.angularVelocity = Vector3.zero;
 
         // Hide the cube and add juicyness
-        cubeRenderer.enabled = false;
-        deathParticleSystem.Play();
+        references.meshes.SetActive(false);
+        references.deathParticleSystem.Play();
         AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_DEATH);
 
-        StartCoroutine(Delay(deathParticleSystem.main.duration * 1.5f, () =>
+        StartCoroutine(Delay(references.deathParticleSystem.main.duration * 1.5f, () =>
         {
             // Inform the ScoreCounter to reset the score and spawn a new level
-            ScoreCounter.Instance.RespawnTriggered();
+            ScoreCounter.Instance.RespawnTriggered(playerNumber);
             LevelGenerator.Instance.NewLevel();
             
             // Cube magically reappears abvoe it's startPosition
             transform.position = startPosition + Vector3.up * 5f;
             transform.rotation = startRotation;
-            cubeRenderer.enabled = true;
+            references.meshes.SetActive(true);
 
             AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_LEVITATE);
             // Softly tween it into it's startPosition
             LeanTween.move(gameObject, startPosition, 2f).setEase(respawnCurve).setOnComplete(() =>
             {
                 // Add juicyness
-                respawnParticleSystem.Play();
+                references.respawnParticleSystem.Play();
                 AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_SPAWN);
 
                 // Reset our speedDuration for Speedy Gonzalez bonus
@@ -169,14 +179,14 @@ public class CubeController : MonoBehaviour {
         // Cube magically appears abvoe it's startPosition
         rb.useGravity = false;
         transform.position = startPosition + Vector3.up * 5f;
-        cubeRenderer.enabled = true;
+        references.meshes.SetActive(true);
 
         AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_LEVITATE);
         // Softly tween it into it's startPosition
         LeanTween.move(gameObject, startPosition, 2f).setEase(respawnCurve).setOnComplete(() =>
         {
             // Add juicyness
-            respawnParticleSystem.Play();
+            references.respawnParticleSystem.Play();
             AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_SPAWN);
 
             // Reset our speedDuration for Speedy Gonzalez bonus

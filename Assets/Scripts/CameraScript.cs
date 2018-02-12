@@ -10,8 +10,8 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour {
 
     //Varriables
-    [Range(0, 2)]
-    public int playerToFollow = 0;
+    [Range(1, 2)]
+    public int playerToFollow = 1;
 
     Vector3 offset;
     GameObject player;
@@ -22,7 +22,7 @@ public class CameraScript : MonoBehaviour {
         GameObject[] players = GameObject.FindGameObjectsWithTag(Constants.TAG_PLAYER);
         foreach (GameObject go in players)
         {
-            if (go.GetComponent<CubeController>().playerNumber == playerToFollow)
+            if (go.GetComponent<CubeController>().PlayerNumber == playerToFollow)
             {
                 player = go;
             }

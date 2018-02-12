@@ -12,6 +12,12 @@ public class HighscoreUpdater : MonoBehaviour
 {
 
     #region Variable Declarations
+    // Visible in Inspector
+    [Space]
+    [Range(1, 2)]
+    [SerializeField]
+    int playerNumber = 1;
+
     [Space]
     [Tooltip("Scale amount on change of the distance counter in percent.")]
     [Range(0f, 0.3f)]
@@ -23,6 +29,8 @@ public class HighscoreUpdater : MonoBehaviour
     float scaleDuration = 0.3f;
     [SerializeField] AnimationCurve animationCurve;
 
+    // Private Variables
+    // Configuration
     TextMeshProUGUI highscoreText;
     ParticleSystem highscoreParticleSystem;
     Vector3 originalCounterScale;
@@ -46,7 +54,10 @@ public class HighscoreUpdater : MonoBehaviour
 	public void UpdateText()
     {
         highscoreParticleSystem.Play();
-        highscoreText.text = ScoreCounter.Instance.Highscore.ToString();
+
+        if (playerNumber == 1) highscoreText.text = ScoreCounter.Instance.Highscore1.ToString();
+        else if (playerNumber == 2) highscoreText.text = ScoreCounter.Instance.Highscore2.ToString();
+
         LeanTween.scale(gameObject, transform.localScale * (1 + scaleAmount), scaleDuration * (1f / 3.5f)).setEase(LeanTweenType.easeOutBack).setOnComplete(() => {
             LeanTween.scale(gameObject, transform.localScale * (1 - scaleAmount), scaleDuration * (1.5f / 3.5f)).setEase(animationCurve).setLoopCount(2).setOnComplete(() =>
             {

@@ -8,12 +8,12 @@ using UnityEngine.SceneManagement;
 /// 
 /// Author: Melanie Ramsch
 /// </summary>
-public class UI_Controller : MonoBehaviour {
+public class UIController : MonoBehaviour {
 
 	private void Awake() {
 	}
 
-	public void quitCubeRoll() {
+	public void QuitCubeRoll() {
 	#if UNITY_EDITOR
 		UnityEditor.EditorApplication.isPlaying = false;
 	#else
