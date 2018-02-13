@@ -90,7 +90,13 @@ public class ScoreCounter : MonoBehaviour
 
     private void Start()
     {
-        if (player2.references.cube == null) singlePlayerGame = true;
+		if(player2.references.cube == null) {
+			Data.singlePlayerGame = true;
+			singlePlayerGame = true;
+		} else {
+			Data.singlePlayerGame = false;
+			singlePlayerGame = false;
+		}
     }
 
     private void Update()
@@ -101,7 +107,7 @@ public class ScoreCounter : MonoBehaviour
         player1.references.distanceUpdater.UpdateText();
         player1.references.scoreUpdater.UpdateText();
 
-        if (!singlePlayerGame)
+        if (!Data.singlePlayerGame)
         {
             player2.references.distanceUpdater.UpdateText();
             player2.references.scoreUpdater.UpdateText();
@@ -215,7 +221,7 @@ public class ScoreCounter : MonoBehaviour
         }
 
         // Update Distance of player 2
-        if (!singlePlayerGame && player2.references.cube.transform.position.z > 0)
+        if (!Data.singlePlayerGame && player2.references.cube.transform.position.z > 0)
         {
             player2.distance = (int)player2.references.cube.transform.position.z;
         }

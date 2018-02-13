@@ -18,19 +18,28 @@ public class TileTrigger : MonoBehaviour
         // Since Triggers don't understand compound colliders: Go up the hierarchy until you hit the gameObject with the rigidbody
         Rigidbody parent = hit.FindComponentInParents<Rigidbody>();
 
-        if (parent.tag == Constants.TAG_PLAYER) { 
-            //calls Method to add a new Tile
-            LevelGenerator.Instance.NewTile(transform.parent.position);
-            TileDelete();
-            //Disable the Trigger
+        if (parent.tag == Constants.TAG_PLAYER) {
+			AddNewTile();
+			
+			CountCompleteTiles();
+			
+			if ( Data.singlePlayerGame) TileDelete();
+           
+			//Disable the Trigger
             this.enabled = false;
         }
     }
 
-    private void TileDelete()
-    {
-        //Counts completed Tiles 
-        LevelGenerator.Instance.SetCompletedTiles(LevelGenerator.Instance.GetCompletedTiles() + 1);
+	private void AddNewTile(){
+		LevelGenerator.Instance.NewTile(transform.parent.position);
+	}
+
+	private void CountCompleteTiles() {
+		LevelGenerator.Instance.SetCompletedTiles(LevelGenerator.Instance.GetCompletedTiles() + 1);
+	}
+
+	private void TileDelete()
+    {     
         //removes Tiles, which are too old
         if( LevelGenerator.Instance.GetCompletedTiles() > LevelGenerator.TILES_STARTCOUNT ) {
             LevelGenerator.Instance.DeleteOldTile();
@@ -40,4 +49,6 @@ public class TileTrigger : MonoBehaviour
         }
        
     }
+
+	
 }

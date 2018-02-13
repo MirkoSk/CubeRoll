@@ -11,4 +11,5 @@ public class Data {
 	//Current Score Date, Single Player
 	public static int singlePlayerScore = 0;
 
+	public static bool singlePlayerGame = false;
 }
