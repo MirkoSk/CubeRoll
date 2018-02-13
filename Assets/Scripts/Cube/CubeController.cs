@@ -135,24 +135,23 @@ public class CubeController : MonoBehaviour
         if (respawning == true) return;
         respawning = true;
 
-		//Save Player Score to Data Class
-		Data.singlePlayerScore = ScoreCounter.Instance.Score1;
-		
+		SavePlayerScoreToDataClass();
+
 		StopCubeMovement();
 		KillCube();
 		AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_DEATH);
 
 		StartCoroutine(Delay(references.deathParticleSystem.main.duration * 1.5f, () =>
         {
-			InitializeNewLevel();
+			NotifyScoreCounter();
 
-			if (!ScoreCounter.Instance.SinglePlayerGame && otherCube.GetComponent<CubeController>().CubeOnTrack)
+			if (!Data.singlePlayerGame && otherCube.GetComponent<CubeController>().CubeOnTrack)
             {
 				MultiplayerRespawnAtOtherPlayersPosition();
 			}
             else
             {
-				if(ScoreCounter.Instance.SinglePlayerGame) SinglePlayerRespawn();
+				if(Data.singlePlayerGame) SinglePlayerRespawn();
 				else MultiplayerRespawn();
 
 			}
@@ -162,6 +161,11 @@ public class CubeController : MonoBehaviour
         }));
     }
 
+	private void SavePlayerScoreToDataClass(){
+		Data.singlePlayerScore = ScoreCounter.Instance.Score1;
+		Data.player1 = ScoreCounter.Instance.Score1;
+		Data.player2 = ScoreCounter.Instance.Score2;
+	}
 	private void StopCubeMovement() {
 		rb.useGravity = false;
 		rb.velocity = Vector3.zero;
@@ -171,11 +175,11 @@ public class CubeController : MonoBehaviour
 		references.meshes.SetActive(false);
 		references.deathParticleSystem.Play();
 	}
-	private void InitializeNewLevel(){
+	private void NotifyScoreCounter(){
 		ScoreCounter.Instance.RespawnTriggered(playerNumber);
 	}
 	private void MultiplayerRespawnAtOtherPlayersPosition(){
-		transform.position = new Vector3(otherCube.position.x, 6f, otherCube.position.z);
+		transform.position = new Vector3(otherCube.position.x, 6f, otherCube.position.z-2);
 		transform.rotation = startRotation;
 		references.meshes.SetActive(true);
 	}
@@ -186,7 +190,6 @@ public class CubeController : MonoBehaviour
 	}
 	private void SinglePlayerRespawn(){
 		SceneManager.LoadScene(Constants.HIGHSCORE_SCENE, LoadSceneMode.Single);
-		
 	}
 
 
