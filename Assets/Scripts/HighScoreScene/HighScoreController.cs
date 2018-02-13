@@ -3,29 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Loads and Saves Highscore List in HighScore Scene. 
+/// Adds new Entry to Highscore List 
+/// 
+/// Author: Melanie Ramsch
+/// </summary>
 public class HighScoreController: MonoBehaviour {
 
-	
 	private const int scoreBoardlength = 10;
-
 	private List<HighScoreEntry> highScoreList;
 
+	#region UnityFunctions
 	void Awake() {
 		DisplayPlayerScore();
 	}
 
 	private void Update() {
-		if ( Input.GetKeyDown(KeyCode.Backspace)){
+		//Debugging Purpouses... [ToDo] Delete Later
+		/*if ( Input.GetKeyDown(KeyCode.Backspace)){
 			DeleteHighScoreList();
-		}
+		}*/
 	}
-
+	
 	private void Start() {
 		highScoreList = new List<HighScoreEntry>();
 		FillHighScoreList();
 		DisplayHighScoreList();
 	}
+	#endregion
 
+	#region Public Functions
 	public void AddNewEntry() {
 		HighScoreEntry newEntry = new HighScoreEntry(GetPlayerName(), GetPlayerPoints());
 		bool inserted = false;
@@ -40,14 +48,10 @@ public class HighScoreController: MonoBehaviour {
 		DisplayHighScoreList();
 		SaveHighScoreList();
 	}
+	#endregion
 
-	private void SaveHighScoreList(){
-		for (int i =0; i<highScoreList.Count && i < scoreBoardlength; i++){
-			PlayerPrefs.SetString("name" + i, highScoreList[i].GetName());
-			PlayerPrefs.SetInt("points" + i, highScoreList[i].GetPoints());
-		}
-	}
-
+	#region Private Functions
+	
 	private void FillHighScoreList(){
 		for ( int i = 0; i< scoreBoardlength; i++){
 			if(PlayerPrefs.HasKey("name" + i)) {
@@ -71,6 +75,13 @@ public class HighScoreController: MonoBehaviour {
 		GameObject.Find("HighScorePoints").GetComponent<Text>().text = pointsOutput;
 	}
 
+	private void SaveHighScoreList() {
+		for(int i = 0; i < highScoreList.Count && i < scoreBoardlength; i++) {
+			PlayerPrefs.SetString("name" + i, highScoreList[i].GetName());
+			PlayerPrefs.SetInt("points" + i, highScoreList[i].GetPoints());
+		}
+	}
+
 	private void DeleteHighScoreList(){
 		GameObject.Find("HighScoreNames").GetComponent<Text>().text = "";
 		GameObject.Find("HighScorePoints").GetComponent<Text>().text = "";
@@ -86,7 +97,7 @@ public class HighScoreController: MonoBehaviour {
 		if(inputText.Equals("")) return "Anonymous";
 		else return inputText;
 	}
-
+	#endregion
 
 
 

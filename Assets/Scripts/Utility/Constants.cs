@@ -48,4 +48,11 @@ public class Constants
 	#region ScriptObjects
 	public static readonly string HIGHSCORE_CONTROLLER = "_HighScoreController";
 	#endregion
+
+	#region Scenes
+	public static int menuScene = 0;
+	public static int singlePlayerScene = 1;
+	public static int creditScene = 2;
+	public static int highScoreScene = 3;
+	#endregion
 }
