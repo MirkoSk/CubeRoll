@@ -38,4 +38,9 @@ public class UIController : MonoBehaviour {
 		//SceneManager.LoadScene(Data.XX, LoadSceneMode.Single);
 		print("Load Multi Player Scene");
 	}
+
+	public void SaveScore(){
+		//[ToDo] save Score...
+		print("Saving Player Score");
+	}
 }
