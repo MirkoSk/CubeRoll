@@ -173,7 +173,6 @@ public class CubeController : MonoBehaviour
 	}
 	private void InitializeNewLevel(){
 		ScoreCounter.Instance.RespawnTriggered(playerNumber);
-		LevelGenerator.Instance.NewLevel();
 	}
 	private void MultiplayerRespawnAtOtherPlayersPosition(){
 		transform.position = new Vector3(otherCube.position.x, 6f, otherCube.position.z);
