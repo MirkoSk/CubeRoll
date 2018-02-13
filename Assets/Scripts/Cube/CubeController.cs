@@ -135,6 +135,9 @@ public class CubeController : MonoBehaviour
         if (respawning == true) return;
         respawning = true;
 
+		//Save Player Score to Data Class
+		Data.singlePlayerScore = ScoreCounter.Instance.Score1;
+		
 		StopCubeMovement();
 		KillCube();
 		AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_DEATH);
@@ -176,7 +179,6 @@ public class CubeController : MonoBehaviour
 		references.meshes.SetActive(true);
 	}
 	private void SinglePlayerRespawn(){
-
 		SceneManager.LoadScene(Data.highScoreScene, LoadSceneMode.Single);
 		//transform.position = startPosition + Vector3.up * 5f;
 		//transform.rotation = startRotation;

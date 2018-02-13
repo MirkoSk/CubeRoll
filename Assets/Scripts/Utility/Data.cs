@@ -13,4 +13,6 @@ public class Data {
 	public static int creditScene = 2;
 	public static int highScoreScene = 3;
 
+	public static int singlePlayerScore = 0;
+
 }

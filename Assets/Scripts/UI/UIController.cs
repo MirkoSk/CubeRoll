@@ -14,23 +14,23 @@ public class UIController : MonoBehaviour {
 	}
 
 	public void QuitCubeRoll() {
-	#if UNITY_EDITOR
+#if UNITY_EDITOR
 		UnityEditor.EditorApplication.isPlaying = false;
-	#else
+#else
          Application.Quit();
-	#endif
+#endif
 	}
 
-	public void GotoMenu(){
-		SceneManager.LoadScene(Data.menuScene,LoadSceneMode.Single);
+	public void GotoMenu() {
+		SceneManager.LoadScene(Data.menuScene);
 	}
 
 	public void GotoCredits() {
-		SceneManager.LoadScene(Data.creditScene,LoadSceneMode.Single);
+		SceneManager.LoadScene(Data.creditScene);
 	}
 
-	public void GotoSingelPlayerScene(){
-		SceneManager.LoadScene(Data.singlePlayerScene, LoadSceneMode.Single);
+	public void GotoSingelPlayerScene() {
+		SceneManager.LoadScene(Data.singlePlayerScene);
 	}
 
 
@@ -39,8 +39,8 @@ public class UIController : MonoBehaviour {
 		print("Load Multi Player Scene");
 	}
 
-	public void SaveScore(){
-		//[ToDo] save Score...
-		print("Saving Player Score");
+	public void SaveScore() {
+		GameObject.Find(Constants.HIGHSCORE_CONTROLLER).GetComponent<HighScoreController>().AddNewEntry();
 	}
+
 }
