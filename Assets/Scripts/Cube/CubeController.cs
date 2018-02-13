@@ -179,7 +179,7 @@ public class CubeController : MonoBehaviour
 		references.meshes.SetActive(true);
 	}
 	private void SinglePlayerRespawn(){
-		SceneManager.LoadScene(Constants.highScoreScene, LoadSceneMode.Single);
+		SceneManager.LoadScene(Constants.HIGHSCORE_SCENE, LoadSceneMode.Single);
 		//transform.position = startPosition + Vector3.up * 5f;
 		//transform.rotation = startRotation;
 		//references.meshes.SetActive(true);

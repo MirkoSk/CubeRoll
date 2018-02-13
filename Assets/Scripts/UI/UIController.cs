@@ -22,21 +22,20 @@ public class UIController : MonoBehaviour {
 	}
 
 	public void GotoMenu() {
-		SceneManager.LoadScene(Constants.menuScene);
+		SceneManager.LoadScene(Constants.MENU_SCENE);
 	}
 
 	public void GotoCredits() {
-		SceneManager.LoadScene(Constants.creditScene);
+		SceneManager.LoadScene(Constants.CREDIT_SCENE);
 	}
 
 	public void GotoSingelPlayerScene() {
-		SceneManager.LoadScene(Constants.singlePlayerScene);
+		SceneManager.LoadScene(Constants.SINGLEPLAYER_SCENE);
 	}
 
 
 	public void GotoMultiPlayerScene() {
-		//SceneManager.LoadScene(Constants.XX, LoadSceneMode.Single);
-		print("Load Multi-Player Scene");
+		SceneManager.LoadScene(Constants.MULTIPLAYER_SCENE, LoadSceneMode.Single);
 	}
 
 	public void SaveScore() {

@@ -50,9 +50,10 @@ public class Constants
 	#endregion
 
 	#region Scenes
-	public static int menuScene = 0;
-	public static int singlePlayerScene = 1;
-	public static int creditScene = 2;
-	public static int highScoreScene = 3;
+	public static int MENU_SCENE = 0;
+	public static int SINGLEPLAYER_SCENE = 1;
+	public static int CREDIT_SCENE = 2;
+	public static int HIGHSCORE_SCENE = 3;
+	public static int MULTIPLAYER_SCENE = 3;
 	#endregion
 }
