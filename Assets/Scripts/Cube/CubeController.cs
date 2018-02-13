@@ -152,8 +152,10 @@ public class CubeController : MonoBehaviour
 			}
             else
             {
-				SinglePlayerRespawn();               
-            }
+				if(ScoreCounter.Instance.SinglePlayerGame) SinglePlayerRespawn();
+				else MultiplayerRespawn();
+
+			}
 
             AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_LEVITATE);
 			TweenCubeToGround();           
@@ -178,11 +180,14 @@ public class CubeController : MonoBehaviour
 		transform.rotation = startRotation;
 		references.meshes.SetActive(true);
 	}
+	private void MultiplayerRespawn(){
+		transform.position = startPosition + Vector3.up * 5f;
+		transform.rotation = startRotation;
+		references.meshes.SetActive(true);
+	}
 	private void SinglePlayerRespawn(){
 		SceneManager.LoadScene(Constants.HIGHSCORE_SCENE, LoadSceneMode.Single);
-		//transform.position = startPosition + Vector3.up * 5f;
-		//transform.rotation = startRotation;
-		//references.meshes.SetActive(true);
+		
 	}
 
 
