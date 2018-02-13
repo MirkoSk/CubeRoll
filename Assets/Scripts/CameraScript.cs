@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 
+/// Calculates the offset and moves Main Camera
 /// 
 /// Author: Melanie Ramsch
 /// </summary>
@@ -19,18 +19,20 @@ public class CameraScript : MonoBehaviour {
 
 
 	void Start () {
-        GameObject[] players = GameObject.FindGameObjectsWithTag(Constants.TAG_PLAYER);
-        foreach (GameObject go in players)
-        {
-            if (go.GetComponent<CubeController>().PlayerNumber == playerToFollow)
-            {
-                player = go;
-            }
-        }
-        offset = transform.position - player.transform.position;
+		CalculateOffset();
 	}
 	
 	void Update () {
         transform.position = player.transform.position + offset;
     }
+
+	private void CalculateOffset(){
+		GameObject[] players = GameObject.FindGameObjectsWithTag(Constants.TAG_PLAYER);
+		foreach(GameObject gameObj in players) {
+			if(gameObj.GetComponent<CubeController>().PlayerNumber == playerToFollow) {
+				player = gameObj;
+			}
+		}
+		offset = transform.position - player.transform.position;
+	}
 }

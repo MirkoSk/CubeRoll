@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 
+/// Adds random Tiles at the end of the trail
 /// 
 /// Author: Melanie Ramsch
 /// </summary>

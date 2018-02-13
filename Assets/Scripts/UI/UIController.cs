@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// 
+/// Contains all methods used via Button-Click
 /// 
 /// Author: Melanie Ramsch
 /// </summary>
@@ -36,7 +36,7 @@ public class UIController : MonoBehaviour {
 
 	public void GotoMultiPlayerScene() {
 		//SceneManager.LoadScene(Constants.XX, LoadSceneMode.Single);
-		print("Load Multi Player Scene");
+		print("Load Multi-Player Scene");
 	}
 
 	public void SaveScore() {

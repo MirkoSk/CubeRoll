@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 
+/// Attached to Trigger at the beginning of each tile
+/// Triggers new tile
+/// Triggers deleting old tiles
 /// 
 /// Author: Melanie Ramsch
 /// </summary>

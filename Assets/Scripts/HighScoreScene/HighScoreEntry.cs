@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 /// <summary>
-/// 
+/// Represents an Entry in the Highscore List
 /// 
 /// Author: Melanie Ramsch
 /// </summary>

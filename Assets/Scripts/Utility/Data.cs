@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 /// <summary>
-/// contains passing non-persistant Data for passing them between Scenes
+/// contains non-persistant Data for passing them between Scenes
 /// 
 /// Author: Melanie Ramsch
 /// </summary>
