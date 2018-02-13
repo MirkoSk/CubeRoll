@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 
@@ -130,58 +131,75 @@ public class CubeController : MonoBehaviour
 
     private void Respawn()
     {
-        // Make sure we respawn just once
+        // Make sure to respawn just once
         if (respawning == true) return;
         respawning = true;
 
-        // Stop all motion of the cube
-        rb.useGravity = false;
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
+		StopCubeMovement();
+		KillCube();
+		AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_DEATH);
 
-        // Hide the cube and add juicyness
-        references.meshes.SetActive(false);
-        references.deathParticleSystem.Play();
-        AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_DEATH);
-
-        StartCoroutine(Delay(references.deathParticleSystem.main.duration * 1.5f, () =>
+		StartCoroutine(Delay(references.deathParticleSystem.main.duration * 1.5f, () =>
         {
-            // Inform the ScoreCounter to reset the score and spawn a new level
-            ScoreCounter.Instance.RespawnTriggered(playerNumber);
-            LevelGenerator.Instance.NewLevel();
-            
-            if (!ScoreCounter.Instance.SinglePlayerGame && otherCube.GetComponent<CubeController>().CubeOnTrack)
+			InitializeNewLevel();
+
+			if (!ScoreCounter.Instance.SinglePlayerGame && otherCube.GetComponent<CubeController>().CubeOnTrack)
             {
-                // Cube magically reappears abvoe the other player
-                transform.position = new Vector3(otherCube.position.x, 6f, otherCube.position.z);
-                transform.rotation = startRotation;
-                references.meshes.SetActive(true);
-            }
+				MultiplayerRespawnAtOtherPlayersPosition();
+			}
             else
             {
-                // Cube magically reappears abvoe it's startPosition
-                transform.position = startPosition + Vector3.up * 5f;
-                transform.rotation = startRotation;
-                references.meshes.SetActive(true);
+				SinglePlayerRespawn();               
             }
 
             AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_LEVITATE);
-            
-            // Softly tween the cube onto the ground
-            LeanTween.move(gameObject, new Vector3(transform.position.x, 1f, transform.position.z), 2f).setEase(respawnCurve).setOnComplete(() =>
-            {
-                // Add juicyness
-                references.respawnParticleSystem.Play();
-                AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_SPAWN);
-
-                // Reset our speedDuration for Speedy Gonzalez bonus
-                speedDuration = 0;
-
-                rb.useGravity = true;
-                respawning = false;
-            });
+			TweenCubeToGround();           
         }));
     }
+
+	private void StopCubeMovement() {
+		rb.useGravity = false;
+		rb.velocity = Vector3.zero;
+		rb.angularVelocity = Vector3.zero;
+	}
+	private void KillCube(){
+		references.meshes.SetActive(false);
+		references.deathParticleSystem.Play();
+	}
+	private void InitializeNewLevel(){
+		ScoreCounter.Instance.RespawnTriggered(playerNumber);
+		LevelGenerator.Instance.NewLevel();
+	}
+	private void MultiplayerRespawnAtOtherPlayersPosition(){
+		transform.position = new Vector3(otherCube.position.x, 6f, otherCube.position.z);
+		transform.rotation = startRotation;
+		references.meshes.SetActive(true);
+	}
+	private void SinglePlayerRespawn(){
+
+		SceneManager.LoadScene(Data.highScoreScene, LoadSceneMode.Single);
+		//transform.position = startPosition + Vector3.up * 5f;
+		//transform.rotation = startRotation;
+		//references.meshes.SetActive(true);
+	}
+
+
+
+	private void TweenCubeToGround(){
+		// Softly tween the cube onto the ground
+		LeanTween.move(gameObject, new Vector3(transform.position.x, 1f, transform.position.z), 2f).setEase(respawnCurve).setOnComplete(() =>
+		{
+			// Add juicyness
+			references.respawnParticleSystem.Play();
+			AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_SPAWN);
+
+			// Reset our speedDuration for Speedy Gonzalez bonus
+			speedDuration = 0;
+
+			rb.useGravity = true;
+			respawning = false;
+		});
+	}
 
     private void Spawn()
     {

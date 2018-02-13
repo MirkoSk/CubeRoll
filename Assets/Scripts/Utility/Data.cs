@@ -11,5 +11,6 @@ public class Data {
 	public static int menuScene = 0;
 	public static int singlePlayerScene = 1;
 	public static int creditScene = 2;
-	
+	public static int highScoreScene = 3;
+
 }

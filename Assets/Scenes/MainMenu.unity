@@ -356,7 +356,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 251051388}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -72.5, z: 0}
+  m_LocalPosition: {x: 0, y: -88.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 306733586}
@@ -368,7 +368,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 238}
+  m_AnchoredPosition: {x: 0, y: 195}
   m_SizeDelta: {x: 229, y: 314.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &251051390
@@ -474,7 +474,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 635872615}
-        m_MethodName: gotoSingelPlayerScene
+        m_MethodName: GotoSingelPlayerScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -823,7 +823,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 694600713}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 134, z: 0}
+  m_LocalPosition: {x: 0, y: 189.5, z: 0}
   m_LocalScale: {x: 1, y: 0.6659695, z: 1}
   m_Children:
   - {fileID: 327440878}
@@ -832,7 +832,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -176.5}
+  m_AnchoredPosition: {x: 0, y: -94}
   m_SizeDelta: {x: 600, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &694600715
@@ -961,7 +961,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 635872615}
-        m_MethodName: gotoCredits
+        m_MethodName: GotoCredits
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1132,7 +1132,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1410267549}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 552, y: 310.5, z: 0}
+  m_LocalPosition: {x: 504, y: 283.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 694600714}
@@ -1225,7 +1225,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 635872615}
-        m_MethodName: gotoMultiPlayerScene
+        m_MethodName: GotoMultiPlayerScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1428,7 +1428,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 635872615}
-        m_MethodName: quitCubeRoll
+        m_MethodName: QuitCubeRoll
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
