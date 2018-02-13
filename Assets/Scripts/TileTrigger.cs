@@ -24,10 +24,11 @@ public class TileTrigger : MonoBehaviour
 			CountCompleteTiles();
 			
 			if ( Data.singlePlayerGame) TileDelete();
-           
+
 			//Disable the Trigger
-            this.enabled = false;
-        }
+			this.gameObject.SetActive(false);
+          
+		}
     }
 
 	private void AddNewTile(){
