@@ -55,7 +55,6 @@ public class LevelGenerator : MonoBehaviour {
 
     void Awake ()
     {
-        // Save a reference to the AudioHandler component as our singleton instance
         Instance = this;
     }
 
