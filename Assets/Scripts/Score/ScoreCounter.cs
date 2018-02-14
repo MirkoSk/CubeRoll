@@ -91,6 +91,8 @@ public class ScoreCounter : MonoBehaviour
 		} else {
 			Data.singlePlayerGame = false;
 		}
+
+		player1.highscore = getHighestScore();
     }
 
     private void Update()
@@ -211,12 +213,17 @@ public class ScoreCounter : MonoBehaviour
             player2.distance = 0;
         }
     }
-    #endregion
+
+	private int getHighestScore() {
+		if(PlayerPrefs.HasKey("name0")) return PlayerPrefs.GetInt("points0");
+		else return 0;
+	}
+	#endregion
 
 
 
-    #region Coroutines
-    IEnumerator SpeedyCoroutine(Rigidbody rb, int playerNumber)
+	#region Coroutines
+	IEnumerator SpeedyCoroutine(Rigidbody rb, int playerNumber)
     {
         int multiplier = 0;
         while (rb.velocity.x + rb.velocity.z >= speedLimit)

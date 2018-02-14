@@ -43,8 +43,9 @@ public class HighscoreUpdater : MonoBehaviour
 	{
         highscoreText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         highscoreParticleSystem = transform.GetChild(1).GetComponent<ParticleSystem>();
+		if(Data.singlePlayerGame) highscoreText.text = getHighestScore();
 
-        originalCounterScale = transform.localScale;
+		originalCounterScale = transform.localScale;
 	}
 	#endregion
 	
@@ -55,7 +56,7 @@ public class HighscoreUpdater : MonoBehaviour
     {
         highscoreParticleSystem.Play();
 
-        if (playerNumber == 1) highscoreText.text = ScoreCounter.Instance.Highscore1.ToString();
+		if(Data.singlePlayerGame) highscoreText.text = getHighestScore();
         else if (playerNumber == 2) highscoreText.text = ScoreCounter.Instance.Highscore2.ToString();
 
         LeanTween.scale(gameObject, transform.localScale * (1 + scaleAmount), scaleDuration * (1f / 3.5f)).setEase(LeanTweenType.easeOutBack).setOnComplete(() => {
@@ -67,4 +68,9 @@ public class HighscoreUpdater : MonoBehaviour
 
     }
 	#endregion
+
+	private string getHighestScore(){
+		if(PlayerPrefs.HasKey("name0")) return PlayerPrefs.GetInt("points0").ToString();
+		else return "0";
+	}
 }
