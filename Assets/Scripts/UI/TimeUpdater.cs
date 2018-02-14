@@ -65,6 +65,7 @@ public class TimeUpdater : MonoBehaviour
             // Tween it!
             if (restTime == warnTime)
             {
+                AudioManager.Instance.PlaySound(Constants.SOUND_TIMER_WARNING);
                 LeanTween.scale(timeText.gameObject, targetScale * 1.2f, 0.2f).setEase(LeanTweenType.easeInOutCubic).setLoopPingPong(2);
             }
             else LeanTween.scale(timeText.gameObject, targetScale, scaleDuration).setEase(LeanTweenType.punch);

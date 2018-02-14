@@ -155,8 +155,6 @@ public class ScoreCounter : MonoBehaviour
                 ResetScore(playerNumber);
             }
         }
-
-        AudioManager.Instance.PlaySound(Constants.SOUND_NEW_HIGHSCORE);
     }
     #endregion
 

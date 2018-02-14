@@ -34,7 +34,8 @@ public class MultiPlayerTimeController : MonoBehaviour
     {
         restTime -= Time.deltaTime;
 
-		if (restTime <= 0f){
+		if (restTime <= 0f)
+        {
 			SceneManager.LoadScene(Constants.MULTIPLAYER_SCORE_SCENE);
 		}
 	}

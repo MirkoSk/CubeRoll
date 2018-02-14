@@ -30,7 +30,9 @@ public class HighScoreController: MonoBehaviour {
 		highScoreList = new List<HighScoreEntry>();
 		FillHighScoreList();
 		DisplayHighScoreList();
-	}
+
+        AudioManager.Instance.PlaySound(Constants.SOUND_NEW_HIGHSCORE);
+    }
 	#endregion
 
 	#region Public Functions

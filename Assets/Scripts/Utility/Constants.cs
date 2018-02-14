@@ -43,10 +43,12 @@ public class Constants
     public static readonly string SOUND_SCORE_UP = "ScoreUp";
     public static readonly string SOUND_NEW_HIGHSCORE = "NewHighscore";
     public static readonly string SOUND_MENU_CONFIRM = "MenuConfirm";
-	#endregion
+    public static readonly string SOUND_TIMER_WARNING = "TimerWarning";
+    public static readonly string SOUND_FIREWORKS = "Fireworks";
+    #endregion
 
-	#region ScriptObjects
-	public static readonly string HIGHSCORE_CONTROLLER = "_HighScoreController";
+    #region ScriptObjects
+    public static readonly string HIGHSCORE_CONTROLLER = "_HighScoreController";
 	#endregion
 
 	#region Scenes

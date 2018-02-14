@@ -145,8 +145,6 @@ public class CubeController : MonoBehaviour
 
 		StartCoroutine(Delay(references.deathParticleSystem.main.duration * 1.5f, () =>
         {
-            if (Data.singlePlayerGame) NotifyScoreCounter();
-
 			if (!Data.singlePlayerGame)
             {
                 if (otherCube.GetComponent<CubeController>().CubeOnTrack)
@@ -157,14 +155,15 @@ public class CubeController : MonoBehaviour
                 {
                     MultiplayerRespawnAtCurrentTile();
                 }
-			}
+
+                AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_LEVITATE);
+                TweenCubeToGround();
+            }
             else
             {
-				SinglePlayerGameOver();
-			}
-
-            AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_LEVITATE);
-			TweenCubeToGround();           
+                NotifyScoreCounter();
+                SinglePlayerGameOver();
+			}     
         }));
     }
 

@@ -68,6 +68,13 @@ public class AudioManager : MonoBehaviour {
         src.PlayScheduled(time);
     }
 
+    public void StopSound(string name, float fadeOutTime = 0f)
+    {
+        AudioSource src;
+        audioSources.TryGetValue(name, out src);
+        src.Stop(fadeOutTime);
+    }
+
     public void PlayMenuConfirm() {
         AudioSource src;
         audioSources.TryGetValue(Constants.SOUND_MENU_CONFIRM, out src);

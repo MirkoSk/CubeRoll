@@ -3,17 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 
+/// 
+/// Author: Melanie Ramsch
+/// </summary>
 public class MultiPlayerScore : MonoBehaviour {
 
 	Text winner,winnerScore,loser,loserScore;
 	
 	
 	void Start () {
-		winner = GameObject.Find("Winner").GetComponent<Text>();
+		winner = GameObject.Find("WinnerName").GetComponent<Text>();
 		winnerScore = GameObject.Find("WinnerScore").GetComponent<Text>();
-		loser = GameObject.Find("Loser").GetComponent<Text>();
+		loser = GameObject.Find("LoserName").GetComponent<Text>();
 		loserScore = GameObject.Find("LoserScore").GetComponent<Text>();
 		setText();
+
+        AudioManager.Instance.StopSound(Constants.SOUND_TRACK01LOOP);
+        AudioManager.Instance.PlaySound(Constants.SOUND_FIREWORKS);
+        AudioManager.Instance.PlaySound(Constants.SOUND_NEW_HIGHSCORE);
 	}
 	
 	private void setText(){
