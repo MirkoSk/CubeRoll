@@ -170,8 +170,8 @@ public class CubeController : MonoBehaviour
 
 	private void SavePlayerScoreToDataClass(){
 		Data.singlePlayerScore = ScoreCounter.Instance.Score1;
-		Data.player1 = ScoreCounter.Instance.Score1;
-		Data.player2 = ScoreCounter.Instance.Score2;
+		Data.player1 = ScoreCounter.Instance.Score1 + ScoreCounter.Instance.Distance1;
+		Data.player2 = ScoreCounter.Instance.Score2 + ScoreCounter.Instance.Distance2;
 	}
 	private void StopCubeMovement() {
 		rb.useGravity = false;
