@@ -25,11 +25,13 @@ public class TileCompletionScore : MonoBehaviour
             {
                 ScoreCounter.Instance.TileCompleted(parent.PlayerNumber);
                 tilesetCompletedPlayer1 = true;
+                parent.CurrentTilePosition = transform.position;
             }
             else if (parent.PlayerNumber == 2 && !tilesetCompletedPlayer2)
             {
                 ScoreCounter.Instance.TileCompleted(parent.PlayerNumber);
                 tilesetCompletedPlayer2 = true;
+                parent.CurrentTilePosition = transform.position;
             }
         }
     }

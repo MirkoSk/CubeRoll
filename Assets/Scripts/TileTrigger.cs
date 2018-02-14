@@ -12,9 +12,13 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class TileTrigger : MonoBehaviour
 {
+    bool tileTriggered;
+
 
 	private void OnTriggerEnter (Collider hit)
     {
+        if (tileTriggered) return;
+
         // Since Triggers don't understand compound colliders: Go up the hierarchy until you hit the gameObject with the rigidbody
         Rigidbody parent = hit.FindComponentInParents<Rigidbody>();
 
@@ -25,8 +29,8 @@ public class TileTrigger : MonoBehaviour
 			
 			if ( Data.singlePlayerGame) TileDelete();
 
-			//Disable the Trigger
-			this.gameObject.SetActive(false);
+            //Disable the Trigger
+            tileTriggered = true;
           
 		}
     }

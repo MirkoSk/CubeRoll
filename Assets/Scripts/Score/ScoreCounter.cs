@@ -62,10 +62,6 @@ public class ScoreCounter : MonoBehaviour
     public float SpeedDuration { get { return speedDuration; } }
     public float SpeedLimit { get { return speedLimit; } }
     public int SpeedyGonzalez { get { return speedyGonzalez; } }
-    public bool SinglePlayerGame { get { return singlePlayerGame; } }
-
-    // Private Variables
-    bool singlePlayerGame;
     #endregion
 
 
@@ -92,10 +88,8 @@ public class ScoreCounter : MonoBehaviour
     {
 		if(player2.references.cube == null) {
 			Data.singlePlayerGame = true;
-			singlePlayerGame = true;
 		} else {
 			Data.singlePlayerGame = false;
-			singlePlayerGame = false;
 		}
     }
 

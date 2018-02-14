@@ -47,6 +47,7 @@ public class CubeController : MonoBehaviour
     public float SpeedDuration { get; set; }
     public bool SpeedyStarted { get; set; }
     public bool CubeOnTrack { get { return cubeOnTrack; } }
+    public Vector3 CurrentTilePosition { get { return currenTilePosition; } set { currenTilePosition = value; } }
 
     // Private Variables
     // variables for speedy achievement
@@ -59,6 +60,7 @@ public class CubeController : MonoBehaviour
     bool respawning;
     Transform otherCube;
     bool cubeOnTrack;
+    Vector3 currenTilePosition;
 
     Rigidbody rb;
     #endregion
@@ -73,6 +75,7 @@ public class CubeController : MonoBehaviour
         // Save the startPosition and Rotation for later use
         startPosition = rb.transform.position;
         startRotation = rb.transform.rotation;
+        currenTilePosition = rb.transform.position;
 
         // Save a reference to the other cube, if this is a multiplayer game
         GameObject[] players = GameObject.FindGameObjectsWithTag(Constants.TAG_PLAYER);
@@ -96,7 +99,7 @@ public class CubeController : MonoBehaviour
             }
         }
 
-        cubeOnTrack = Physics.Raycast(transform.position, Vector3.down, 10f);
+        cubeOnTrack = Physics.Raycast(transform.position, Vector3.down, 20f);
 
         if ( rb.position.y <= -7f ) Respawn();
 		SavePlayerScoreToDataClass();
@@ -144,13 +147,20 @@ public class CubeController : MonoBehaviour
         {
 			NotifyScoreCounter();
 
-			if (!Data.singlePlayerGame && otherCube.GetComponent<CubeController>().CubeOnTrack)
+			if (!Data.singlePlayerGame)
             {
-				MultiplayerRespawnAtOtherPlayersPosition();
+                if (otherCube.GetComponent<CubeController>().CubeOnTrack)
+                {
+                    MultiplayerRespawnAtOtherPlayersPosition();
+                }
+                else
+                {
+                    MultiplayerRespawnAtCurrentTile();
+                }
 			}
             else
             {
-				if(Data.singlePlayerGame) SinglePlayerGameOver();
+				SinglePlayerGameOver();
 			}
 
             AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_LEVITATE);
@@ -176,11 +186,17 @@ public class CubeController : MonoBehaviour
 		ScoreCounter.Instance.RespawnTriggered(playerNumber);
 	}
 	private void MultiplayerRespawnAtOtherPlayersPosition(){
-		transform.position = new Vector3(otherCube.position.x, 6f, otherCube.position.z-2);
+		transform.position = new Vector3(otherCube.position.x, 6f, otherCube.position.z);
 		transform.rotation = startRotation;
 		references.meshes.SetActive(true);
 	}
-	private void SinglePlayerGameOver(){
+    private void MultiplayerRespawnAtCurrentTile()
+    {
+        transform.position = new Vector3(currenTilePosition.x, 6f, currenTilePosition.z);
+        transform.rotation = startRotation;
+        references.meshes.SetActive(true);
+    }
+    private void SinglePlayerGameOver(){
 		SceneManager.LoadScene(Constants.HIGHSCORE_SCENE, LoadSceneMode.Single);
 	}
 
