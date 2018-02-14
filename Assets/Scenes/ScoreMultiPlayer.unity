@@ -7205,7 +7205,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 834909494}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 256.5, z: 0}
+  m_LocalPosition: {x: 0, y: 246, z: 0}
   m_LocalScale: {x: 0.38993773, y: 0.25968635, z: 0.3899373}
   m_Children: []
   m_Father: {fileID: 1577690353}
@@ -17857,7 +17857,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1509043131}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 73, y: -254.50002, z: 0}
+  m_LocalPosition: {x: 73, y: -244.00002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1720206803}
@@ -18073,12 +18073,12 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -18111,7 +18111,7 @@ RectTransform:
   m_GameObject: {fileID: 1577690349}
   m_LocalRotation: {x: -0.6856022, y: -0, z: -0, w: 0.7279764}
   m_LocalPosition: {x: 0, y: 9.982044, z: 0.5989927}
-  m_LocalScale: {x: 0.027024144, y: 0.027024144, z: 0.027024144}
+  m_LocalScale: {x: 0.027969988, y: 0.027969988, z: 0.027969988}
   m_Children:
   - {fileID: 80132915}
   - {fileID: 1035868124}
@@ -21841,7 +21841,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1847848617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -72.99999, y: -254.50002, z: 0}
+  m_LocalPosition: {x: -72.99999, y: -244.00002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1521332952}
