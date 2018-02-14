@@ -99,6 +99,7 @@ public class CubeController : MonoBehaviour
         cubeOnTrack = Physics.Raycast(transform.position, Vector3.down, 10f);
 
         if ( rb.position.y <= -7f ) Respawn();
+		SavePlayerScoreToDataClass();
 	}
     #endregion
 
@@ -135,8 +136,6 @@ public class CubeController : MonoBehaviour
         if (respawning == true) return;
         respawning = true;
 
-		SavePlayerScoreToDataClass();
-
 		StopCubeMovement();
 		KillCube();
 		AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_DEATH);
@@ -151,9 +150,7 @@ public class CubeController : MonoBehaviour
 			}
             else
             {
-				if(Data.singlePlayerGame) SinglePlayerRespawn();
-				else MultiplayerRespawn();
-
+				if(Data.singlePlayerGame) SinglePlayerGameOver();
 			}
 
             AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_LEVITATE);
@@ -183,12 +180,7 @@ public class CubeController : MonoBehaviour
 		transform.rotation = startRotation;
 		references.meshes.SetActive(true);
 	}
-	private void MultiplayerRespawn(){
-		transform.position = startPosition + Vector3.up * 5f;
-		transform.rotation = startRotation;
-		references.meshes.SetActive(true);
-	}
-	private void SinglePlayerRespawn(){
+	private void SinglePlayerGameOver(){
 		SceneManager.LoadScene(Constants.HIGHSCORE_SCENE, LoadSceneMode.Single);
 	}
 

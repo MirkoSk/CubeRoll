@@ -54,6 +54,7 @@ public class Constants
 	public static int SINGLEPLAYER_SCENE = 1;
 	public static int CREDIT_SCENE = 2;
 	public static int HIGHSCORE_SCENE = 3;
-	public static int MULTIPLAYER_SCENE = 3;
+	public static int MULTIPLAYER_SCORE_SCENE = 4;
+	public static int MULTIPLAYER_SCENE = 5;
 	#endregion
 }
