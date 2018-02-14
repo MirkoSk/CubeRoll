@@ -605,6 +605,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa170cbe0c3abf43968179dab0b2281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleAmount: 0.15
+  scaleDuration: 0.5
 --- !u!114 &154377824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2586,7 +2588,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -47.3}
-  m_SizeDelta: {x: 76.9, y: 30}
+  m_SizeDelta: {x: 124.43, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1886352235
 MonoBehaviour:
@@ -3025,7 +3027,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2064287703}
   m_LocalRotation: {x: 0.3020699, y: -0, z: -0, w: 0.95328575}
-  m_LocalPosition: {x: 4, y: 0.32080078, z: -1.1369247}
+  m_LocalPosition: {x: 4, y: 0.3208313, z: -1.1369247}
   m_LocalScale: {x: 0.027024144, y: 0.027024144, z: 0.027024144}
   m_Children:
   - {fileID: 2073705512}
