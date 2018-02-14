@@ -10,17 +10,22 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class MultiPlayerTimeController : MonoBehaviour
 {
+    #region Variable Declarations
     // Configuration
-	[SerializeField] float duration = 60f;
+    [SerializeField] float duration = 60f;
 
     // State
 	float restTime = 0;
 
+    // Public Properties
     public float RestTime { get { return restTime; } }
+    public float Duration { get { return duration; } }
+    #endregion
 
 
 
-	private void Start()
+    #region Unity Event Functions
+    private void Start()
     {
         restTime = duration;
 	}
@@ -33,5 +38,5 @@ public class MultiPlayerTimeController : MonoBehaviour
 			SceneManager.LoadScene(Constants.MULTIPLAYER_SCORE_SCENE);
 		}
 	}
-
+    #endregion
 }
