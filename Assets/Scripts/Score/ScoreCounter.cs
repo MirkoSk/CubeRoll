@@ -144,7 +144,7 @@ public class ScoreCounter : MonoBehaviour
 
     public void RespawnTriggered(int playerNumber)
     {
-        if (playerNumber == 1)
+        if (Data.singlePlayerGame)
         {
             AddPoints(player1.distance, playerNumber);
 
@@ -152,17 +152,6 @@ public class ScoreCounter : MonoBehaviour
             {
                 player1.highscore = player1.score;
                 player1.references.highscoreUpdater.UpdateText();
-                ResetScore(playerNumber);
-            }
-        }
-        else if (playerNumber == 2)
-        {
-            AddPoints(player2.distance, playerNumber);
-
-            if (player2.score > player2.highscore)
-            {
-                player2.highscore = player2.score;
-                player2.references.highscoreUpdater.UpdateText();
                 ResetScore(playerNumber);
             }
         }
