@@ -343,7 +343,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1765132368173342}
-  m_Mesh: {fileID: 4300000, guid: 5e2a675a22a2cb04fb2ff2a41681b205, type: 3}
+  m_Mesh: {fileID: 4300000, guid: a038e000ba71df24fa0ff51f48a5ed06, type: 3}
 --- !u!33 &33334742180938246
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -357,7 +357,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1081267873486584}
-  m_Mesh: {fileID: 4300000, guid: 5e2a675a22a2cb04fb2ff2a41681b205, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 9771bed310121a749ab12ace9f56072d, type: 3}
 --- !u!54 &54448436174938352
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -386,7 +386,7 @@ MeshCollider:
   m_Convex: 1
   m_InflateMesh: 0
   m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: e9fceb53553e34a4f81c12e3e870f641, type: 3}
+  m_Mesh: {fileID: 4300000, guid: b34e1fc5307fcf549b76cabe3c32d6e6, type: 3}
 --- !u!64 &64683881551457664
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -400,7 +400,7 @@ MeshCollider:
   m_Convex: 1
   m_InflateMesh: 0
   m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: e9fceb53553e34a4f81c12e3e870f641, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 502fdf36d74941543950e4aa6af99e11, type: 3}
 --- !u!64 &64997840083656910
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -516,8 +516,6 @@ MonoBehaviour:
     meshes: {fileID: 1716032831043122}
     deathParticleSystem: {fileID: 198040044220120336}
     respawnParticleSystem: {fileID: 198308358455328118}
-  speedDuration: 0
-  speedyStarted: 0
 --- !u!114 &114437130162547146
 MonoBehaviour:
   m_ObjectHideFlags: 1
