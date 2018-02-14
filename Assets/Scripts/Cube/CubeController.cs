@@ -145,7 +145,7 @@ public class CubeController : MonoBehaviour
 
 		StartCoroutine(Delay(references.deathParticleSystem.main.duration * 1.5f, () =>
         {
-			//NotifyScoreCounter();
+            if (Data.singlePlayerGame) NotifyScoreCounter();
 
 			if (!Data.singlePlayerGame)
             {
