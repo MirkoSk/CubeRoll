@@ -114,6 +114,40 @@ public class CubeController : MonoBehaviour
         moveDampening = 0;
         StartCoroutine(ResetMoveDampeningCoroutine(seconds));
     }
+
+    public void Respawn()
+    {
+        // Make sure to respawn just once
+        if (respawning == true) return;
+        respawning = true;
+
+        StopCubeMovement();
+        KillCube();
+        AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_DEATH);
+
+        StartCoroutine(Delay(references.deathParticleSystem.main.duration * 1.5f, () =>
+        {
+            if (!Data.singlePlayerGame)
+            {
+                if (otherCube.GetComponent<CubeController>().CubeOnTrack && !otherCube.GetComponent<CubeController>().Respawning)
+                {
+                    MultiplayerRespawnAtOtherPlayersPosition();
+                }
+                else
+                {
+                    MultiplayerRespawnAtCurrentTile();
+                }
+
+                AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_LEVITATE);
+                TweenCubeToGround();
+            }
+            else
+            {
+                NotifyScoreCounter();
+                SinglePlayerGameOver();
+            }
+        }));
+    }
     #endregion
 
 
@@ -133,40 +167,6 @@ public class CubeController : MonoBehaviour
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
     }
 
-    private void Respawn()
-    {
-        // Make sure to respawn just once
-        if (respawning == true) return;
-        respawning = true;
-
-		StopCubeMovement();
-		KillCube();
-		AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_DEATH);
-
-		StartCoroutine(Delay(references.deathParticleSystem.main.duration * 1.5f, () =>
-        {
-			if (!Data.singlePlayerGame)
-            {
-                if (otherCube.GetComponent<CubeController>().CubeOnTrack)
-                {
-                    MultiplayerRespawnAtOtherPlayersPosition();
-                }
-                else
-                {
-                    MultiplayerRespawnAtCurrentTile();
-                }
-
-                AudioManager.Instance.PlaySound(Constants.SOUND_CUBE_LEVITATE);
-                TweenCubeToGround();
-            }
-            else
-            {
-                NotifyScoreCounter();
-                SinglePlayerGameOver();
-			}     
-        }));
-    }
-
 	private void SavePlayerScoreToDataClass(){
 		Data.singlePlayerScore = ScoreCounter.Instance.Score1;
 		Data.player1 = ScoreCounter.Instance.Score1 + ScoreCounter.Instance.Distance1;
@@ -181,7 +181,7 @@ public class CubeController : MonoBehaviour
 		references.meshes.SetActive(false);
 		references.deathParticleSystem.Play();
 	}
-	private void NotifyScoreCounter(){
+	private void NotifyScoreCounter() {
 		ScoreCounter.Instance.RespawnTriggered(playerNumber);
 	}
 	private void MultiplayerRespawnAtOtherPlayersPosition(){
@@ -189,9 +189,9 @@ public class CubeController : MonoBehaviour
 		transform.rotation = startRotation;
 		references.meshes.SetActive(true);
 	}
-    private void MultiplayerRespawnAtCurrentTile()
-    {
-        transform.position = new Vector3(currenTilePosition.x, 6f, currenTilePosition.z);
+    private void MultiplayerRespawnAtCurrentTile() {
+        if (playerNumber == 1) transform.position = new Vector3(currenTilePosition.x + 2f, 6f, currenTilePosition.z);
+        else if (playerNumber == 2) transform.position = new Vector3(currenTilePosition.x - 2f, 6f, currenTilePosition.z);
         transform.rotation = startRotation;
         references.meshes.SetActive(true);
     }
@@ -201,7 +201,7 @@ public class CubeController : MonoBehaviour
 
 
 
-	private void TweenCubeToGround(){
+	private void TweenCubeToGround() {
 		// Softly tween the cube onto the ground
 		LeanTween.move(gameObject, new Vector3(transform.position.x, 1f, transform.position.z), 2f).setEase(respawnCurve).setOnComplete(() =>
 		{

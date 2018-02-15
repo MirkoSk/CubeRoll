@@ -552,7 +552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionCooldown: 3
-  collisionSpeedThreshold: 2
+  collisionSpeedThreshold: 1
   stateMachine: {fileID: 114615717028888832}
 --- !u!114 &114615717028888832
 MonoBehaviour:
@@ -573,7 +573,7 @@ MonoBehaviour:
   defaultStateIndex: 1
   defaultStateName: Stage1
   currentState: {fileID: 0}
-  verbose: 1
+  verbose: 0
   allowReentry: 0
   returnToDefaultOnDisable: 1
   OnStateExited:

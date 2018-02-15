@@ -34,9 +34,12 @@ public class LandMineController : MonoBehaviour {
 
     void OnCollisionEnter(Collision hit) {
         if (hit.transform.tag.Contains(Constants.TAG_PLAYER)) {
-            // Aplly force to player and block his movement
-            hit.transform.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, this.transform.position + Vector3.up * 1f, explosionRadius);
-            hit.transform.GetComponent<CubeController>().BlockMovement(movementBlockTimeOnHit);
+            // Aplly damage to the player. If he survives: Also apply the explosion force and block his movement
+            if (hit.transform.GetComponent<CubeDamage>().TakeDamage())
+            {
+                hit.transform.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, this.transform.position + Vector3.up * 1f, explosionRadius);
+                hit.transform.GetComponent<CubeController>().BlockMovement(movementBlockTimeOnHit);
+            }
 
             // Trigger effects and sounds
             CameraShaker.Instance.ShakeOnce(magnitude, roughness, 0, fadeOutTime);

@@ -4,7 +4,9 @@ using UnityEngine;
 using Pixelplacement;
 
 /// <summary>
+/// Handles the damage level of the cube.
 /// 
+/// Author: Mirko Skroch
 /// </summary>
 [RequireComponent(typeof(CubeController))]
 public class CubeDamage : MonoBehaviour 
@@ -20,6 +22,7 @@ public class CubeDamage : MonoBehaviour
 
     // Configuration
     Rigidbody rb;
+    CubeController cubeController;
 
     // State
     float timer;
@@ -31,22 +34,44 @@ public class CubeDamage : MonoBehaviour
 	private void Start () 
 	{
         rb = GetComponent<Rigidbody>();
+        cubeController = GetComponent<CubeController>();
 	}
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.tag.Contains(Constants.TAG_PLAYER) 
-            && timer >= collisionCooldown
+        if (collision.transform.tag.Contains(Constants.TAG_PLAYER)
             && (rb.velocity - collision.rigidbody.velocity).magnitude >= collisionSpeedThreshold)
         {
-            stateMachine.Next();
-            timer = 0;
+            TakeDamage();
         }
     }
 
     private void Update()
     {
         timer += Time.deltaTime;
+    }
+    #endregion
+
+
+
+    #region Public Functions
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns>False if the cube couldn't take the damage and died :(</returns>
+    public bool TakeDamage()
+    {
+        if (timer >= collisionCooldown)
+        {
+            if (stateMachine.currentState == stateMachine.Next())
+            {
+                cubeController.Respawn();
+                timer = 0;
+                return false;
+            }
+            timer = 0;
+        }
+        return true;
     }
     #endregion
 }
