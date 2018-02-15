@@ -23,7 +23,7 @@ public class LevelGenerator : MonoBehaviour {
     public GameObject[] tileSet2Hard;//T2
 
     //Listof all Tiles in Scene
-    private List<GameObject> tilelist ;
+    private List<GameObject> tilelist;
 
     //Tiles parent
     private Transform environmentParent;
@@ -69,10 +69,10 @@ public class LevelGenerator : MonoBehaviour {
 
     private void Update()
     {
-        score = ScoreCounter.Instance.Score1;
+        score = ScoreCounter.Instance.Score1 + ScoreCounter.Instance.Distance1;
     }
 
-#region PublicFunctions
+    #region PublicFunctions
 
     public void AddNewTile (Vector3 position) {
         position += new Vector3(0, 0, DISTANCE_TO_NEXT_FREE_POSITION);
@@ -155,7 +155,7 @@ public class LevelGenerator : MonoBehaviour {
         if( GameObject.FindGameObjectWithTag(Constants.TAG_START_AREA) )
             Destroy(GameObject.FindGameObjectWithTag(Constants.TAG_START_AREA));
     }
- #endregion
+    #endregion
 
 }
 
