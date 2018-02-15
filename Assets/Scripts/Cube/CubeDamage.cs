@@ -63,13 +63,13 @@ public class CubeDamage : MonoBehaviour
     {
         if (timer >= collisionCooldown)
         {
+            timer = 0;
+            AudioManager.Instance.PlaySound(Constants.SOUND_DAMAGE);
             if (stateMachine.currentState == stateMachine.Next())
             {
                 cubeController.Respawn();
-                timer = 0;
                 return false;
             }
-            timer = 0;
         }
         return true;
     }
