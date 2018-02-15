@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// 
+/// Handles Movement and (Re-)Spawning of the Cube
 /// 
 /// Author: Melanie Ramsch, Mirko Skroch
 /// </summary>
@@ -172,34 +172,38 @@ public class CubeController : MonoBehaviour
 		Data.player1 = ScoreCounter.Instance.Score1 + ScoreCounter.Instance.Distance1;
 		Data.player2 = ScoreCounter.Instance.Score2 + ScoreCounter.Instance.Distance2;
 	}
+
 	private void StopCubeMovement() {
 		rb.useGravity = false;
 		rb.velocity = Vector3.zero;
 		rb.angularVelocity = Vector3.zero;
 	}
+
 	private void KillCube(){
 		references.meshes.SetActive(false);
 		references.deathParticleSystem.Play();
 	}
+
 	private void NotifyScoreCounter() {
 		ScoreCounter.Instance.RespawnTriggered(playerNumber);
 	}
+
 	private void MultiplayerRespawnAtOtherPlayersPosition(){
 		transform.position = new Vector3(otherCube.position.x, 6f, otherCube.position.z);
 		transform.rotation = startRotation;
 		references.meshes.SetActive(true);
 	}
+
     private void MultiplayerRespawnAtCurrentTile() {
         if (playerNumber == 1) transform.position = new Vector3(currenTilePosition.x + 2f, 6f, currenTilePosition.z);
         else if (playerNumber == 2) transform.position = new Vector3(currenTilePosition.x - 2f, 6f, currenTilePosition.z);
         transform.rotation = startRotation;
         references.meshes.SetActive(true);
     }
+
     private void SinglePlayerGameOver(){
 		SceneManager.LoadScene(Constants.HIGHSCORE_SCENE, LoadSceneMode.Single);
 	}
-
-
 
 	private void TweenCubeToGround() {
 		// Softly tween the cube onto the ground
