@@ -23,7 +23,7 @@ public class HideCursor : MonoBehaviour
 #if !UNITY_EDITOR
         // Show cursor in built game
         Cursor.lockState = cursorLockMode;
-        Cursor.visible = hideCursor;
+        Cursor.visible = !hideCursor;
 #endif
     }
     #endregion
