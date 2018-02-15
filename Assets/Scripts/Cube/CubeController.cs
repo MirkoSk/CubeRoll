@@ -101,7 +101,7 @@ public class CubeController : MonoBehaviour
 
         cubeOnTrack = Physics.Raycast(transform.position, Vector3.down, 20f);
 
-        if ( rb.position.y <= -7f ) Respawn();
+        if ( rb.position.y <= -8f ) Respawn();
 		SavePlayerScoreToDataClass();
 	}
     #endregion
