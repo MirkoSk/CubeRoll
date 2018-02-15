@@ -5,12 +5,16 @@ using UnityEngine;
 /// <summary>
 /// Manages Level Generation, Adds and Removes Tiles, holds Referenzes to Tile Prefabs
 /// 
+/// The chance to spawn a hard tileset is 0% until the lowerDifficultyPointLimit is reached, 
+/// then it increases with rising score and is at 100% when the upperPointLimit is reached (and then stays at 100%)
+/// 
 /// Author: Melanie Ramsch
 /// </summary>
 public class LevelGenerator : MonoBehaviour {
 
     [Header("Variables")]
-    public int difficultyPointLimit = 1000;
+    public int lowerDifficultyPointLimit = 400;
+    public int upperDifficultyPointLimit = 1200;
 
     [Header("StartArea")]
     public GameObject startArea;
@@ -116,26 +120,31 @@ public class LevelGenerator : MonoBehaviour {
         GameObject temp = null;
 
         if( addT1 ) {
-            if (score < difficultyPointLimit)
+            // Chance to spawn a hard tileset is 0% until the lowerDifficultyPointLimit is reached, 
+            // then increases with rising score and is at 100% when the upperPointLimit is reached
+            if (score + Random.Range(1, upperDifficultyPointLimit - lowerDifficultyPointLimit) > upperDifficultyPointLimit) {
+                random = Random.Range(0, tileSet1Hard.Length);
+                temp = Instantiate(tileSet1Hard[random], position, ROTATION, environmentParent);
+            }
+            else
             {
                 random = Random.Range(0, tileSet1.Length);
                 temp = Instantiate(tileSet1[random], position, ROTATION, environmentParent);
             }
-            else {
-                random = Random.Range(0, tileSet1Hard.Length);
-                temp = Instantiate(tileSet1Hard[random], position, ROTATION, environmentParent);
-            }
             addT1 = false;
         }
         else {
-            if (score < difficultyPointLimit)
+            // Chance to spawn a hard tileset is 0% until the lowerDifficultyPointLimit is reached, 
+            // then increases with rising score and is at 100% when the upperPointLimit is reached
+            if (score + Random.Range(1, upperDifficultyPointLimit - lowerDifficultyPointLimit) > upperDifficultyPointLimit)
+            {
+                random = Random.Range(0, tileSet2Hard.Length);
+                temp = Instantiate(tileSet2Hard[random], position, ROTATION, environmentParent);
+            }
+            else
             {
                 random = Random.Range(0, tileSet2.Length);
                 temp = Instantiate(tileSet2[random], position, ROTATION, environmentParent);
-            }
-            else {
-                random = Random.Range(0, tileSet2Hard.Length);
-                temp = Instantiate(tileSet2Hard[random], position, ROTATION, environmentParent);
             }
             addT1 = true;
         }

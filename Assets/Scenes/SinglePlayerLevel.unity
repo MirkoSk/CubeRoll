@@ -641,7 +641,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90958f86674cc3244ac16f77289b1581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficultyPointLimit: 800
+  lowerDifficultyPointLimit: 300
+  upperDifficultyPointLimit: 1200
   startArea: {fileID: 1337417879752100, guid: 39fbd1f2b17ca644c9fce161e78dc64f, type: 2}
   tileSet1:
   - {fileID: 1358193179111952, guid: e33fd268267cab34e99abec0e566b579, type: 2}
