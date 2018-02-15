@@ -20,7 +20,7 @@ public class HighScoreController: MonoBehaviour {
 	}
 
 	private void Update() {
-		//Debugging Purpouses... [ToDo] Delete Later
+		//Debugging Purpouses...
 		/*if ( Input.GetKeyDown(KeyCode.Backspace)){
 			DeleteHighScoreList();
 		}*/
@@ -96,6 +96,7 @@ public class HighScoreController: MonoBehaviour {
 	private int GetPlayerPoints(){
 		return Data.singlePlayerScore;
 	}
+
 	private string GetPlayerName(){
 		string inputText = GameObject.Find("InputName").GetComponentInChildren<Text>().text;
 		if(inputText.Equals("")) return "Anonymous";
