@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da34c79c6ccc19343b6a0cc4c9847d6f, type: 3}
   m_Name: TakingDamage
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
-  output: {fileID: 0}
+  clip: {fileID: 8300000, guid: 0043f89bd5740344eac5f957ca1bf719, type: 3}
+  output: {fileID: 243105786287923380, guid: 16c441affbc00d2449cf32fc2d46930f, type: 2}
   mute: 0
   bypassEffects: 0
   bypassListenerEffects: 0

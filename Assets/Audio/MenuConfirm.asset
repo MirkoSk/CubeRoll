@@ -9,16 +9,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da34c79c6ccc19343b6a0cc4c9847d6f, type: 3}
-  m_Name: Fireworks
+  m_Name: MenuConfirm
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 28c9c776b59603543ae3544aa9c7fbda, type: 3}
-  output: {fileID: 243403479708800560, guid: 16c441affbc00d2449cf32fc2d46930f, type: 2}
+  clip: {fileID: 8300000, guid: bf4c10717da16e44abaa4d9593dbbfa3, type: 3}
+  output: {fileID: 243105786287923380, guid: 16c441affbc00d2449cf32fc2d46930f, type: 2}
   mute: 0
   bypassEffects: 0
   bypassListenerEffects: 0
   playOnAwake: 0
   loop: 0
   priority: 128
-  volume: 0.7
+  volume: 1
   pitch: 1
   stereoPan: 0

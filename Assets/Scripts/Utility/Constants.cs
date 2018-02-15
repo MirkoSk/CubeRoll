@@ -46,6 +46,7 @@ public class Constants
     public static readonly string SOUND_TIMER_WARNING = "TimerWarning";
     public static readonly string SOUND_FIREWORKS = "Fireworks";
     public static readonly string SOUND_DAMAGE = "TakingDamage";
+    public static readonly string SOUND_MAINMENU = "MainMenuBackground";
     #endregion
 
     #region ScriptObjects

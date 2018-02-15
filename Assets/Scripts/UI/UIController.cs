@@ -42,4 +42,8 @@ public class UIController : MonoBehaviour {
 		GameObject.Find(Constants.HIGHSCORE_CONTROLLER).GetComponent<HighScoreController>().AddNewEntry();
 	}
 
+    public void PlayConfirmSound() {
+        AudioManager.Instance.PlayMenuConfirm();
+    }
+
 }

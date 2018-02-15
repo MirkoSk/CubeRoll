@@ -20,7 +20,7 @@ public class MultiPlayerScore : MonoBehaviour {
 		loserScore = GameObject.Find("LoserScore").GetComponent<Text>();
 		setText();
 
-        AudioManager.Instance.StopSound(Constants.SOUND_TRACK01LOOP);
+        AudioManager.Instance.StopAllMusic();
         AudioManager.Instance.PlaySound(Constants.SOUND_FIREWORKS);
         AudioManager.Instance.PlaySound(Constants.SOUND_NEW_HIGHSCORE);
 	}

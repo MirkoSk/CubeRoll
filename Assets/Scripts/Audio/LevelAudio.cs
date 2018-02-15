@@ -18,7 +18,9 @@ public class LevelAudio : MonoBehaviour {
 	
 	#region Unity Event Functions
 	private void Start () 
-        {
+    {
+        AudioManager.Instance.StopAllMusic();
+
         if (backgroundTrack == 1) 
         {
             AudioManager.Instance.PlaySound(Constants.SOUND_TRACK01INTRO);
@@ -27,7 +29,7 @@ public class LevelAudio : MonoBehaviour {
         else if (backgroundTrack == 2) {
             AudioManager.Instance.PlaySound(Constants.SOUND_TRACK02LOOP);
         }
-	}
+    }
 	
 	private void Update () 
     {

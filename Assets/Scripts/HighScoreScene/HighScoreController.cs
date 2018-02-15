@@ -31,6 +31,8 @@ public class HighScoreController: MonoBehaviour {
 		FillHighScoreList();
 		DisplayHighScoreList();
 
+        AudioManager.Instance.StopAllMusic();
+        AudioManager.Instance.PlaySound(Constants.SOUND_FIREWORKS);
         AudioManager.Instance.PlaySound(Constants.SOUND_NEW_HIGHSCORE);
     }
 	#endregion

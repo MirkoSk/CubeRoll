@@ -75,6 +75,17 @@ public class AudioManager : MonoBehaviour {
         src.Stop(fadeOutTime);
     }
 
+    public void StopAllMusic()
+    {
+        foreach (KeyValuePair<string, AudioSource> source in audioSources)
+        {
+            if (source.Value.outputAudioMixerGroup == masterMixer.FindMatchingGroups("Music")[0])
+            {
+                source.Value.Stop();
+            }
+        }
+    }
+
     public void PlayMenuConfirm() {
         AudioSource src;
         audioSources.TryGetValue(Constants.SOUND_MENU_CONFIRM, out src);
