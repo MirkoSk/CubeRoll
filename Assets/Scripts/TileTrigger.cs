@@ -36,7 +36,7 @@ public class TileTrigger : MonoBehaviour
     }
 
 	private void AddNewTile(){
-		LevelGenerator.Instance.NewTile(transform.parent.position);
+		LevelGenerator.Instance.AddNewTile(transform.parent.position);
 	}
 
 	private void CountCompleteTiles() {
