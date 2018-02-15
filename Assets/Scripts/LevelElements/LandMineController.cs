@@ -22,7 +22,9 @@ public class LandMineController : MonoBehaviour {
     public float roughness = 10f;
     public float fadeOutTime = 3f;
 
-    private ParticleSystem ps;
+    ParticleSystem ps;
+    CameraShaker cameraShakerPlayer1;
+    CameraShaker cameraShakerPlayer2;
     #endregion
 
 
@@ -30,6 +32,13 @@ public class LandMineController : MonoBehaviour {
     #region Unity Event Functions
     void Start() {
         ps = transform.parent.Find("ParticleSystem").GetComponent<ParticleSystem>();
+
+        CameraScript[] cameraRigs = GameObject.FindObjectsOfType<CameraScript>();
+        foreach (CameraScript rig in cameraRigs)
+        {
+            if (rig.playerToFollow == 1) cameraShakerPlayer1 = rig.transform.GetChild(0).GetComponent<CameraShaker>();
+            else if (rig.playerToFollow == 2) cameraShakerPlayer2 = rig.transform.GetChild(0).GetComponent<CameraShaker>();
+        }
     }
 
     void OnCollisionEnter(Collision hit) {
@@ -42,7 +51,8 @@ public class LandMineController : MonoBehaviour {
             }
 
             // Trigger effects and sounds
-            CameraShaker.Instance.ShakeOnce(magnitude, roughness, 0, fadeOutTime);
+            if (hit.transform.GetComponent<CubeController>().PlayerNumber == 1) cameraShakerPlayer1.ShakeOnce(magnitude, roughness, 0, fadeOutTime);
+            else if (hit.transform.GetComponent<CubeController>().PlayerNumber == 2) cameraShakerPlayer2.ShakeOnce(magnitude, roughness, 0, fadeOutTime);
             ps.Play();
             AudioManager.Instance.PlaySound(Constants.SOUND_MINE_PLOP);
 
