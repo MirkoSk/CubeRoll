@@ -19,10 +19,7 @@ public class MultiPlayerScore : MonoBehaviour {
 		loser = GameObject.Find("LoserName").GetComponent<Text>();
 		loserScore = GameObject.Find("LoserScore").GetComponent<Text>();
 		setText();
-
-        AudioManager.Instance.StopAllMusic();
-        AudioManager.Instance.PlaySound(Constants.SOUND_FIREWORKS);
-        AudioManager.Instance.PlaySound(Constants.SOUND_NEW_HIGHSCORE);
+		playSound();
 	}
 	
 	private void setText(){
@@ -38,5 +35,11 @@ public class MultiPlayerScore : MonoBehaviour {
 			loser.text = "Player 1";
 			loserScore.text = Data.player1.ToString();
 		}
+	}
+
+	void playSound(){
+		AudioManager.Instance.StopAllMusic();
+		AudioManager.Instance.PlaySound(Constants.SOUND_FIREWORKS);
+		AudioManager.Instance.PlaySound(Constants.SOUND_NEW_HIGHSCORE);
 	}
 }
