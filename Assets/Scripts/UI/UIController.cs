@@ -39,7 +39,7 @@ public class UIController : MonoBehaviour {
 	}
 
 	public void SaveScore() {
-		GameObject.Find(Constants.HIGHSCORE_CONTROLLER).GetComponent<HighScoreController>().AddNewEntry();
+		GameObject.Find(Constants.SCRIPTS).GetComponent<HighScoreController>().AddNewEntry();
 	}
 
     public void PlayConfirmSound() {

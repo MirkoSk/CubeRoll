@@ -143,7 +143,6 @@ public class CubeController : MonoBehaviour
             }
             else
             {
-                NotifyScoreCounter();
                 SinglePlayerGameOver();
             }
         }));
@@ -168,7 +167,7 @@ public class CubeController : MonoBehaviour
     }
 
 	private void SavePlayerScoreToDataClass(){
-		Data.singlePlayerScore = ScoreCounter.Instance.Score1;
+		Data.singlePlayerScore = ScoreCounter.Instance.Score1 + ScoreCounter.Instance.Distance1;
 		Data.player1 = ScoreCounter.Instance.Score1 + ScoreCounter.Instance.Distance1;
 		Data.player2 = ScoreCounter.Instance.Score2 + ScoreCounter.Instance.Distance2;
 	}
@@ -182,10 +181,6 @@ public class CubeController : MonoBehaviour
 	private void KillCube(){
 		references.meshes.SetActive(false);
 		references.deathParticleSystem.Play();
-	}
-
-	private void NotifyScoreCounter() {
-		ScoreCounter.Instance.RespawnTriggered(playerNumber);
 	}
 
 	private void MultiplayerRespawnAtOtherPlayersPosition(){
