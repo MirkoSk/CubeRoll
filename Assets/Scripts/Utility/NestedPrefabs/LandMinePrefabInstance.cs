@@ -21,21 +21,21 @@ public class LandMinePrefabInstance : PrefabInstance
     [SerializeField] float roughness = 10f;
     [SerializeField] float fadeOutTime = 3f;
     #endregion
+    
 
 
-
-    #region Public Functions
-    public override void BakeInstance()
+    #region Protected Functions
+    protected override void SpawnPrefab()
     {
-        base.BakeInstance();
+        base.SpawnPrefab();
 
-        go.transform.Find("Mesh").GetComponent<LandMineController>().explosionForce = explosionForce;
-        go.transform.Find("Mesh").GetComponent<LandMineController>().explosionRadius = explosionRadius;
-        go.transform.Find("Mesh").GetComponent<LandMineController>().movementBlockTimeOnHit = movementBlockTimeOnHit;
+        prefabInstance.transform.Find("Mesh").GetComponent<LandMineController>().explosionForce = explosionForce;
+        prefabInstance.transform.Find("Mesh").GetComponent<LandMineController>().explosionRadius = explosionRadius;
+        prefabInstance.transform.Find("Mesh").GetComponent<LandMineController>().movementBlockTimeOnHit = movementBlockTimeOnHit;
 
-        go.transform.Find("Mesh").GetComponent<LandMineController>().magnitude = magnitude;
-        go.transform.Find("Mesh").GetComponent<LandMineController>().roughness = roughness;
-        go.transform.Find("Mesh").GetComponent<LandMineController>().fadeOutTime = fadeOutTime;
+        prefabInstance.transform.Find("Mesh").GetComponent<LandMineController>().magnitude = magnitude;
+        prefabInstance.transform.Find("Mesh").GetComponent<LandMineController>().roughness = roughness;
+        prefabInstance.transform.Find("Mesh").GetComponent<LandMineController>().fadeOutTime = fadeOutTime;
     }
     #endregion
 }

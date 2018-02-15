@@ -17,13 +17,13 @@ public class JumpPadPrefabInstance : PrefabInstance
 
 
 
-    #region Public Functions
-    public override void BakeInstance()
+    #region Protected Functions
+    protected override void SpawnPrefab()
     {
-        base.BakeInstance();
+        base.SpawnPrefab();
 
-        go.transform.Find("Mesh").GetComponent<JumpPadController>().forceAmount = forceAmount;
-        go.transform.Find("Mesh").GetComponent<JumpPadController>().forceDuration = forceDuration;
+        prefabInstance.transform.Find("Mesh").GetComponent<JumpPadController>().forceAmount = forceAmount;
+        prefabInstance.transform.Find("Mesh").GetComponent<JumpPadController>().forceDuration = forceDuration;
     }
     #endregion
 }

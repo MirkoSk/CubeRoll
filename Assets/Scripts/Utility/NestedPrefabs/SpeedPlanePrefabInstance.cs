@@ -14,14 +14,14 @@ public class SpeedPlanePrefabInstance : PrefabInstance
     [SerializeField] float force = 50f;
     #endregion
 
+    
 
-
-    #region Public Functions
-    public override void BakeInstance()
+    #region Protected Functions
+    protected override void SpawnPrefab()
     {
-        base.BakeInstance();
+        base.SpawnPrefab();
 
-        go.transform.Find("Mesh").GetComponent<SpeedPlaneController>().force = force;
+        prefabInstance.transform.Find("Mesh").GetComponent<SpeedPlaneController>().force = force;
     }
     #endregion
 }

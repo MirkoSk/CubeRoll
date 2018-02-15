@@ -16,6 +16,9 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetButtonDown(Constants.INPUT_ESCAPE) && SceneManager.GetActiveScene().buildIndex != Constants.MENU_SCENE)
         {
             SceneManager.LoadScene(Constants.MENU_SCENE);
+        } else if (Input.GetButtonDown(Constants.INPUT_ESCAPE))
+        {
+            Application.Quit();
         }
     }
     #endregion
