@@ -51,6 +51,7 @@ public class Constants
 
     #region ScriptObjects
     public static readonly string HIGHSCORE_CONTROLLER = "_HighScoreController";
+	public static readonly string SCRIPTS = "[SCRIPTS]";
 	#endregion
 
 	#region Scenes
