@@ -551,6 +551,7 @@ GameObject:
   - component: {fileID: 1396721019}
   - component: {fileID: 1396721020}
   - component: {fileID: 1396721022}
+  - component: {fileID: 1396721023}
   m_Layer: 0
   m_Name: '[SCRIPTS]'
   m_TagString: Untagged
@@ -642,6 +643,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundTrack: 1
+--- !u!114 &1396721023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1396721018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6153b783a81df324ea652b3664c00f34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hideCursor: 1
+  cursorLockMode: 2
 --- !u!114 &1526283706 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114002252615478216, guid: 74c62ed03d00627488e352ca3885e463,

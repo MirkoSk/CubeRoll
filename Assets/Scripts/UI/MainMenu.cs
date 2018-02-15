@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
+/// Initializing things for the mainMenu scene.
 /// 
+/// Author: Mirko Skroch
 /// </summary>
 public class MainMenu : MonoBehaviour 
 {
@@ -22,23 +22,12 @@ public class MainMenu : MonoBehaviour
             AudioManager.Instance.StopAllMusic();
             AudioManager.Instance.PlaySound(Constants.SOUND_MAINMENU);
         }
-	}
-	
-	private void Update () 
-	{
-		
-	}
-	#endregion
-	
-	
-	
-	#region Public Functions
-	
-	#endregion
-	
-	
-	
-	#region Private Functions
-	
-	#endregion
+
+#if !UNITY_EDITOR
+        // Show cursor in built game
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+#endif
+    }
+    #endregion
 }
