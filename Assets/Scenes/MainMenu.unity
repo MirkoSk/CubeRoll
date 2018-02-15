@@ -331,7 +331,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 251051388}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -115.5, z: 0}
+  m_LocalPosition: {x: 0, y: -105, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 306733586}
@@ -716,7 +716,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 694600713}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 216.5, z: 0}
+  m_LocalPosition: {x: 0, y: 206, z: 0}
   m_LocalScale: {x: 1, y: 0.6659695, z: 1}
   m_Children:
   - {fileID: 327440878}
@@ -966,7 +966,7 @@ GameObject:
   - component: {fileID: 1410267551}
   - component: {fileID: 1410267550}
   m_Layer: 5
-  m_Name: Menu
+  m_Name: MenuCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -999,12 +999,12 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1037,7 +1037,7 @@ RectTransform:
   m_GameObject: {fileID: 1410267549}
   m_LocalRotation: {x: -0.6856022, y: -0, z: -0, w: 0.7279764}
   m_LocalPosition: {x: 0, y: 9.982044, z: 0.5989927}
-  m_LocalScale: {x: 0.027024144, y: 0.027024144, z: 0.027024144}
+  m_LocalScale: {x: 0.027969988, y: 0.027969988, z: 0.027969988}
   m_Children:
   - {fileID: 694600714}
   - {fileID: 251051389}
