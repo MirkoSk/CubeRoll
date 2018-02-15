@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// 
+/// Handles Output for Multiplayer Score Scene
 /// 
 /// Author: Melanie Ramsch
 /// </summary>
