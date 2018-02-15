@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
+/// Class defining ExtensionMethods for this project.
 /// 
+/// Author: Mirko Skroch
 /// </summary>
 public static class ExtensionMethods
 {

@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-using System.Collections.Generic;
 
 /// <summary>
 /// Allows for Nested Prefabs. The script stores a reference to a prefab and displays it's Meshes in EditMode.
