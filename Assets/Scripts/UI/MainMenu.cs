@@ -38,14 +38,14 @@ public class MainMenu : MonoBehaviour
 	//@Melanie Ramsch
 	private void DisplayHeighestScoreInMenu(){
 		Text display = GameObject.Find("GamesHighestScore").GetComponent<Text>();
-		if(getHighestScorePoints() != "0") display.text = "Highest Score by "+getHighestScoreName()+"\n"+"With   "+getHighestScorePoints()+"   Points!";
+		if(GetHighestScorePoints() != "0") display.text = "Highest Score by "+GetHighestScoreName()+"\n"+"With   "+GetHighestScorePoints()+"   Points!";
 		else display.text = "";
 	}
-	private string getHighestScorePoints() {
+	private string GetHighestScorePoints() {
 		if(PlayerPrefs.HasKey("points0")) return PlayerPrefs.GetInt("points0").ToString();
 		else return "0";
 	}
-	private string getHighestScoreName() {
+	private string GetHighestScoreName() {
 		if(PlayerPrefs.HasKey("name0")) return PlayerPrefs.GetString("name0").ToString();
 		else return "0";
 	}

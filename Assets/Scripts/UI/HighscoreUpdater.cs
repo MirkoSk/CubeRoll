@@ -14,11 +14,6 @@ public class HighscoreUpdater : MonoBehaviour
     #region Variable Declarations
     // Visible in Inspector
     [Space]
-    [Range(1, 2)]
-    [SerializeField]
-    int playerNumber = 1;
-
-    [Space]
     [Tooltip("Scale amount on change of the distance counter in percent.")]
     [Range(0f, 0.3f)]
     [SerializeField]
@@ -32,7 +27,6 @@ public class HighscoreUpdater : MonoBehaviour
     // Private Variables
     // Configuration
     TextMeshProUGUI highscoreText;
-    ParticleSystem highscoreParticleSystem;
     Vector3 originalCounterScale;
     #endregion
 
@@ -42,8 +36,7 @@ public class HighscoreUpdater : MonoBehaviour
     private void Start () 
 	{
         highscoreText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        highscoreParticleSystem = transform.GetChild(1).GetComponent<ParticleSystem>();
-		if(Data.singlePlayerGame) highscoreText.text = getHighestScore();
+        if (Data.singlePlayerGame) UpdateText();
 
 		originalCounterScale = transform.localScale;
 	}
@@ -54,10 +47,7 @@ public class HighscoreUpdater : MonoBehaviour
 	#region Public Functions
 	public void UpdateText()
     {
-        highscoreParticleSystem.Play();
-
-		if(Data.singlePlayerGame) highscoreText.text = getHighestScore();
-        else if (playerNumber == 2) highscoreText.text = ScoreCounter.Instance.Highscore2.ToString();
+        highscoreText.text = GetHighestScore();
 
         LeanTween.scale(gameObject, transform.localScale * (1 + scaleAmount), scaleDuration * (1f / 3.5f)).setEase(LeanTweenType.easeOutBack).setOnComplete(() => {
             LeanTween.scale(gameObject, transform.localScale * (1 - scaleAmount), scaleDuration * (1.5f / 3.5f)).setEase(animationCurve).setLoopCount(2).setOnComplete(() =>
@@ -69,7 +59,7 @@ public class HighscoreUpdater : MonoBehaviour
     }
 	#endregion
 
-	private string getHighestScore(){
+	private string GetHighestScore(){
 		if(PlayerPrefs.HasKey("name0")) return PlayerPrefs.GetInt("points0").ToString();
 		else return "0";
 	}

@@ -143,21 +143,6 @@ public class ScoreCounter : MonoBehaviour
         StartCoroutine(SpeedyCoroutine(rb, playerNumber));
         AudioManager.Instance.PlaySoundOneShot(Constants.SOUND_SCORE_UP);
     }
-
-    public void RespawnTriggered(int playerNumber)
-    {
-        if (Data.singlePlayerGame)
-        {
-            AddPoints(player1.distance, playerNumber);
-
-            if (player1.score > player1.highscore)
-            {
-                player1.highscore = player1.score;
-                player1.references.highscoreUpdater.UpdateText();
-                ResetScore(playerNumber);
-            }
-        }
-    }
     #endregion
 
 
@@ -173,20 +158,6 @@ public class ScoreCounter : MonoBehaviour
         else if (playerNumber == 2)
         {
             player2.score += points;
-            player2.references.scoreUpdater.UpdateText();
-        }
-    }
-
-    void ResetScore(int playerNumber)
-    {
-        if (playerNumber == 1)
-        {
-            player1.score = 0;
-            player1.references.scoreUpdater.UpdateText();
-        }
-        else if (playerNumber == 2)
-        {
-            player2.score = 0;
             player2.references.scoreUpdater.UpdateText();
         }
     }

@@ -13,6 +13,7 @@ public class HighScoreController: MonoBehaviour {
 
 	private const int scoreBoardlength = 10;
 	private List<HighScoreEntry> highScoreList;
+    private bool entryAdded;
 
 	#region UnityFunctions
 	void Awake() {
@@ -39,6 +40,8 @@ public class HighScoreController: MonoBehaviour {
 
 	#region Public Functions
 	public void AddNewEntry() {
+        if (entryAdded) return;
+
 		HighScoreEntry newEntry = new HighScoreEntry(GetPlayerName(), GetPlayerPoints());
 		bool inserted = false;
 		for( int i =0; i<highScoreList.Count;i++){
@@ -51,6 +54,7 @@ public class HighScoreController: MonoBehaviour {
 		if(!inserted) highScoreList.Add(newEntry);
 		DisplayHighScoreList();
 		SaveHighScoreList();
+        entryAdded = true;
 	}
 	#endregion
 

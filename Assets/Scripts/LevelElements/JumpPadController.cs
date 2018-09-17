@@ -36,7 +36,7 @@ public class JumpPadController : MonoBehaviour {
     #region Coroutines
     IEnumerator AddJumpForce(Rigidbody rb) {
         for (float i = 0; i < forceDuration; i += Time.deltaTime) {
-            rb.AddForce(Vector3.up * forceAmount);
+            rb.AddForce(transform.up * forceAmount);
             yield return null;
         }
     }
